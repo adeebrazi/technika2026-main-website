@@ -1,0 +1,142 @@
+[
+  {
+    "name": "Dr. Arvind Kumar Pandey",
+    "role": "Dean, School of Engineering & IT",
+    "category": "Convenors",
+    "email": "technika@arkajainuniversity.ac.in",
+    "image": "/team/arvind.png"
+  },
+  {
+    "name": "Dr. Ashwini Kumar",
+    "role": "Asst. Dean, School of Engineering & IT",
+    "category": "Convenors",
+    "email": "technika@arkajainuniversity.ac.in",
+    "image": "/team/ashwini.png"
+  },
+  {
+    "name": "Prof. Mamatha Vayelapelli",
+    "role": "Faculty Coordinator",
+    "category": "Faculty Coordinators",
+    "image": "/team/mamatha.png"
+  },
+  {
+    "name": "Dr. Viranshu Kumar",
+    "role": "Assistant Professor",
+    "category": "Faculty Coordinators",
+    "image": "/team/viranshu.png"
+  },
+  {
+    "name": "Prof. Syed Rashid Anwar",
+    "role": "Assistant Professor",
+    "category": "Faculty Coordinators",
+    "image": "/team/rashid.png"
+  },
+  {
+    "name": "Prof. Divya Paikaray",
+    "role": "Assistant Professor",
+    "category": "Faculty Coordinators",
+    "image": "/team/divya.png"
+  },
+  {
+    "name": "Dr. Prem Nath Suman",
+    "role": "Assistant Professor",
+    "category": "Faculty Coordinators",
+    "image": "/team/prem.png"
+  },
+  {
+    "name": "Prof. Sayantani De",
+    "role": "Assistant Professor",
+    "category": "Faculty Coordinators",
+    "image": "/team/sayantani.png"
+  },
+  {
+    "name": "Prof. Astik Pradhan",
+    "role": "Assistant Professor",
+    "category": "Faculty Coordinators",
+    "image": "/team/astik.png"
+  },
+  {
+    "name": "Adeeb Razi",
+    "role": "Administration",
+    "category": "Core Team",
+    "image": "/team/adeeb.png"
+  },
+  {
+    "name": "Anjali Singh",
+    "role": "Administration",
+    "category": "Core Team",
+    "image": "/team/Anjali.png"
+  },
+  {
+    "name": "Sonali Mahato",
+    "role": "Social Media Lead",
+    "category": "Core Team",
+    "image": "/team/sonali.png"
+  },
+  {
+    "name": "Nikita Mishra",
+    "role": "Content Lead",
+    "category": "Core Team",
+    "image": "/team/nikita.png"
+  },
+  {
+    "name": "Aaditya Singh",
+    "role": "Design Lead",
+    "category": "Core Team",
+    "image": "/team/aaditya.png"
+  },
+  {
+    "name": "Sanchit Agarwal",
+    "role": "Technical Lead",
+    "category": "Core Team",
+    "image": "/team/sanchit.png"
+  },
+  {
+    "name": "Harsh Pathak",
+    "role": "Transport Lead",
+    "category": "Core Team",
+    "image": "/team/harsh.png"
+  },
+  {
+    "name": "Ishika Shrivastava",
+    "role": "Co Content Lead",
+    "category": "Core Team",
+    "image": "/team/ishika.png"
+  },
+  {
+    "name": "Ankit Raj",
+    "role": "Sponsorship Lead",
+    "category": "Core Team",
+    "image": "/team/ankit.png"
+  },
+  {
+    "name": "S Suman Rao",
+    "role": "Creative Lead",
+    "category": "Core Team",
+    "image": "/team/s suman.png"
+  },
+  {
+    "name": "Prince Kumar",
+    "role": "Co Outreach Lead",
+    "category": "Core Team",
+    "image": "/team/prince.png"
+  },
+  {
+    "name": "Anish Kr Singh",
+    "role": "Outreach Lead",
+    "category": "Core Team",
+    "image": "/team/anish.png"
+  },
+  {
+    "name": "Rishav Kr Singh",
+    "role": "Co Transport Lead",
+    "category": "Core Team",
+    "image": "/team/rishav.png"
+  },
+  {
+    "name": "Saraswati Kumari",
+    "role": "Co Management Lead",
+    "category": "Core Team",
+    "image": "/team/saraswati.png"
+  }
+]

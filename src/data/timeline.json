@@ -1,0 +1,58 @@
+[
+  {
+    "day": 1,
+    "time": "09:00 AM",
+    "title": "Avinyā Inception",
+    "description": "Opening ceremony, introducing the theme and launching the living monument centerpiece.",
+    "type": "key"
+  },
+  {
+    "day": 1,
+    "time": "10:30 AM",
+    "title": "Combat Arena Trials",
+    "description": "Robotics sumo qualification rounds and grid navigation assessments.",
+    "type": "event"
+  },
+  {
+    "day": 1,
+    "time": "01:00 PM",
+    "title": "Architectural Ideation",
+    "description": "Panel discussion on sacred geometry and modern interaction systems in technology.",
+    "type": "panel"
+  },
+  {
+    "day": 1,
+    "time": "03:00 PM",
+    "title": "Code Gladiator Commences",
+    "description": "First phase of the algorithmic speed run and architectural CAD challenges.",
+    "type": "event"
+  },
+  {
+    "day": 2,
+    "time": "09:00 AM",
+    "title": "Neural Hack Kickoff",
+    "description": "Agentic AI development sprint begins. Teams assemble and receive design goals.",
+    "type": "key"
+  },
+  {
+    "day": 2,
+    "time": "11:30 AM",
+    "title": "Design Systems Critique",
+    "description": "Live review of motion graphics submissions and interface entries.",
+    "type": "panel"
+  },
+  {
+    "day": 2,
+    "time": "03:30 PM",
+    "title": "Arena Finals",
+    "description": "Final championship clashes in Robotics Sumo and Esports Valorant.",
+    "type": "event"
+  },
+  {
+    "day": 2,
+    "time": "06:00 PM",
+    "title": "Ethereal Echoes",
+    "description": "Acoustic concerts, valedictory distribution of prize pools, and closing monument reveal.",
+    "type": "key"
+  }
+]

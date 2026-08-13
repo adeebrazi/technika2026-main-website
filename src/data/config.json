@@ -1,0 +1,11 @@
+{
+  "registrationStatus": "open",
+  "registrationLink": "http://localhost:5174/register",
+  "brochureLink": "https://technika.example.com/brochure.pdf",
+  "eventDate": "November 20-21, 2026",
+  "venue": "ARKA JAIN University",
+  "googleMapsUrl": "https://maps.google.com/?q=ARKA+JAIN+University+Jamshedpur",
+  "duration": "2 Days Event",
+  "collegeName": "ARKA JAIN University",
+  "collegeLogoUrl": ""
+}
