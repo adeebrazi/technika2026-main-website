@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import ajuLogo from "@/assets/logo.png";
+import technikaLogo from "@/assets/technika_logo.jpg";
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import eventsData from "@/data/events.json";
@@ -601,9 +603,9 @@ function Index() {
       <header id="header" className="sticky top-0 inset-x-0 z-50 bg-[var(--brut-yellow)] border-b-[3px] border-foreground">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-3.5">
           <div className="nav-logo flex items-center gap-2.5 mr-4 md:mr-6 cursor-pointer shrink-0" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <img src="/src/assets/logo.png" alt="ARKA JAIN University Logo" className="h-8 md:h-9.5 w-auto object-contain" />
+            <img src={ajuLogo} alt="ARKA JAIN University Logo" className="h-8 md:h-9.5 w-auto object-contain" />
             <div className="w-[2px] h-6 bg-foreground/30 hidden sm:block" />
-            <img src="/src/assets/technika_logo.jpg" alt="Technika Logo" className="h-8 md:h-9.5 w-auto object-contain border-2 border-foreground shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] hidden sm:block" />
+            <img src={technikaLogo} alt="Technika Logo" className="h-8 md:h-9.5 w-auto object-contain border-2 border-foreground shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] hidden sm:block" />
           </div>
           
           <nav className="hidden lg:flex items-center gap-1 text-xs font-black uppercase">
