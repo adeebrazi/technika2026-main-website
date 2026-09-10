@@ -1,58 +1,86 @@
 [
   {
     "day": 1,
-    "time": "09:00 AM",
-    "title": "Avinyā Inception",
-    "description": "Opening ceremony, introducing the theme and launching the living monument centerpiece.",
-    "type": "key"
+    "time": "10:00 AM",
+    "title": "Inauguration",
+    "description": "Grand opening ceremony and official commencement of Technika 2026.",
+    "type": "Key"
   },
   {
     "day": 1,
-    "time": "10:30 AM",
-    "title": "Combat Arena Trials",
-    "description": "Robotics sumo qualification rounds and grid navigation assessments.",
-    "type": "event"
+    "time": "11:00 AM",
+    "title": "Project Model Exhibition",
+    "description": "Showcase of working models, hardware prototypes, and engineering innovations.",
+    "type": "Event"
   },
   {
     "day": 1,
-    "time": "01:00 PM",
-    "title": "Architectural Ideation",
-    "description": "Panel discussion on sacred geometry and modern interaction systems in technology.",
-    "type": "panel"
+    "time": "12:00 PM",
+    "title": "Events Start",
+    "description": "Flag-off for all technical, non-technical, and competitive event tracks.",
+    "type": "Event"
   },
   {
     "day": 1,
-    "time": "03:00 PM",
-    "title": "Code Gladiator Commences",
-    "description": "First phase of the algorithmic speed run and architectural CAD challenges.",
-    "type": "event"
+    "time": "12:00 PM",
+    "title": "Solo Ramp Walk",
+    "description": "High-fashion solo runway showdown celebrating personality, style, and couture.",
+    "type": "Event"
+  },
+  {
+    "day": 1,
+    "time": "12:00 PM",
+    "title": "Paintball",
+    "description": "High-intensity tactical combat arena with squad matches and target shootouts.",
+    "type": "Gaming"
+  },
+  {
+    "day": 1,
+    "time": "04:30 PM",
+    "title": "Day 1 Closes",
+    "description": "Conclusion of Day 1 track heats and preparation for Day 2 finals.",
+    "type": "Key"
   },
   {
     "day": 2,
-    "time": "09:00 AM",
-    "title": "Neural Hack Kickoff",
-    "description": "Agentic AI development sprint begins. Teams assemble and receive design goals.",
-    "type": "key"
+    "time": "10:00 AM",
+    "title": "Events Start",
+    "description": "Day 2 championship rounds, robotics leagues, and technical arenas resume.",
+    "type": "Event"
   },
   {
     "day": 2,
-    "time": "11:30 AM",
-    "title": "Design Systems Critique",
-    "description": "Live review of motion graphics submissions and interface entries.",
-    "type": "panel"
+    "time": "10:00 AM",
+    "title": "Group Ramp Walk",
+    "description": "Themed runway fashion choreography and synchronized ensemble showdown.",
+    "type": "Event"
   },
   {
     "day": 2,
-    "time": "03:30 PM",
-    "title": "Arena Finals",
-    "description": "Final championship clashes in Robotics Sumo and Esports Valorant.",
-    "type": "event"
+    "time": "10:00 AM",
+    "title": "Paintball",
+    "description": "Day 2 knockout stages and combat tournament playoffs.",
+    "type": "Gaming"
+  },
+  {
+    "day": 2,
+    "time": "02:45 PM",
+    "title": "Events Wrap-Up",
+    "description": "Culmination of all competitive events and final evaluation by judges.",
+    "type": "Key"
+  },
+  {
+    "day": 2,
+    "time": "03:15 PM",
+    "title": "Valedictory Ceremony",
+    "description": "Prize distribution, felicitation of champions, and honoring distinguished guests.",
+    "type": "Key"
   },
   {
     "day": 2,
     "time": "06:00 PM",
-    "title": "Ethereal Echoes",
-    "description": "Acoustic concerts, valedictory distribution of prize pools, and closing monument reveal.",
-    "type": "key"
+    "title": "Night Show",
+    "description": "Star night musical concert, dynamic DJ performance, and grand festival celebration.",
+    "type": "Show"
   }
 ]

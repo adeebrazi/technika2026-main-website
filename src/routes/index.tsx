@@ -455,7 +455,7 @@ function FaqSection({
                         type="text"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="John Doe"
+                        placeholder="Adeeb Razi"
                         className="w-full p-3 brut-border bg-background text-foreground text-sm font-medium focus:outline-none focus:bg-muted"
                       />
                     </div>
@@ -466,7 +466,7 @@ function FaqSection({
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="john@example.com"
+                        placeholder="your@email.com"
                         className="w-full p-3 brut-border bg-background text-foreground text-sm font-medium focus:outline-none focus:bg-muted"
                       />
                     </div>
@@ -517,7 +517,10 @@ function Index() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [heroEvtIdx, setHeroEvtIdx] = useState(0);
   const [theme, setTheme] = useState<"dark" | "main" | "light">(() => {
-    return (localStorage.getItem("technika_theme") as "dark" | "main" | "light") || "dark";
+    if (typeof window !== "undefined" && window.localStorage) {
+      return (localStorage.getItem("technika_theme") as "dark" | "main" | "light") || "dark";
+    }
+    return "dark";
   });
   const [faqTab, setFaqTab] = useState<"faqs" | "write">("faqs");
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -666,7 +669,7 @@ function Index() {
               href={configData.brochureLink}
               target="_blank"
               rel="noreferrer"
-              className="hidden sm:inline-block px-3 py-1.5 text-xs font-black uppercase bg-background text-foreground border-[2px] border-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition"
+              className="inline-block px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-black uppercase bg-background text-foreground border-[2px] border-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition shrink-0"
             >
               Brochure
             </a>
@@ -728,6 +731,15 @@ function Index() {
                 className="px-8 py-4 font-black uppercase bg-background text-foreground brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition cursor-pointer"
               >
                 Explore Events
+              </a>
+              <a
+                href={configData.brochureLink}
+                target="_blank"
+                rel="noreferrer"
+                className="px-8 py-4 font-black uppercase bg-[var(--brut-yellow)] text-foreground brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition flex items-center gap-2 cursor-pointer"
+              >
+                <span>View Brochure</span>
+                <span>📄</span>
               </a>
             </div>
 
@@ -1019,7 +1031,7 @@ function Index() {
                 >
                   <div className="aspect-square overflow-hidden brut-border">
                     <img
-                      src={`/gallery${g.image}`}
+                      src={`/gallery${encodeURI(g.image)}`}
                       alt="Past edition moment"
                       className="w-full h-full object-cover"
                       loading="lazy"
@@ -1056,6 +1068,15 @@ function Index() {
               >
                 Become a Sponsor →
               </a>
+              <a
+                href={configData.sponsorBrochureLink || "/sponsor-brochure.pdf"}
+                target="_blank"
+                rel="noreferrer"
+                className="brut-border px-6 py-3 text-xs font-black uppercase bg-[var(--brut-yellow)] text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition inline-flex items-center gap-2 cursor-pointer"
+              >
+                <span>Sponsor Brochure</span>
+                <span>📄</span>
+              </a>
             </div>
           </div>
         </div>
@@ -1068,8 +1089,8 @@ function Index() {
           The Team
         </h2>
 
-        {(["Convenors", "Faculty Coordinators", "Core Team"] as const).map((group) => {
-          const people = organisersData.filter((o) => o.category === group);
+        {(["Convenors", "Faculty Coordinators", "Student Coordinator"] as const).map((group) => {
+          const people = organisersData.filter((o) => o.category === group || (group === "Student Coordinator" && (o.category === "Student Coordinators" || o.category === "Core Team")));
           if (people.length === 0) return null;
           return (
             <div key={group} className="mt-12">
@@ -1202,7 +1223,7 @@ function Index() {
                 Register your team →
               </a>
               <a href={configData.brochureLink} target="_blank" rel="noreferrer" className="bg-background text-foreground px-8 py-4 font-black uppercase brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition">
-                Download Brochure
+                View Brochure
               </a>
             </div>
           </div>
@@ -1474,8 +1495,26 @@ function Index() {
                   </ul>
                 </div>
               )}
-              
-
+              {/* Modal Action Buttons */}
+              <div className="pt-4 mt-2 border-t-2 border-foreground flex flex-wrap items-center justify-between gap-3">
+                <a
+                  href={configData.registrationLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-foreground text-background px-6 py-3 font-black uppercase text-xs brut-border brut-shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition inline-flex items-center gap-2"
+                >
+                  Register For Event →
+                </a>
+                <a
+                  href={configData.brochureLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-[var(--brut-yellow)] text-foreground px-5 py-3 font-black uppercase text-xs brut-border brut-shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition inline-flex items-center gap-2"
+                >
+                  <span>View in Brochure</span>
+                  <span>📄</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

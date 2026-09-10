@@ -56,87 +56,99 @@
     "image": "/team/astik.png"
   },
   {
+    "name": "Dr. Padmaja Tripathy",
+    "role": "Assistant Professor",
+    "category": "Faculty Coordinators",
+    "image": "/team/padmaja.jpeg"
+  },
+  {
     "name": "Adeeb Razi",
     "role": "Administration",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/adeeb.png"
   },
   {
     "name": "Anjali Singh",
     "role": "Administration",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/Anjali.png"
   },
   {
     "name": "Sonali Mahato",
     "role": "Social Media Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/sonali.png"
   },
   {
     "name": "Nikita Mishra",
     "role": "Content Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/nikita.png"
   },
   {
     "name": "Aaditya Singh",
     "role": "Design Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/aaditya.png"
+  },
+  {
+    "name": "Sohail Khan",
+    "role": "Co Design Lead",
+    "category": "Student Coordinator",
+    "image": "/team/sohail.jpeg"
   },
   {
     "name": "Sanchit Agarwal",
     "role": "Technical Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/sanchit.png"
   },
   {
     "name": "Harsh Pathak",
     "role": "Transport Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/harsh.png"
   },
   {
     "name": "Ishika Shrivastava",
     "role": "Co Content Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/ishika.png"
   },
   {
     "name": "Ankit Raj",
     "role": "Sponsorship Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/ankit.png"
   },
   {
     "name": "S Suman Rao",
     "role": "Creative Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/s suman.png"
   },
   {
     "name": "Prince Kumar",
     "role": "Co Outreach Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/prince.png"
   },
   {
     "name": "Anish Kr Singh",
     "role": "Outreach Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/anish.png"
   },
   {
     "name": "Rishav Kr Singh",
     "role": "Co Transport Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/rishav.png"
   },
   {
     "name": "Saraswati Kumari",
     "role": "Co Management Lead",
-    "category": "Core Team",
+    "category": "Student Coordinator",
     "image": "/team/saraswati.png"
   }
 ]
