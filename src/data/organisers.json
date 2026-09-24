@@ -15,13 +15,13 @@
   },
   {
     "name": "Prof. Mamatha Vayelapelli",
-    "role": "Faculty Coordinator",
+    "role": "HOD - Department Of CS & IT (I.B.M & AI ML)",
     "category": "Faculty Coordinators",
     "image": "/team/mamatha.png"
   },
   {
     "name": "Dr. Viranshu Kumar",
-    "role": "Assistant Professor",
+    "role": "HOD - Department of Diploma",
     "category": "Faculty Coordinators",
     "image": "/team/viranshu.png"
   },
@@ -144,11 +144,5 @@
     "role": "Co Transport Lead",
     "category": "Student Coordinator",
     "image": "/team/rishav.png"
-  },
-  {
-    "name": "Saraswati Kumari",
-    "role": "Co Management Lead",
-    "category": "Student Coordinator",
-    "image": "/team/saraswati.png"
   }
 ]

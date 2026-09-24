@@ -1,20 +1,19 @@
 {
   "queryDesk": [
     {
-      "name": "Adeeb Razi (Student Admin)",
-      "phone": "+91 62067 82574"
+      "category": "Convenor",
+      "name": "Dr. Ashwini Kumar",
+      "phone": "+91 82103 53795"
     },
     {
-      "name": "Anjali Singh (Student Admin)",
-      "phone": "+91 62051 20426"
-    },
-    {
-      "name": "Prof. Mamatha V. (Faculty)",
+      "category": "Faculty Coordinator",
+      "name": "Prof. Mamatha V.",
       "phone": "+91 78588 12586"
     },
     {
-      "name": "Dr. Viranshu Kumar (Faculty)",
-      "phone": "+91 82102 57269"
+      "category": "Student Coordinator",
+      "name": "Adeeb Razi",
+      "phone": "+91 62067 82574"
     }
   ],
   "email": "technika@arkajainuniversity.ac.in",

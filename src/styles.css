@@ -111,6 +111,9 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --bg-primary: #F4EAE6;
+  --accent-neon-yellow: #D6FD52;
+  --accent-neon-cyan: #3CE6FC;
 }
 
 .dark, html.dark {
@@ -132,6 +135,9 @@
   --input: #334155;
   --ring: #ffffff;
   --grid-color: rgba(255, 255, 255, 0.12);
+  --bg-primary: #0f172a;
+  --accent-neon-yellow: #D6FD52;
+  --accent-neon-cyan: #3CE6FC;
 }
 
 .theme-main {
@@ -150,6 +156,9 @@
   --brut-lime: #8aebee;
   --brut-orange: #f5a201;
   --grid-color: rgba(28, 171, 176, 0.4);
+  --bg-primary: #00364d;
+  --accent-neon-yellow: #D6FD52;
+  --accent-neon-cyan: #3CE6FC;
 }
 
 @layer base {
@@ -276,3 +285,35 @@
     display: none;
   }
 }
+
+/* Scrollbar customization - Neobrutalist Style (matching Registration page) */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4EAE6;
+  border-left: 3px solid #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D6FD52;
+  border: 3px solid #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3CE6FC;
+}
+
+::-webkit-scrollbar-corner {
+  background: #000000;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #D6FD52 #F4EAE6;
+  }
+}
+

@@ -171,13 +171,13 @@ function ExpandableFooterText({
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="mt-3">
-      <div className="text-xs font-semibold leading-relaxed">
+    <div className="mt-3 text-black">
+      <div className="text-xs font-semibold leading-relaxed text-black">
         {isExpanded ? fullContent : shortContent}
       </div>
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="mt-2 text-[10px] font-black uppercase tracking-wider text-foreground hover:opacity-80 transition cursor-pointer bg-background/50 px-2.5 py-1 brut-border shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] inline-flex items-center gap-1"
+        className="mt-2 text-[10px] font-black uppercase tracking-wider text-black hover:bg-black hover:text-white transition cursor-pointer bg-white px-2.5 py-1 border-2 border-black shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] inline-flex items-center gap-1"
       >
         {isExpanded ? "Read Less ▲" : "Read More ▼"}
       </button>
@@ -509,7 +509,135 @@ function FaqSection({
   );
 }
 
-const CATEGORIES = ["All", "Technical", "Cultural", "Creative", "Special"] as const;
+function NeoBrutalistCountdown() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: "00",
+    hours: "00",
+    minutes: "00",
+    seconds: "00",
+  });
+
+  useEffect(() => {
+    // Technika 6.0 Starts: November 20, 2026 at 09:00:00 AM IST (UTC+5:30)
+    const targetDate = new Date("2026-11-20T09:00:00+05:30").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        setTimeLeft({ days: "00", hours: "00", minutes: "00", seconds: "00" });
+        return;
+      }
+
+      const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+      setTimeLeft({
+        days: String(d).padStart(2, "0"),
+        hours: String(h).padStart(2, "0"),
+        minutes: String(m).padStart(2, "0"),
+        seconds: String(s).padStart(2, "0"),
+      });
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative brut-border brut-shadow-lg bg-background p-5 sm:p-6 lg:p-7 mt-5 w-full lg:-ml-20 xl:-ml-32 lg:-mr-6 xl:-mr-10 lg:w-[calc(100%+6.5rem)] xl:w-[calc(100%+10.5rem)] group hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+      {/* Top sticker badge */}
+      <div className="absolute -top-4 left-6 bg-[var(--brut-lime)] text-black px-3.5 py-1 text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2 -rotate-1">
+        <span className="relative flex h-2.5 w-2.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600"></span>
+        </span>
+        <span>⏳ FEST STARTS IN</span>
+      </div>
+
+      {/* Header date info */}
+      <div className="flex items-center justify-between pt-1 mb-4">
+        <div className="flex items-center gap-2">
+          <span className="font-display font-black text-sm sm:text-base lg:text-lg uppercase tracking-tight text-foreground">
+            20 NOV 2026 · 09:00 AM
+          </span>
+        </div>
+        <span className="text-xs sm:text-sm font-black uppercase bg-[var(--brut-pink)] text-foreground px-2.5 py-1 border-2 border-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+          DAY 1 KICKOFF
+        </span>
+      </div>
+
+      {/* 4 Neo-Brutalist Digit Boxes */}
+      <div className="grid grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+        {/* DAYS */}
+        <div
+          className="brut-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
+          style={{ background: "var(--brut-yellow)" }}
+        >
+          <div className="py-3 sm:py-5 px-1 text-center">
+            <span className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+              {timeLeft.days}
+            </span>
+          </div>
+          <div className="bg-black text-white text-xs sm:text-sm font-black uppercase text-center py-1 sm:py-1.5 tracking-widest border-t-2 border-black">
+            DAYS
+          </div>
+        </div>
+
+        {/* HOURS */}
+        <div
+          className="brut-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
+          style={{ background: "var(--brut-lime)" }}
+        >
+          <div className="py-3 sm:py-5 px-1 text-center">
+            <span className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+              {timeLeft.hours}
+            </span>
+          </div>
+          <div className="bg-black text-white text-xs sm:text-sm font-black uppercase text-center py-1 sm:py-1.5 tracking-widest border-t-2 border-black">
+            HOURS
+          </div>
+        </div>
+
+        {/* MINUTES */}
+        <div
+          className="brut-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
+          style={{ background: "var(--brut-pink)" }}
+        >
+          <div className="py-3 sm:py-5 px-1 text-center">
+            <span className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+              {timeLeft.minutes}
+            </span>
+          </div>
+          <div className="bg-black text-white text-xs sm:text-sm font-black uppercase text-center py-1 sm:py-1.5 tracking-widest border-t-2 border-black">
+            MINS
+          </div>
+        </div>
+
+        {/* SECONDS */}
+        <div
+          className="brut-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
+          style={{ background: "var(--brut-orange)" }}
+        >
+          <div className="py-3 sm:py-5 px-1 text-center">
+            <span className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+              {timeLeft.seconds}
+            </span>
+          </div>
+          <div className="bg-black text-white text-xs sm:text-sm font-black uppercase text-center py-1 sm:py-1.5 tracking-widest border-t-2 border-black">
+            SECS
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const CATEGORIES = ["All", "Technical", "Cultural", "Creative"] as const;
 type Cat = (typeof CATEGORIES)[number];
 
 function Index() {
@@ -704,8 +832,8 @@ function Index() {
               </div>
             </h1>
             <p className="mt-8 max-w-xl text-lg font-medium">
-              Where creativity <span className="bg-[var(--brut-yellow)] px-1 brut-border border-2">collides</span> with technology.
-              {events.length}+ battles across code, robotics, AI, hardware, design & culture. Come build. Come break things. Come win.
+              Where creativity <span className="bg-[var(--brut-yellow)] px-1 brut-border border-2">collides</span> with technology.{" "}
+              45+ battles across code, robotics, AI, hardware, design & culture. Come build. Come break things. Come win.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-xs font-black uppercase">
               <span className="bg-background brut-border px-4 py-2 flex items-center gap-2">
@@ -759,8 +887,8 @@ function Index() {
             </div>
           </div>
 
-          <div className="lg:col-span-4 hidden lg:block">
-            <div className="relative rotate-3">
+          <div className="lg:col-span-4 flex flex-col gap-6">
+            <div className="relative rotate-3 hidden lg:block">
               <div
                 onClick={() => setOpenId(currentHeroEvt.id)}
                 className="brut-border brut-shadow-lg bg-background p-4 cursor-pointer hover:scale-[1.02] transition-all group"
@@ -793,6 +921,9 @@ function Index() {
                 EVENTS!
               </div>
             </div>
+
+            {/* Neo-Brutalist Countdown Timer */}
+            <NeoBrutalistCountdown />
           </div>
         </div>
       </section>
@@ -851,7 +982,7 @@ function Index() {
             </h2>
           </div>
           <p className="max-w-md font-medium">
-            {events.length} events across technical, creative, cultural and special categories.
+            {events.length} events across technical, creative and cultural categories.
             Tap any card for rules, venue and coordinator info.
           </p>
         </div>
@@ -1166,11 +1297,16 @@ function Index() {
             </p>
 
             <div className="mt-8 space-y-4">
-              <div className="text-xs font-black uppercase tracking-wider text-muted-foreground">Student & Faculty Leads</div>
-              {contactData.queryDesk.map((q) => (
-                <div key={q.name} className="brut-border p-4 bg-background flex justify-between items-center">
-                  <span className="font-bold">{q.name}</span>
-                  <a href={`tel:${q.phone}`} className="font-mono text-sm font-black underline">{q.phone}</a>
+              {contactData.queryDesk.map((q: any) => (
+                <div key={q.category || q.name} className="space-y-1.5">
+                  <div className="text-xs font-black uppercase tracking-wider text-muted-foreground flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-foreground inline-block"></span>
+                    <span>{q.category}</span>
+                  </div>
+                  <div className="brut-border p-4 bg-background flex justify-between items-center">
+                    <span className="font-bold">{q.name}</span>
+                    <a href={`tel:${q.phone}`} className="font-mono text-sm font-black underline hover:text-[var(--brut-pink)] transition-colors">{q.phone}</a>
+                  </div>
                 </div>
               ))}
             </div>
@@ -1305,59 +1441,59 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t-[3px] border-foreground bg-[var(--brut-yellow)] text-foreground">
+      <footer className="border-t-[3px] border-black bg-[var(--brut-yellow)] text-black">
         <div className="max-w-7xl mx-auto px-6 py-8">
           {/* About Columns */}
-          <div className="grid md:grid-cols-3 gap-8 pb-6 border-b-[3px] border-foreground">
+          <div className="grid md:grid-cols-3 gap-8 pb-6 border-b-[3px] border-black">
             <div>
-              <div className="font-display font-black text-2xl uppercase">
-                TECHNIKA <span className="bg-foreground text-background px-2">6.0</span>
+              <div className="font-display font-black text-2xl uppercase text-black">
+                TECHNIKA <span className="bg-black text-white px-2">6.0</span>
               </div>
-              <p className="text-xs font-semibold mt-3 leading-relaxed">
+              <p className="text-xs font-semibold mt-3 leading-relaxed text-black">
                 Technika 6.0 is the flagship techno-cultural extravaganza of ARKA JAIN University's School of Engineering & IT. A 2-day playground where 40+ events, robotics arenas, coding battles, and live concerts ignite creativity and technology.
               </p>
             </div>
             <div>
-              <div className="font-display font-black text-lg uppercase inline-block bg-[var(--brut-pink)] text-foreground border-2 border-foreground px-2 py-0.5">
+              <div className="font-display font-black text-lg uppercase inline-block bg-[var(--brut-pink)] text-black border-2 border-black px-2 py-0.5">
                 School of Engineering & IT
               </div>
               <ExpandableFooterText
                 shortContent={
-                  <p>
+                  <p className="text-black">
                     The School of Engineering & IT at ARKA JAIN University stands as a center of technological innovation, academic excellence, and future-ready education.
                   </p>
                 }
                 fullContent={
-                  <>
+                  <div className="text-black">
                     <p>
                       The School of Engineering & IT at ARKA JAIN University stands as a center of technological innovation, academic excellence, and future-ready education. With a strong emphasis on research, practical learning, and emerging technologies, the school provides students with a dynamic platform to explore, innovate, and lead.
                     </p>
                     <p className="mt-2">
                       Our programmes, ranging from Diploma, B.Tech, BCA, MCA, and M.Tech; cover cutting-edge domains such as Computer Science, Artificial Intelligence & Machine Learning, Data Science, Mechanical Engineering, Electrical & Electronics Engineering, and more. Each curriculum is thoughtfully designed to balance academic rigor with industry relevance.
                     </p>
-                  </>
+                  </div>
                 }
               />
             </div>
             <div>
-              <div className="font-display font-black text-lg uppercase inline-block bg-[var(--brut-blue)] text-foreground border-2 border-foreground px-2 py-0.5">
+              <div className="font-display font-black text-lg uppercase inline-block bg-[var(--brut-blue)] text-black border-2 border-black px-2 py-0.5">
                 ARKA JAIN University
               </div>
               <ExpandableFooterText
                 shortContent={
-                  <p>
+                  <p className="text-black">
                     ARKA JAIN University was established in 2017 by the Jharkhand State Legislature under "The ARKA JAIN University Act" and is UGC recognized.
                   </p>
                 }
                 fullContent={
-                  <>
+                  <div className="text-black">
                     <p>
                       ARKA JAIN University was established in the year 2017 by the Jharkhand State Legislature under “The ARKA JAIN University Act” and is recognized by the UGC. It is the first state private university in the Kolhan region, comprising three districts of Jharkhand.
                     </p>
                     <p className="mt-2">
                       The University is accredited with NAAC ‘A’ Grade in its first cycle and is the first state private university in Bihar, Jharkhand, and West Bengal to achieve this distinction. ARKA JAIN University is part of the prestigious JAIN Group, Bengaluru, which has more than 77 educational institutions under its umbrella. The University is mentored by JAIN (Deemed-to-be University), Bengaluru, a NAAC A++ accredited institution and a NIRF Top-100 Higher Educational Institution.
                     </p>
-                  </>
+                  </div>
                 }
               />
             </div>
@@ -1366,44 +1502,44 @@ function Index() {
           {/* Social Media Handles in one single line */}
           <div className="pt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs">
             <div className="flex items-center gap-2">
-              <span className="font-black uppercase text-[10px] text-foreground/80">Technika Socials</span>
+              <span className="font-black uppercase text-[10px] text-black">Technika Socials</span>
               {contactData.socialLinks.technika.map((s) => (
                 <a
                   key={s.platform}
                   href={s.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="brut-border bg-background px-2 py-0.5 text-[10px] font-black hover:bg-foreground hover:text-background transition"
+                  className="border-2 border-black bg-white text-black px-2 py-0.5 text-[10px] font-black hover:bg-black hover:text-white transition shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]"
                 >
                   {s.platform}
                 </a>
               ))}
             </div>
-            <div className="w-0.5 h-3 bg-foreground/20 hidden md:block" />
+            <div className="w-0.5 h-3 bg-black/30 hidden md:block" />
             <div className="flex items-center gap-2">
-              <span className="font-black uppercase text-[10px] text-foreground/80">SOEIT Socials</span>
+              <span className="font-black uppercase text-[10px] text-black">SOEIT Socials</span>
               {contactData.socialLinks.soeit.map((s) => (
                 <a
                   key={s.platform}
                   href={s.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="brut-border bg-background px-2 py-0.5 text-[10px] font-black hover:bg-foreground hover:text-background transition"
+                  className="border-2 border-black bg-white text-black px-2 py-0.5 text-[10px] font-black hover:bg-black hover:text-white transition shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]"
                 >
                   {s.platform}
                 </a>
               ))}
             </div>
-            <div className="w-0.5 h-3 bg-foreground/20 hidden md:block" />
+            <div className="w-0.5 h-3 bg-black/30 hidden md:block" />
             <div className="flex items-center gap-2">
-              <span className="font-black uppercase text-[10px] text-foreground/80">AJU Socials</span>
+              <span className="font-black uppercase text-[10px] text-black">AJU Socials</span>
               {contactData.socialLinks.aju.map((s) => (
                 <a
                   key={s.platform}
                   href={s.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="brut-border bg-background px-2 py-0.5 text-[10px] font-black hover:bg-foreground hover:text-background transition"
+                  className="border-2 border-black bg-white text-black px-2 py-0.5 text-[10px] font-black hover:bg-black hover:text-white transition shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]"
                 >
                   {s.platform}
                 </a>
@@ -1412,7 +1548,7 @@ function Index() {
           </div>
         </div>
 
-        <div className="border-t-[3px] border-foreground py-5 text-center text-xs font-black uppercase text-foreground/70 bg-background/50">
+        <div className="border-t-[3px] border-black py-5 text-center text-xs font-black uppercase text-black/80 bg-black/5">
           © 2026 ARKA JAIN University · School of Engineering & IT · Technika 6.0
         </div>
       </footer>
