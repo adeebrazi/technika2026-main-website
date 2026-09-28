@@ -646,9 +646,9 @@ function Index() {
   const [heroEvtIdx, setHeroEvtIdx] = useState(0);
   const [theme, setTheme] = useState<"dark" | "main" | "light">(() => {
     if (typeof window !== "undefined" && window.localStorage) {
-      return (localStorage.getItem("technika_theme") as "dark" | "main" | "light") || "dark";
+      return (localStorage.getItem("technika_theme") as "dark" | "main" | "light") || "main";
     }
-    return "dark";
+    return "main";
   });
   const [faqTab, setFaqTab] = useState<"faqs" | "write">("faqs");
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -678,13 +678,30 @@ function Index() {
     root.classList.remove("dark", "theme-main", "theme-light");
     if (theme === "dark") {
       root.classList.add("dark");
-    } else if (theme === "main") {
-      root.classList.add("theme-main");
-    } else {
+    } else if (theme === "light") {
       root.classList.add("theme-light");
+    } else {
+      root.classList.add("theme-main");
     }
-    localStorage.setItem("technika_theme", theme);
+    try {
+      localStorage.setItem("technika_theme", theme);
+    } catch {
+      // ignore storage access errors
+    }
   }, [theme]);
+
+  // Synchronize theme changes across tabs/windows (e.g., registration portal)
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "technika_theme" && e.newValue) {
+        if (e.newValue === "dark" || e.newValue === "main" || e.newValue === "light") {
+          setTheme(e.newValue);
+        }
+      }
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   const events = eventsData as EventItem[];
 
@@ -763,34 +780,24 @@ function Index() {
           
           <div className="flex items-center gap-2">
             {/* 3-Way Theme Switcher (MAIN / DARK / LIGHT) */}
-            <div className="inline-flex items-center bg-background border-[2px] border-foreground p-0.5 gap-0.5">
-              <button
-                type="button"
-                onClick={() => setTheme("main")}
-                className={`px-2 py-0.5 text-[10px] font-black uppercase transition ${
-                  theme === "main" ? "bg-[var(--brut-yellow)] text-foreground border border-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                MAIN
-              </button>
-              <button
-                type="button"
-                onClick={() => setTheme("dark")}
-                className={`px-2 py-0.5 text-[10px] font-black uppercase transition ${
-                  theme === "dark" ? "bg-[var(--brut-yellow)] text-foreground border border-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                DARK
-              </button>
-              <button
-                type="button"
-                onClick={() => setTheme("light")}
-                className={`px-2 py-0.5 text-[10px] font-black uppercase transition ${
-                  theme === "light" ? "bg-[var(--brut-yellow)] text-foreground border border-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                LIGHT
-              </button>
+            <div className="inline-flex items-center bg-background border-[2px] border-foreground p-0.5 gap-0.5" suppressHydrationWarning>
+              {(["main", "dark", "light"] as const).map((t) => {
+                const isActive = theme === t;
+                return (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setTheme(t)}
+                    className={`px-2 py-0.5 text-[10px] font-black uppercase transition cursor-pointer ${
+                      isActive
+                        ? "bg-[var(--brut-yellow)] text-black border border-black shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"
+                        : "bg-transparent text-muted-foreground hover:text-foreground border border-transparent"
+                    }`}
+                  >
+                    {t.toUpperCase()}
+                  </button>
+                );
+              })}
             </div>
 
             <a

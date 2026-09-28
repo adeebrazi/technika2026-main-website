@@ -287,33 +287,32 @@
 }
 
 /* Scrollbar customization - Neobrutalist Style (matching Registration page) */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-neon-yellow, #D6FD52) var(--bg-primary, #00364d);
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F4EAE6;
+  background: var(--bg-primary, #00364d);
   border-left: 3px solid #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D6FD52;
+  background: var(--accent-neon-yellow, #D6FD52);
   border: 3px solid #000000;
+  border-radius: 0px !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3CE6FC;
+  background: var(--accent-neon-cyan, #3CE6FC);
 }
 
 ::-webkit-scrollbar-corner {
   background: #000000;
-}
-
-@supports not selector(::-webkit-scrollbar) {
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: #D6FD52 #F4EAE6;
-  }
 }
 
