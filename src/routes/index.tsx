@@ -990,7 +990,7 @@ function Index() {
           </div>
           <p className="max-w-md font-medium">
             {events.length} events across technical, creative and cultural categories.
-            Tap any card for rules, venue and coordinator info.
+            Tap any card for rules, venue and event details.
           </p>
         </div>
 
