@@ -187,17 +187,9 @@ function ExpandableFooterText({
 
 type EventItem = (typeof eventsData)[number];
 
-function FaqSection({
-  activeTab,
-  setActiveTab
-}: {
-  activeTab: "faqs" | "write";
-  setActiveTab: (tab: "faqs" | "write") => void;
-}) {
+function FaqSection() {
   const [selectedFaqIdx, setSelectedFaqIdx] = useState(0);
-
-  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [openMobileIdx, setOpenMobileIdx] = useState<number | null>(0);
 
   const faqs = [
     {
@@ -326,183 +318,109 @@ function FaqSection({
     }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 4000);
-  };
-
   return (
-    <section id="faq" className="max-w-7xl mx-auto px-6 py-24 border-t-[3px] border-foreground">
-      <div className="mb-12">
-        <div className="inline-block bg-[var(--brut-lime)] text-black brut-border px-3 py-1 text-xs uppercase font-black">
+    <section id="faq" className="max-w-6xl mx-auto px-3 sm:px-6 py-10 sm:py-16 border-t-[3px] border-foreground">
+      <div className="mb-5 sm:mb-8 text-center sm:text-left">
+        <div className="inline-block bg-[var(--brut-lime)] text-black brut-border px-2.5 py-0.5 text-[10px] sm:text-xs uppercase font-black">
           Got Questions?
         </div>
-        <h2 className="mt-4 text-4xl md:text-6xl font-display font-black uppercase leading-none">
-          Frequently Asked <span className="bg-[var(--brut-pink)] text-black brut-border px-2 inline-block -rotate-1">Questions</span>.
+        <h2 className="mt-2 text-2xl sm:text-4xl md:text-5xl font-display font-black uppercase leading-tight sm:leading-none">
+          Frequently Asked <span className="bg-[var(--brut-pink)] text-black brut-border px-1.5 sm:px-2 inline-block -rotate-1">Questions</span>.
         </h2>
       </div>
 
-      <div className="grid lg:grid-cols-12 gap-8 items-start">
-        {/* Left Side 2-Tab Navigation */}
-        <div className="lg:col-span-4 flex flex-col gap-3">
-          <button
-            onClick={() => setActiveTab("faqs")}
-            className={`w-full text-left p-4 font-display font-black text-base uppercase brut-border transition-all flex items-center justify-between cursor-pointer ${
-              activeTab === "faqs"
-                ? "bg-[var(--brut-yellow)] text-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] -translate-y-1"
-                : "bg-background text-foreground hover:bg-muted"
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-xl">❓</span>
-              <span>1. Pre-Written FAQs</span>
-            </div>
-            <span>{activeTab === "faqs" ? "→" : ""}</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab("write")}
-            className={`w-full text-left p-4 font-display font-black text-base uppercase brut-border transition-all flex items-center justify-between cursor-pointer ${
-              activeTab === "write"
-                ? "bg-[var(--brut-blue)] text-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] -translate-y-1"
-                : "bg-background text-foreground hover:bg-muted"
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-xl">✉️</span>
-              <span>2. Write To Us</span>
-            </div>
-            <span>{activeTab === "write" ? "→" : ""}</span>
-          </button>
+      {/* Main FAQ Container (No tabs, space-optimized) */}
+      <div className="brut-border p-3.5 sm:p-5 md:p-6 bg-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        {/* Header bar */}
+        <div className="text-[11px] sm:text-xs uppercase font-black tracking-wider text-muted-foreground mb-3 sm:mb-4 pb-2 border-b border-border flex justify-between items-center">
+          <span>Official Event FAQs</span>
+          <span className="text-[10px] bg-[var(--brut-pink)] text-black px-2 py-0.5 font-black uppercase brut-border">
+            {faqs.length} Questions
+          </span>
         </div>
 
-        {/* Right Side Tab Content */}
-        <div className="lg:col-span-8 brut-border p-6 md:p-8 bg-background shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] min-h-[380px]">
-          {activeTab === "faqs" ? (
-            <div>
-              <div className="text-xs uppercase font-black tracking-widest text-muted-foreground mb-4 pb-2 border-b border-border flex justify-between items-center">
-                <span>Vertical Questions Navigator</span>
-                <span className="text-[10px] bg-[var(--brut-pink)] text-foreground px-2 py-0.5 font-black uppercase brut-border">
-                  {selectedFaqIdx + 1} / {faqs.length}
-                </span>
-              </div>
-              <div className="grid md:grid-cols-12 gap-6 items-start">
-                {/* Vertical Tabs List */}
-                <div className="md:col-span-5 flex flex-col gap-2 max-h-[380px] overflow-y-auto pr-1">
-                  {faqs.map((item, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setSelectedFaqIdx(idx)}
-                      className={`w-full text-left p-3.5 text-xs font-black uppercase brut-border transition-all flex items-center justify-between gap-2 cursor-pointer ${
-                        selectedFaqIdx === idx
-                          ? "bg-[var(--brut-lime)] text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-y-0.5"
-                          : "bg-muted/40 text-foreground hover:bg-muted"
-                      }`}
-                    >
-                      <span className="truncate">
-                        <span className="text-[var(--brut-pink)] font-black mr-1.5">Q{idx + 1}.</span>
-                        {item.q}
-                      </span>
-                      <span className="shrink-0">{selectedFaqIdx === idx ? "→" : ""}</span>
-                    </button>
-                  ))}
-                </div>
+        {/* Desktop View: Compact 2-Column Split Navigator */}
+        <div className="hidden md:grid md:grid-cols-12 gap-5 items-start">
+          {/* Questions Scrollable List */}
+          <div className="md:col-span-5 flex flex-col gap-1.5 max-h-[320px] overflow-y-auto pr-1.5">
+            {faqs.map((item, idx) => {
+              const cleanQ = item.q.replace(/^(Bonus:\s*|\d+\.\s*)/i, "");
+              const isSelected = selectedFaqIdx === idx;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setSelectedFaqIdx(idx)}
+                  className={`w-full text-left px-3 py-2 text-xs font-black uppercase brut-border transition-all flex items-center justify-between gap-2 cursor-pointer ${
+                    isSelected
+                      ? "bg-[var(--brut-lime)] text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] -translate-y-0.5"
+                      : "bg-muted/30 text-foreground hover:bg-muted"
+                  }`}
+                >
+                  <span className="truncate">
+                    <span className="text-[var(--brut-pink)] font-black mr-1.5">Q{idx + 1}.</span>
+                    {cleanQ}
+                  </span>
+                  <span className="shrink-0">{isSelected ? "→" : ""}</span>
+                </button>
+              );
+            })}
+          </div>
 
-                {/* Vertical Answer Panel */}
-                <div className="md:col-span-7 brut-border p-5 bg-background shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] min-h-[320px] flex flex-col justify-between">
-                  <div>
-                    <div className="inline-block bg-[var(--brut-yellow)] text-black text-[10px] font-black uppercase px-2 py-1 brut-border mb-3">
-                      QUESTION {selectedFaqIdx + 1}
-                    </div>
-                    <h3 className="font-display font-black text-lg md:text-xl uppercase text-foreground leading-tight">
-                      {faqs[selectedFaqIdx].q}
-                    </h3>
-                    <div className="w-12 h-1 bg-[var(--brut-pink)] my-4" />
-                    <p className="text-sm font-medium text-muted-foreground leading-relaxed">
-                      {faqs[selectedFaqIdx].a}
-                    </p>
-                  </div>
-                  <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs font-bold text-muted-foreground">
-                    <span>ARKA JAIN University · Technika 6.0</span>
-                    <span className="text-[10px] uppercase font-black bg-foreground text-background px-2 py-0.5">Verified FAQ</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
+          {/* Answer Panel */}
+          <div className="md:col-span-7 brut-border p-5 bg-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-h-[320px] flex flex-col justify-between">
             <div>
-              <div className="text-xs uppercase font-black tracking-widest text-muted-foreground mb-4 pb-2 border-b border-border">
-                Write To Us (Inquiry & Support)
+              <div className="inline-block bg-[var(--brut-yellow)] text-black text-[10px] font-black uppercase px-2 py-0.5 brut-border mb-2.5">
+                QUESTION {selectedFaqIdx + 1} OF {faqs.length}
               </div>
-
-              {submitted ? (
-                <div className="p-6 bg-[var(--brut-lime)] text-black brut-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center my-6">
-                  <div className="text-3xl mb-2">🎉</div>
-                  <div className="font-display font-black text-xl uppercase">Message Received!</div>
-                  <p className="text-sm font-bold mt-1">Thank you for writing to us. Our organizing committee will get back to you shortly.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-black uppercase mb-1">Your Name *</label>
-                      <input
-                        required
-                        type="text"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Adeeb Razi"
-                        className="w-full p-3 brut-border bg-background text-foreground text-sm font-medium focus:outline-none focus:bg-muted"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-black uppercase mb-1">Your Email *</label>
-                      <input
-                        required
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="your@email.com"
-                        className="w-full p-3 brut-border bg-background text-foreground text-sm font-medium focus:outline-none focus:bg-muted"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-black uppercase mb-1">Subject *</label>
-                    <input
-                      required
-                      type="text"
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      placeholder="Event Inquiry / Sponsorship / General Question"
-                      className="w-full p-3 brut-border bg-background text-foreground text-sm font-medium focus:outline-none focus:bg-muted"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-black uppercase mb-1">Your Message *</label>
-                    <textarea
-                      required
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Write your query or message here..."
-                      className="w-full p-3 brut-border bg-background text-foreground text-sm font-medium focus:outline-none focus:bg-muted resize-none"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 bg-[var(--brut-pink)] text-foreground font-black text-sm uppercase brut-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition cursor-pointer"
-                  >
-                    Send Message →
-                  </button>
-                </form>
-              )}
+              <h3 className="font-display font-black text-base lg:text-lg uppercase text-foreground leading-snug">
+                {faqs[selectedFaqIdx].q.replace(/^(Bonus:\s*|\d+\.\s*)/i, "")}
+              </h3>
+              <div className="w-10 h-1 bg-[var(--brut-pink)] my-3" />
+              <p className="text-xs sm:text-sm font-medium text-muted-foreground leading-relaxed">
+                {faqs[selectedFaqIdx].a}
+              </p>
             </div>
-          )}
+            <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-[11px] font-bold text-muted-foreground">
+              <span>ARKA JAIN University · Technika 6.0</span>
+              <span className="text-[9px] uppercase font-black bg-foreground text-background px-1.5 py-0.5">Verified FAQ</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile View: Compact In-Place Expandable Accordion */}
+        <div className="md:hidden flex flex-col gap-2 max-h-[380px] overflow-y-auto pr-1">
+          {faqs.map((item, idx) => {
+            const cleanQ = item.q.replace(/^(Bonus:\s*|\d+\.\s*)/i, "");
+            const isOpen = openMobileIdx === idx;
+            return (
+              <div
+                key={idx}
+                className={`brut-border transition-all overflow-hidden ${
+                  isOpen ? "bg-[var(--brut-yellow)] text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]" : "bg-muted/30 text-foreground"
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenMobileIdx(isOpen ? null : idx)}
+                  className="w-full text-left p-2.5 flex items-center justify-between gap-2 font-black text-xs uppercase cursor-pointer"
+                >
+                  <span className="leading-tight">
+                    <span className="text-[var(--brut-pink)] font-black mr-1">Q{idx + 1}.</span>
+                    {cleanQ}
+                  </span>
+                  <span className="shrink-0 w-5 h-5 brut-border flex items-center justify-center text-[10px] font-black bg-foreground text-background">
+                    {isOpen ? "−" : "+"}
+                  </span>
+                </button>
+                {isOpen && (
+                  <div className="px-3 pb-3 pt-1 text-xs font-medium text-black leading-relaxed border-t border-black bg-background/90">
+                    <p>{item.a}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -657,9 +575,6 @@ function Index() {
     setTheme((prev) => (prev === "main" ? "light" : "main"));
   };
 
-  const [faqTab, setFaqTab] = useState<"faqs" | "write">("faqs");
-  const galleryRef = useRef<HTMLDivElement>(null);
-
   const scrollGallery = (direction: "left" | "right") => {
     if (galleryRef.current) {
       const { scrollLeft, clientWidth } = galleryRef.current;
@@ -668,14 +583,6 @@ function Index() {
         left: direction === "left" ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
         behavior: "smooth",
       });
-    }
-  };
-
-  const handleWriteToUs = () => {
-    setFaqTab("write");
-    const faqElement = document.getElementById("faq");
-    if (faqElement) {
-      faqElement.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -1338,7 +1245,7 @@ function Index() {
                 <div className="text-xs font-black uppercase tracking-wider text-muted-foreground">Have a direct question?</div>
                 <h3 className="font-display text-2xl font-black uppercase mt-2">Send us an Email</h3>
                 <p className="text-sm font-semibold text-muted-foreground mt-2">
-                  Drop us a line directly or use our quick interactive form below.
+                  Drop us a line directly at our official email address.
                 </p>
                 <div className="mt-6 p-4 brut-border bg-[var(--brut-yellow)] text-black">
                   <div className="text-[10px] font-black uppercase opacity-85">Email Address</div>
@@ -1349,15 +1256,6 @@ function Index() {
                     {contactData.email}
                   </a>
                 </div>
-              </div>
-              <div className="mt-8">
-                <button
-                  type="button"
-                  onClick={handleWriteToUs}
-                  className="w-full py-4 bg-[var(--brut-pink)] text-foreground font-black text-sm uppercase brut-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition cursor-pointer"
-                >
-                  Write to Us Directly →
-                </button>
               </div>
             </div>
           </div>
@@ -1404,7 +1302,7 @@ function Index() {
       </section>
 
       {/* FAQ SECTION (JUST ABOVE FOOTER) */}
-      <FaqSection activeTab={faqTab} setActiveTab={setFaqTab} />
+      <FaqSection />
 
       {/* CREATORS CREDITS */}
       <section id="creators" className="max-w-7xl mx-auto px-6 py-8">
