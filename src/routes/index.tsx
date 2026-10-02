@@ -1187,63 +1187,114 @@ function Index() {
         </h2>
 
         {(["Convenors", "Faculty Coordinators", "Student Coordinator"] as const).map((group) => {
-          const people = organisersData.filter((o) => o.category === group || (group === "Student Coordinator" && (o.category === "Student Coordinators" || o.category === "Core Team")));
+          const people = organisersData.filter(
+            (o) =>
+              o.category === group ||
+              (group === "Student Coordinator" && (o.category === "Student Coordinators" || o.category === "Core Team"))
+          );
           if (people.length === 0) return null;
+
+          const renderMemberCard = (p: (typeof organisersData)[0], i: number, isCompact = false) => {
+            const hasPhoto = "image" in p && Boolean(p.image);
+            return (
+              <div
+                key={p.name}
+                className={`brut-border ${isCompact ? "p-2 sm:p-3" : "p-2 sm:p-4"} bg-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition flex flex-col items-center text-center justify-between w-full`}
+              >
+                <div className="w-full flex flex-col items-center">
+                  {/* Member Photo Frame */}
+                  <div className={`relative aspect-square w-full ${isCompact ? "mb-2 sm:mb-2.5" : "mb-2 sm:mb-3.5"} brut-border overflow-hidden bg-muted/30 flex items-center justify-center`}>
+                    {hasPhoto ? (
+                      <img
+                        src={(p as any).image}
+                        alt={p.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).style.display = 'none';
+                          const fallback = e.currentTarget.parentElement?.querySelector('.fallback-avatar');
+                          if (fallback) (fallback as HTMLElement).style.display = 'flex';
+                        }}
+                      />
+                    ) : null}
+
+                    <div
+                      className="fallback-avatar flex flex-col items-center justify-center p-2 sm:p-3 text-center w-full h-full"
+                      style={{
+                        display: hasPhoto ? 'none' : 'flex',
+                        background: BRUT_COLORS[i % BRUT_COLORS.length]
+                      }}
+                    >
+                      <div className={`w-10 h-10 ${isCompact ? "sm:w-12 sm:h-12 text-sm sm:text-lg" : "sm:w-16 sm:h-16 text-sm sm:text-2xl"} brut-border bg-foreground text-background flex items-center justify-center font-display font-black mb-1 sm:mb-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}>
+                        {p.name.split(" ").filter(Boolean).slice(0, 2).map((s) => s[0]).join("")}
+                      </div>
+                      <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black bg-background/90 px-1.5 py-0.5 brut-border mt-0.5 sm:mt-1">
+                        Photo TBD
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className={`font-display font-black uppercase ${isCompact ? "text-xs sm:text-sm" : "text-xs sm:text-base"} leading-tight sm:leading-snug text-foreground`}>
+                    {p.name}
+                  </div>
+                  <div className="text-[10px] sm:text-xs font-semibold mt-0.5 sm:mt-1 text-muted-foreground leading-tight sm:leading-relaxed">
+                    {p.role}
+                  </div>
+                </div>
+              </div>
+            );
+          };
+
+          if (group === "Student Coordinator") {
+            const admins = people.filter((p) => p.role.toLowerCase().includes("administration"));
+            const otherMembers = people.filter((p) => !p.role.toLowerCase().includes("administration"));
+
+            return (
+              <div key={group} className="mt-8 sm:mt-12">
+                <div className="text-xs sm:text-sm uppercase font-black mb-4 sm:mb-6 inline-block bg-foreground text-background px-3 sm:px-4 py-1 sm:py-1.5 brut-border">
+                  {group}
+                </div>
+
+                {/* Admins at the top */}
+                {admins.length > 0 && (
+                  <div className="mb-6 sm:mb-8">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-md sm:max-w-xl mx-auto justify-center">
+                      {admins.map((p, i) => renderMemberCard(p, i, false))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Followed by the whole team as much accommodated in 1 line */}
+                {otherMembers.length > 0 && (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-4 max-w-7xl mx-auto">
+                    {otherMembers.map((p, i) => renderMemberCard(p, i + admins.length, true))}
+                  </div>
+                )}
+              </div>
+            );
+          }
+
+          if (group === "Faculty Coordinators") {
+            return (
+              <div key={group} className="mt-8 sm:mt-12">
+                <div className="text-xs sm:text-sm uppercase font-black mb-4 sm:mb-6 inline-block bg-foreground text-background px-3 sm:px-4 py-1 sm:py-1.5 brut-border">
+                  {group}
+                </div>
+                {/* 4 in 1 row on desktop */}
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 max-w-6xl mx-auto">
+                  {people.map((p, i) => renderMemberCard(p, i, false))}
+                </div>
+              </div>
+            );
+          }
+
+          // Convenors (2 people)
           return (
             <div key={group} className="mt-8 sm:mt-12">
               <div className="text-xs sm:text-sm uppercase font-black mb-4 sm:mb-6 inline-block bg-foreground text-background px-3 sm:px-4 py-1 sm:py-1.5 brut-border">
                 {group}
               </div>
-              <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center gap-2.5 sm:gap-6 max-w-5xl mx-auto">
-                {people.map((p, i) => {
-                  const hasPhoto = "image" in p && Boolean(p.image);
-                  return (
-                    <div
-                      key={p.name}
-                      className="brut-border p-2 sm:p-4 bg-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition flex flex-col items-center text-center justify-between w-full sm:w-[240px] sm:max-w-[270px]"
-                    >
-                      <div className="w-full flex flex-col items-center">
-                        {/* Member Photo Frame */}
-                        <div className="relative aspect-square w-full mb-2 sm:mb-3.5 brut-border overflow-hidden bg-muted/30 flex items-center justify-center">
-                          {hasPhoto ? (
-                            <img
-                              src={(p as any).image}
-                              alt={p.name}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                (e.currentTarget as HTMLImageElement).style.display = 'none';
-                                const fallback = e.currentTarget.parentElement?.querySelector('.fallback-avatar');
-                                if (fallback) (fallback as HTMLElement).style.display = 'flex';
-                              }}
-                            />
-                          ) : null}
-
-                          <div
-                            className="fallback-avatar flex flex-col items-center justify-center p-2 sm:p-3 text-center w-full h-full"
-                            style={{
-                              display: hasPhoto ? 'none' : 'flex',
-                              background: BRUT_COLORS[i % BRUT_COLORS.length]
-                            }}
-                          >
-                            <div className="w-10 h-10 sm:w-16 sm:h-16 brut-border bg-foreground text-background flex items-center justify-center font-display font-black text-sm sm:text-2xl mb-1 sm:mb-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                              {p.name.split(" ").filter(Boolean).slice(0, 2).map((s) => s[0]).join("")}
-                            </div>
-                            <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black bg-background/90 px-1.5 py-0.5 brut-border mt-0.5 sm:mt-1">
-                              Photo TBD
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="font-display font-black uppercase text-xs sm:text-base leading-tight sm:leading-snug text-foreground">
-                          {p.name}
-                        </div>
-                        <div className="text-[10px] sm:text-xs font-semibold mt-0.5 sm:mt-1 text-muted-foreground leading-tight sm:leading-relaxed">
-                          {p.role}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+              <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-md sm:max-w-xl mx-auto justify-center">
+                {people.map((p, i) => renderMemberCard(p, i, false))}
               </div>
             </div>
           );
