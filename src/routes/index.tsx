@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import ajuLogo from "@/assets/logo.png";
 import technikaLogo from "@/assets/technika_logo.jpg";
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight, Sparkles, Sun, RotateCw } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, Sun } from "lucide-react";
 import eventsData from "@/data/events.json";
 import timelineData from "@/data/timeline.json";
 import sponsorsData from "@/data/sponsors.json";
@@ -784,56 +784,33 @@ function Index() {
           </nav>
           
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            {/* Rotary Style Theme Switcher (Theme 1 / Theme 2) */}
+            {/* Rotary Theme Switcher (Theme 1 / Theme 2) - Pure Circular Neo-Brutalism */}
             <button
               type="button"
               onClick={toggleTheme}
-              title={`Current: ${theme === "main" ? "Theme 1" : "Theme 2"} — Click to rotate theme`}
-              aria-label={`Switch theme, currently ${theme === "main" ? "Theme 1" : "Theme 2"}`}
-              className="inline-flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2 py-1 bg-background border-[2px] border-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition cursor-pointer select-none shrink-0"
+              title={`Switch Theme (Current: ${theme === "main" ? "Theme 1" : "Theme 2"})`}
+              aria-label={`Switch Theme, currently ${theme === "main" ? "Theme 1" : "Theme 2"}`}
+              className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[2.5px] border-foreground bg-[var(--brut-yellow)] shadow-[2.5px_2.5px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none flex items-center justify-center cursor-pointer select-none transition-all shrink-0"
               suppressHydrationWarning
             >
-              {/* Rotary Dial Knob */}
-              <div className="relative w-5 h-5 sm:w-6 sm:h-6 rounded-full border-[2px] border-foreground bg-[var(--brut-yellow)] shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center shrink-0">
-                {/* Rotating Pointer Ring */}
-                <div
-                  className="absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
-                  style={{
-                    transform: theme === "main" ? "rotate(0deg)" : "rotate(180deg)",
-                  }}
-                >
-                  <span className="absolute -top-0.5 w-1 h-1.5 bg-black rounded-full" />
-                  <span className="absolute -bottom-0.5 w-1 h-1 bg-black/40 rounded-full" />
-                </div>
-
-                {/* Center Theme Icon */}
-                <div className="relative z-10">
-                  {theme === "main" ? (
-                    <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-black" />
-                  ) : (
-                    <Sun className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-black" />
-                  )}
-                </div>
-              </div>
-
-              {/* Theme Label */}
-              <div className="flex flex-col text-left leading-none pr-0.5">
-                <span className="text-[7px] font-black uppercase text-muted-foreground tracking-widest hidden sm:block">
-                  ROTARY
-                </span>
-                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-foreground whitespace-nowrap">
-                  {theme === "main" ? "THEME 1" : "THEME 2"}
-                </span>
-              </div>
-
-              {/* Mini Rotary Arrow Indicator */}
+              {/* Rotating Pointer Ring */}
               <div
-                className="text-muted-foreground transition-transform duration-500 hidden sm:flex items-center"
+                className="absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none"
                 style={{
                   transform: theme === "main" ? "rotate(0deg)" : "rotate(180deg)",
                 }}
               >
-                <RotateCw className="w-3 h-3" />
+                <span className="absolute -top-0.5 w-1.5 h-2 bg-black rounded-full" />
+                <span className="absolute -bottom-0.5 w-1 h-1 bg-black/40 rounded-full" />
+              </div>
+
+              {/* Center Theme Icon */}
+              <div className="relative z-10 transition-transform duration-300 pointer-events-none">
+                {theme === "main" ? (
+                  <Sparkles className="w-4 h-4 text-black" />
+                ) : (
+                  <Sun className="w-4 h-4 text-black" />
+                )}
               </div>
             </button>
 
