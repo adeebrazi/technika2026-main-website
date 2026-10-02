@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import ajuLogo from "@/assets/logo.png";
 import technikaLogo from "@/assets/technika_logo.jpg";
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight, Sparkles, Moon, Sun } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, Sun, RotateCw } from "lucide-react";
 import eventsData from "@/data/events.json";
 import timelineData from "@/data/timeline.json";
 import sponsorsData from "@/data/sponsors.json";
@@ -644,12 +644,19 @@ function Index() {
   const [cat, setCat] = useState<Cat>("Technical");
   const [openId, setOpenId] = useState<string | null>(null);
   const [heroEvtIdx, setHeroEvtIdx] = useState(0);
-  const [theme, setTheme] = useState<"dark" | "main" | "light">(() => {
+  const [theme, setTheme] = useState<"main" | "light">(() => {
     if (typeof window !== "undefined" && window.localStorage) {
-      return (localStorage.getItem("technika_theme") as "dark" | "main" | "light") || "main";
+      const saved = localStorage.getItem("technika_theme");
+      if (saved === "light") return "light";
+      return "main";
     }
     return "main";
   });
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "main" ? "light" : "main"));
+  };
+
   const [faqTab, setFaqTab] = useState<"faqs" | "write">("faqs");
   const galleryRef = useRef<HTMLDivElement>(null);
 
@@ -676,9 +683,7 @@ function Index() {
     const root = document.documentElement;
     root.setAttribute("data-theme", theme);
     root.classList.remove("dark", "theme-main", "theme-light");
-    if (theme === "dark") {
-      root.classList.add("dark");
-    } else if (theme === "light") {
+    if (theme === "light") {
       root.classList.add("theme-light");
     } else {
       root.classList.add("theme-main");
@@ -694,7 +699,7 @@ function Index() {
   useEffect(() => {
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === "technika_theme" && e.newValue) {
-        if (e.newValue === "dark" || e.newValue === "main" || e.newValue === "light") {
+        if (e.newValue === "main" || e.newValue === "light") {
           setTheme(e.newValue);
         }
       }
@@ -779,31 +784,58 @@ function Index() {
           </nav>
           
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            {/* 3-Way Theme Switcher (MAIN / DARK / LIGHT) with Mobile Icons */}
-            <div className="inline-flex items-center bg-background border-[2px] border-foreground p-0.5 gap-0.5" suppressHydrationWarning>
-              {(["main", "dark", "light"] as const).map((t) => {
-                const isActive = theme === t;
-                return (
-                  <button
-                    key={t}
-                    type="button"
-                    onClick={() => setTheme(t)}
-                    aria-label={`${t} theme`}
-                    title={`Switch to ${t.toUpperCase()} theme`}
-                    className={`px-1.5 sm:px-2.5 py-1 sm:py-0.5 text-[9px] sm:text-[10px] font-black uppercase transition cursor-pointer flex items-center justify-center gap-1 ${
-                      isActive
-                        ? "bg-[var(--brut-yellow)] text-black border border-black shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"
-                        : "bg-transparent text-muted-foreground hover:text-foreground border border-transparent"
-                    }`}
-                  >
-                    {t === "main" && <Sparkles className="w-3.5 h-3.5 shrink-0" />}
-                    {t === "dark" && <Moon className="w-3.5 h-3.5 shrink-0" />}
-                    {t === "light" && <Sun className="w-3.5 h-3.5 shrink-0" />}
-                    <span className="hidden sm:inline">{t.toUpperCase()}</span>
-                  </button>
-                );
-              })}
-            </div>
+            {/* Rotary Style Theme Switcher (Theme 1 / Theme 2) */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              title={`Current: ${theme === "main" ? "Theme 1" : "Theme 2"} — Click to rotate theme`}
+              aria-label={`Switch theme, currently ${theme === "main" ? "Theme 1" : "Theme 2"}`}
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2 py-1 bg-background border-[2px] border-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition cursor-pointer select-none shrink-0"
+              suppressHydrationWarning
+            >
+              {/* Rotary Dial Knob */}
+              <div className="relative w-5 h-5 sm:w-6 sm:h-6 rounded-full border-[2px] border-foreground bg-[var(--brut-yellow)] shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center shrink-0">
+                {/* Rotating Pointer Ring */}
+                <div
+                  className="absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+                  style={{
+                    transform: theme === "main" ? "rotate(0deg)" : "rotate(180deg)",
+                  }}
+                >
+                  <span className="absolute -top-0.5 w-1 h-1.5 bg-black rounded-full" />
+                  <span className="absolute -bottom-0.5 w-1 h-1 bg-black/40 rounded-full" />
+                </div>
+
+                {/* Center Theme Icon */}
+                <div className="relative z-10">
+                  {theme === "main" ? (
+                    <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-black" />
+                  ) : (
+                    <Sun className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-black" />
+                  )}
+                </div>
+              </div>
+
+              {/* Theme Label */}
+              <div className="flex flex-col text-left leading-none pr-0.5">
+                <span className="text-[7px] font-black uppercase text-muted-foreground tracking-widest hidden sm:block">
+                  ROTARY
+                </span>
+                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-foreground whitespace-nowrap">
+                  {theme === "main" ? "THEME 1" : "THEME 2"}
+                </span>
+              </div>
+
+              {/* Mini Rotary Arrow Indicator */}
+              <div
+                className="text-muted-foreground transition-transform duration-500 hidden sm:flex items-center"
+                style={{
+                  transform: theme === "main" ? "rotate(0deg)" : "rotate(180deg)",
+                }}
+              >
+                <RotateCw className="w-3 h-3" />
+              </div>
+            </button>
 
             <a
               href={configData.brochureLink}
