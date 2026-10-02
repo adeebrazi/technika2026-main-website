@@ -575,6 +575,8 @@ function Index() {
     setTheme((prev) => (prev === "main" ? "light" : "main"));
   };
 
+  const galleryRef = useRef<HTMLDivElement>(null);
+
   const scrollGallery = (direction: "left" | "right") => {
     if (galleryRef.current) {
       const { scrollLeft, clientWidth } = galleryRef.current;
