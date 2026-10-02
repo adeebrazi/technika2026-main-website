@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import ajuLogo from "@/assets/logo.png";
 import technikaLogo from "@/assets/technika_logo.jpg";
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, Moon, Sun } from "lucide-react";
 import eventsData from "@/data/events.json";
 import timelineData from "@/data/timeline.json";
 import sponsorsData from "@/data/sponsors.json";
@@ -549,86 +549,86 @@ function NeoBrutalistCountdown() {
   }, []);
 
   return (
-    <div className="relative brut-border brut-shadow-lg bg-background p-5 sm:p-6 lg:p-7 mt-5 w-full lg:-ml-20 xl:-ml-32 lg:-mr-6 xl:-mr-10 lg:w-[calc(100%+6.5rem)] xl:w-[calc(100%+10.5rem)] group hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+    <div className="relative brut-border brut-shadow-sm sm:brut-shadow-lg bg-background p-3 sm:p-6 lg:p-7 mt-4 sm:mt-5 w-full max-w-full lg:-ml-20 xl:-ml-32 lg:-mr-6 xl:-mr-10 lg:w-[calc(100%+6.5rem)] xl:w-[calc(100%+10.5rem)] group hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
       {/* Top sticker badge */}
-      <div className="absolute -top-4 left-6 bg-[var(--brut-lime)] text-black px-3.5 py-1 text-xs sm:text-sm font-black uppercase tracking-wider border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2 -rotate-1">
-        <span className="relative flex h-2.5 w-2.5">
+      <div className="absolute -top-3.5 left-3 sm:left-6 bg-[var(--brut-lime)] text-black px-2.5 sm:px-3.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-1.5 sm:gap-2 -rotate-1">
+        <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-red-600"></span>
         </span>
         <span>⏳ FEST STARTS IN</span>
       </div>
 
       {/* Header date info */}
-      <div className="flex items-center justify-between pt-1 mb-4">
-        <div className="flex items-center gap-2">
-          <span className="font-display font-black text-sm sm:text-base lg:text-lg uppercase tracking-tight text-foreground">
+      <div className="flex items-center justify-between pt-1 mb-3 sm:mb-4">
+        <div className="flex items-center gap-1.5">
+          <span className="font-display font-black text-xs sm:text-base lg:text-lg uppercase tracking-tight text-foreground">
             20 NOV 2026 · 09:00 AM
           </span>
         </div>
-        <span className="text-xs sm:text-sm font-black uppercase bg-[var(--brut-pink)] text-foreground px-2.5 py-1 border-2 border-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+        <span className="text-[10px] sm:text-xs font-black uppercase bg-[var(--brut-pink)] text-foreground px-2 py-0.5 sm:px-2.5 sm:py-1 border border-foreground sm:border-2 shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] sm:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
           DAY 1 KICKOFF
         </span>
       </div>
 
       {/* 4 Neo-Brutalist Digit Boxes */}
-      <div className="grid grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+      <div className="grid grid-cols-4 gap-1.5 sm:gap-4 lg:gap-5">
         {/* DAYS */}
         <div
-          className="brut-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
+          className="brut-border shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
           style={{ background: "var(--brut-yellow)" }}
         >
-          <div className="py-3 sm:py-5 px-1 text-center">
-            <span className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+          <div className="py-1.5 sm:py-5 px-1 text-center">
+            <span className="font-display font-black text-2xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
               {timeLeft.days}
             </span>
           </div>
-          <div className="bg-black text-white text-xs sm:text-sm font-black uppercase text-center py-1 sm:py-1.5 tracking-widest border-t-2 border-black">
+          <div className="bg-black text-white text-[9px] sm:text-xs font-black uppercase text-center py-0.5 sm:py-1 tracking-wider border-t-2 border-black">
             DAYS
           </div>
         </div>
 
         {/* HOURS */}
         <div
-          className="brut-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
+          className="brut-border shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
           style={{ background: "var(--brut-lime)" }}
         >
-          <div className="py-3 sm:py-5 px-1 text-center">
-            <span className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+          <div className="py-1.5 sm:py-5 px-1 text-center">
+            <span className="font-display font-black text-2xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
               {timeLeft.hours}
             </span>
           </div>
-          <div className="bg-black text-white text-xs sm:text-sm font-black uppercase text-center py-1 sm:py-1.5 tracking-widest border-t-2 border-black">
+          <div className="bg-black text-white text-[9px] sm:text-xs font-black uppercase text-center py-0.5 sm:py-1 tracking-wider border-t-2 border-black">
             HOURS
           </div>
         </div>
 
         {/* MINUTES */}
         <div
-          className="brut-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
+          className="brut-border shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
           style={{ background: "var(--brut-pink)" }}
         >
-          <div className="py-3 sm:py-5 px-1 text-center">
-            <span className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+          <div className="py-1.5 sm:py-5 px-1 text-center">
+            <span className="font-display font-black text-2xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
               {timeLeft.minutes}
             </span>
           </div>
-          <div className="bg-black text-white text-xs sm:text-sm font-black uppercase text-center py-1 sm:py-1.5 tracking-widest border-t-2 border-black">
+          <div className="bg-black text-white text-[9px] sm:text-xs font-black uppercase text-center py-0.5 sm:py-1 tracking-wider border-t-2 border-black">
             MINS
           </div>
         </div>
 
         {/* SECONDS */}
         <div
-          className="brut-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
+          className="brut-border shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
           style={{ background: "var(--brut-orange)" }}
         >
-          <div className="py-3 sm:py-5 px-1 text-center">
-            <span className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+          <div className="py-1.5 sm:py-5 px-1 text-center">
+            <span className="font-display font-black text-2xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
               {timeLeft.seconds}
             </span>
           </div>
-          <div className="bg-black text-white text-xs sm:text-sm font-black uppercase text-center py-1 sm:py-1.5 tracking-widest border-t-2 border-black">
+          <div className="bg-black text-white text-[9px] sm:text-xs font-black uppercase text-center py-0.5 sm:py-1 tracking-wider border-t-2 border-black">
             SECS
           </div>
         </div>
@@ -778,8 +778,8 @@ function Index() {
             ))}
           </nav>
           
-          <div className="flex items-center gap-2">
-            {/* 3-Way Theme Switcher (MAIN / DARK / LIGHT) */}
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* 3-Way Theme Switcher (MAIN / DARK / LIGHT) with Mobile Icons */}
             <div className="inline-flex items-center bg-background border-[2px] border-foreground p-0.5 gap-0.5" suppressHydrationWarning>
               {(["main", "dark", "light"] as const).map((t) => {
                 const isActive = theme === t;
@@ -788,13 +788,18 @@ function Index() {
                     key={t}
                     type="button"
                     onClick={() => setTheme(t)}
-                    className={`px-2 py-0.5 text-[10px] font-black uppercase transition cursor-pointer ${
+                    aria-label={`${t} theme`}
+                    title={`Switch to ${t.toUpperCase()} theme`}
+                    className={`px-1.5 sm:px-2.5 py-1 sm:py-0.5 text-[9px] sm:text-[10px] font-black uppercase transition cursor-pointer flex items-center justify-center gap-1 ${
                       isActive
                         ? "bg-[var(--brut-yellow)] text-black border border-black shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"
                         : "bg-transparent text-muted-foreground hover:text-foreground border border-transparent"
                     }`}
                   >
-                    {t.toUpperCase()}
+                    {t === "main" && <Sparkles className="w-3.5 h-3.5 shrink-0" />}
+                    {t === "dark" && <Moon className="w-3.5 h-3.5 shrink-0" />}
+                    {t === "light" && <Sun className="w-3.5 h-3.5 shrink-0" />}
+                    <span className="hidden sm:inline">{t.toUpperCase()}</span>
                   </button>
                 );
               })}
@@ -804,7 +809,7 @@ function Index() {
               href={configData.brochureLink}
               target="_blank"
               rel="noreferrer"
-              className="inline-block px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-black uppercase bg-background text-foreground border-[2px] border-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition shrink-0"
+              className="hidden sm:inline-block px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-black uppercase bg-background text-foreground border-[2px] border-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition shrink-0"
             >
               Brochure
             </a>
@@ -813,7 +818,7 @@ function Index() {
               href={configData.registrationLink}
               target="_blank"
               rel="noreferrer"
-              className="px-4 py-1.5 text-xs font-black uppercase bg-foreground text-background border-[2px] border-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition whitespace-nowrap shrink-0 inline-flex items-center gap-1"
+              className="px-2.5 sm:px-4 py-1 sm:py-1.5 text-[11px] sm:text-xs font-black uppercase bg-foreground text-background border-[2px] border-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition whitespace-nowrap shrink-0 inline-flex items-center gap-1"
             >
               Register →
             </a>
@@ -823,47 +828,47 @@ function Index() {
 
       {/* HERO */}
       <section id="top" className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 pt-16 pb-24 grid lg:grid-cols-12 gap-10 items-start">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-14 sm:pb-24 grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           <div className="lg:col-span-8">
-            <span className="inline-flex items-center gap-2 bg-[var(--brut-lime)] border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] px-4 py-2 text-xs font-black uppercase tracking-widest text-black">
-              <span className="w-2.5 h-2.5 bg-black" />
+            <span className="inline-flex items-center gap-2 bg-[var(--brut-lime)] border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-black uppercase tracking-widest text-black">
+              <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-black" />
               ARKA JAIN University · Techno-Cultural Fest
             </span>
-            <h1 className="mt-6 font-display font-black text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] leading-[0.9] tracking-tighter uppercase">
+            <h1 className="mt-4 sm:mt-6 font-display font-black text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] leading-[0.9] tracking-tighter uppercase">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <span>Tech</span>
-                <span className="bg-[var(--brut-pink)] brut-border px-3 sm:px-4 -rotate-1 inline-block">nika</span>
+                <span className="bg-[var(--brut-pink)] brut-border px-2.5 sm:px-4 -rotate-1 inline-block">nika</span>
               </div>
-              <div className="mt-2 sm:mt-3">
-                <span className="bg-foreground text-background px-4 inline-block">6.0</span>
+              <div className="mt-1.5 sm:mt-3">
+                <span className="bg-foreground text-background px-3 sm:px-4 inline-block">6.0</span>
               </div>
             </h1>
-            <p className="mt-8 max-w-xl text-lg font-medium">
+            <p className="mt-4 sm:mt-8 max-w-xl text-sm sm:text-base md:text-lg font-medium leading-relaxed">
               Where creativity <span className="bg-[var(--brut-yellow)] px-1 brut-border border-2">collides</span> with technology.{" "}
               45+ battles across code, robotics, AI, hardware, design & culture. Come build. Come break things. Come win.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3 text-xs font-black uppercase">
-              <span className="bg-background brut-border px-4 py-2 flex items-center gap-2">
+            <div className="mt-5 sm:mt-6 flex flex-wrap gap-2.5 sm:gap-3 text-[11px] sm:text-xs font-black uppercase">
+              <span className="bg-background brut-border px-3 sm:px-4 py-1.5 sm:py-2 flex items-center gap-1.5 sm:gap-2">
                 📅 20 & 21 NOVEMBER 2026
               </span>
               <a
                 href={configData.googleMapsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-background brut-border brut-shadow-sm px-4 py-2 flex items-center gap-2 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition group text-foreground cursor-pointer"
+                className="bg-background brut-border brut-shadow-sm px-3 sm:px-4 py-1.5 sm:py-2 flex items-center gap-1.5 sm:gap-2 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition group text-foreground cursor-pointer"
               >
                 <span>📍 ARKA JAIN UNIVERSITY</span>
                 <span className="ml-1 inline-block group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗️</span>
               </a>
             </div>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a href={configData.registrationLink} target="_blank" rel="noreferrer" className="px-8 py-4 font-black uppercase bg-[var(--brut-pink)] text-foreground brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition">
+            <div className="mt-6 sm:mt-10 flex flex-wrap gap-3 sm:gap-4">
+              <a href={configData.registrationLink} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-5 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm text-center justify-center font-black uppercase bg-[var(--brut-pink)] text-foreground brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition">
                 Register Now →
               </a>
               <a
                 href="#events"
                 onClick={(e) => scrollToSection(e, "#events")}
-                className="px-8 py-4 font-black uppercase bg-background text-foreground brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition cursor-pointer"
+                className="flex-1 sm:flex-initial px-4 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm text-center justify-center font-black uppercase bg-background text-foreground brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition cursor-pointer"
               >
                 Explore Events
               </a>
@@ -871,23 +876,23 @@ function Index() {
                 href={configData.brochureLink}
                 target="_blank"
                 rel="noreferrer"
-                className="px-8 py-4 font-black uppercase bg-[var(--brut-yellow)] text-foreground brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition flex items-center gap-2 cursor-pointer"
+                className="flex-1 sm:flex-initial px-4 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm text-center justify-center font-black uppercase bg-[var(--brut-yellow)] text-foreground brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition flex items-center gap-1.5 sm:gap-2 cursor-pointer"
               >
                 <span>View Brochure</span>
                 <span>📄</span>
               </a>
             </div>
 
-            <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl">
-              <div className="brut-border brut-shadow-sm p-4 flex flex-col justify-between" style={{ background: "var(--brut-blue)" }}>
-                <div className="text-3xl font-display font-black">45+</div>
-                <div className="text-xs uppercase font-bold mt-1">Events</div>
+            <div className="mt-8 sm:mt-14 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl">
+              <div className="brut-border brut-shadow-sm p-3 sm:p-4 flex flex-col justify-between" style={{ background: "var(--brut-blue)" }}>
+                <div className="text-2xl sm:text-3xl font-display font-black">45+</div>
+                <div className="text-[11px] sm:text-xs uppercase font-bold mt-1">Events</div>
               </div>
-              <div className="brut-border brut-shadow-sm p-4 flex flex-col justify-between" style={{ background: "var(--brut-yellow)" }}>
-                <div className="text-sm font-display font-black leading-tight uppercase">Mementos, Medals & Certificates</div>
-                <div className="text-[10px] uppercase font-bold mt-1 opacity-90">Awards & Recognition</div>
+              <div className="brut-border brut-shadow-sm p-3 sm:p-4 flex flex-col justify-between" style={{ background: "var(--brut-yellow)" }}>
+                <div className="text-xs sm:text-sm font-display font-black leading-tight uppercase">Mementos, Medals & Certificates</div>
+                <div className="text-[9px] sm:text-[10px] uppercase font-bold mt-1 opacity-90">Awards & Recognition</div>
               </div>
-              <div className="brut-border brut-shadow-sm p-4 flex flex-col justify-between" style={{ background: "var(--brut-orange)" }}>
+              <div className="col-span-2 sm:col-span-1 brut-border brut-shadow-sm p-3 sm:p-4 flex flex-col justify-between" style={{ background: "var(--brut-orange)" }}>
                 <div className="text-3xl font-display font-black">2 DAYS</div>
                 <div className="text-xs uppercase font-bold mt-1">Fest Event</div>
               </div>
