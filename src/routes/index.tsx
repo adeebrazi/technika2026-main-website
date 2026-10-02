@@ -189,7 +189,6 @@ type EventItem = (typeof eventsData)[number];
 
 function FaqSection() {
   const [selectedFaqIdx, setSelectedFaqIdx] = useState(0);
-  const [openMobileIdx, setOpenMobileIdx] = useState<number | null>(0);
 
   const faqs = [
     {
@@ -339,10 +338,10 @@ function FaqSection() {
           </span>
         </div>
 
-        {/* Desktop View: Compact 2-Column Split Navigator */}
+        {/* Desktop View: 2-Column Split Navigator */}
         <div className="hidden md:grid md:grid-cols-12 gap-5 items-start">
           {/* Questions Scrollable List */}
-          <div className="md:col-span-5 flex flex-col gap-1.5 max-h-[320px] overflow-y-auto pr-1.5">
+          <div className="md:col-span-5 flex flex-col gap-2 max-h-[360px] overflow-y-auto pr-1.5">
             {faqs.map((item, idx) => {
               const cleanQ = item.q.replace(/^(Bonus:\s*|\d+\.\s*)/i, "");
               const isSelected = selectedFaqIdx === idx;
@@ -351,76 +350,112 @@ function FaqSection() {
                   key={idx}
                   type="button"
                   onClick={() => setSelectedFaqIdx(idx)}
-                  className={`w-full text-left px-3 py-2 text-xs font-black uppercase brut-border transition-all flex items-center justify-between gap-2 cursor-pointer ${
+                  className={`w-full shrink-0 text-left px-3 py-2.5 text-xs font-black uppercase brut-border transition-all flex items-center justify-between gap-2 cursor-pointer ${
                     isSelected
                       ? "bg-[var(--brut-lime)] text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] -translate-y-0.5"
-                      : "bg-muted/30 text-foreground hover:bg-muted"
+                      : "bg-background/80 text-foreground hover:bg-muted"
                   }`}
                 >
                   <span className="truncate">
                     <span className="text-[var(--brut-pink)] font-black mr-1.5">Q{idx + 1}.</span>
                     {cleanQ}
                   </span>
-                  <span className="shrink-0">{isSelected ? "→" : ""}</span>
+                  <span className="shrink-0 font-bold">{isSelected ? "→" : ""}</span>
                 </button>
               );
             })}
           </div>
 
           {/* Answer Panel */}
-          <div className="md:col-span-7 brut-border p-5 bg-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-h-[320px] flex flex-col justify-between">
+          <div className="md:col-span-7 brut-border p-6 bg-background shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] min-h-[360px] flex flex-col justify-between">
             <div>
-              <div className="inline-block bg-[var(--brut-yellow)] text-black text-[10px] font-black uppercase px-2 py-0.5 brut-border mb-2.5">
+              <div className="inline-block bg-[var(--brut-yellow)] text-black text-[10px] font-black uppercase px-2 py-0.5 brut-border mb-3">
                 QUESTION {selectedFaqIdx + 1} OF {faqs.length}
               </div>
-              <h3 className="font-display font-black text-base lg:text-lg uppercase text-foreground leading-snug">
+              <h3 className="font-display font-black text-lg lg:text-xl uppercase text-foreground leading-snug">
                 {faqs[selectedFaqIdx].q.replace(/^(Bonus:\s*|\d+\.\s*)/i, "")}
               </h3>
               <div className="w-10 h-1 bg-[var(--brut-pink)] my-3" />
-              <p className="text-xs sm:text-sm font-medium text-muted-foreground leading-relaxed">
+              <p className="text-sm font-medium text-foreground/90 leading-relaxed">
                 {faqs[selectedFaqIdx].a}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-[11px] font-bold text-muted-foreground">
+            <div className="mt-6 pt-3 border-t border-border flex items-center justify-between text-xs font-bold text-muted-foreground">
               <span>ARKA JAIN University · Technika 6.0</span>
-              <span className="text-[9px] uppercase font-black bg-foreground text-background px-1.5 py-0.5">Verified FAQ</span>
+              <span className="text-[10px] uppercase font-black bg-foreground text-background px-2 py-0.5">Verified FAQ</span>
             </div>
           </div>
         </div>
 
-        {/* Mobile View: Compact In-Place Expandable Accordion */}
-        <div className="md:hidden flex flex-col gap-2 max-h-[380px] overflow-y-auto pr-1">
-          {faqs.map((item, idx) => {
-            const cleanQ = item.q.replace(/^(Bonus:\s*|\d+\.\s*)/i, "");
-            const isOpen = openMobileIdx === idx;
-            return (
-              <div
-                key={idx}
-                className={`brut-border transition-all overflow-hidden ${
-                  isOpen ? "bg-[var(--brut-yellow)] text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]" : "bg-muted/30 text-foreground"
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenMobileIdx(isOpen ? null : idx)}
-                  className="w-full text-left p-2.5 flex items-center justify-between gap-2 font-black text-xs uppercase cursor-pointer"
-                >
-                  <span className="leading-tight">
-                    <span className="text-[var(--brut-pink)] font-black mr-1">Q{idx + 1}.</span>
-                    {cleanQ}
-                  </span>
-                  <span className="shrink-0 w-5 h-5 brut-border flex items-center justify-center text-[10px] font-black bg-foreground text-background">
-                    {isOpen ? "−" : "+"}
-                  </span>
-                </button>
-                {isOpen && (
-                  <div className="px-3 pb-3 pt-1 text-xs font-medium text-black leading-relaxed border-t border-black bg-background/90">
-                    <p>{item.a}</p>
-                  </div>
-                )}
+        {/* Mobile View: Compact Interactive Flashcard Navigator */}
+        <div className="md:hidden flex flex-col gap-3">
+          {/* Quick Jump Dropdown */}
+          <div>
+            <label htmlFor="faq-mobile-select" className="block text-[10px] font-black uppercase tracking-wider text-muted-foreground mb-1">
+              Jump Directly to a Question:
+            </label>
+            <select
+              id="faq-mobile-select"
+              value={selectedFaqIdx}
+              onChange={(e) => setSelectedFaqIdx(Number(e.target.value))}
+              className="w-full brut-border p-2.5 bg-background text-foreground text-xs font-black uppercase tracking-wide cursor-pointer focus:outline-none"
+            >
+              {faqs.map((item, idx) => (
+                <option key={idx} value={idx} className="bg-background text-foreground py-1 font-bold">
+                  Q{idx + 1}. {item.q.replace(/^(Bonus:\s*|\d+\.\s*)/i, "")}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Active Question & Answer Card */}
+          <div className="brut-border p-4 bg-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between min-h-[220px]">
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="bg-[var(--brut-yellow)] text-black text-[10px] font-black uppercase px-2 py-0.5 brut-border">
+                  QUESTION {selectedFaqIdx + 1} OF {faqs.length}
+                </span>
+                <span className="text-[10px] font-black uppercase text-muted-foreground">
+                  Technika 6.0
+                </span>
               </div>
-            );
-          })}
+
+              <h3 className="font-display font-black text-sm sm:text-base uppercase text-foreground leading-snug">
+                {faqs[selectedFaqIdx].q.replace(/^(Bonus:\s*|\d+\.\s*)/i, "")}
+              </h3>
+
+              <div className="w-8 h-1 bg-[var(--brut-pink)] my-2.5" />
+
+              <p className="text-xs font-medium text-foreground/90 leading-relaxed">
+                {faqs[selectedFaqIdx].a}
+              </p>
+            </div>
+
+            {/* Prev / Next Bottom Stepper Controls */}
+            <div className="mt-4 pt-3 border-t border-border flex items-center justify-between gap-2">
+              <button
+                type="button"
+                disabled={selectedFaqIdx === 0}
+                onClick={() => setSelectedFaqIdx((prev) => Math.max(0, prev - 1))}
+                className="px-3 py-1.5 text-xs font-black uppercase brut-border bg-background text-foreground disabled:opacity-30 disabled:cursor-not-allowed hover:bg-muted active:scale-95 transition cursor-pointer"
+              >
+                ← Prev
+              </button>
+
+              <span className="text-[11px] font-black text-muted-foreground">
+                {selectedFaqIdx + 1} / {faqs.length}
+              </span>
+
+              <button
+                type="button"
+                disabled={selectedFaqIdx === faqs.length - 1}
+                onClick={() => setSelectedFaqIdx((prev) => Math.min(faqs.length - 1, prev + 1))}
+                className="px-3 py-1.5 text-xs font-black uppercase brut-border bg-[var(--brut-lime)] text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] disabled:opacity-30 disabled:cursor-not-allowed hover:opacity-90 active:scale-95 transition cursor-pointer"
+              >
+                Next →
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
