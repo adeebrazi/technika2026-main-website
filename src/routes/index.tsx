@@ -1226,9 +1226,9 @@ function Index() {
       </section>
 
       {/* TEAM */}
-      <section id="team" className="max-w-7xl mx-auto px-6 py-24 text-center">
+      <section id="team" className="max-w-7xl mx-auto px-3 sm:px-6 py-16 sm:py-24 text-center">
         <div className="inline-block bg-[var(--brut-blue)] brut-border px-3 py-1 text-xs uppercase font-black">Behind the fest</div>
-        <h2 className="mt-4 text-4xl md:text-6xl font-display font-black uppercase leading-none">
+        <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-6xl font-display font-black uppercase leading-none">
           The Team
         </h2>
 
@@ -1236,21 +1236,21 @@ function Index() {
           const people = organisersData.filter((o) => o.category === group || (group === "Student Coordinator" && (o.category === "Student Coordinators" || o.category === "Core Team")));
           if (people.length === 0) return null;
           return (
-            <div key={group} className="mt-12">
-              <div className="text-sm uppercase font-black mb-6 inline-block bg-foreground text-background px-4 py-1.5 brut-border">
+            <div key={group} className="mt-8 sm:mt-12">
+              <div className="text-xs sm:text-sm uppercase font-black mb-4 sm:mb-6 inline-block bg-foreground text-background px-3 sm:px-4 py-1 sm:py-1.5 brut-border">
                 {group}
               </div>
-              <div className="flex flex-wrap justify-center gap-6">
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center gap-2.5 sm:gap-6 max-w-5xl mx-auto">
                 {people.map((p, i) => {
                   const hasPhoto = "image" in p && Boolean(p.image);
                   return (
                     <div
                       key={p.name}
-                      className="brut-border p-4 bg-background shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition flex flex-col items-center text-center justify-between w-full max-w-[270px]"
+                      className="brut-border p-2 sm:p-4 bg-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition flex flex-col items-center text-center justify-between w-full sm:w-[240px] sm:max-w-[270px]"
                     >
                       <div className="w-full flex flex-col items-center">
                         {/* Member Photo Frame */}
-                        <div className="relative aspect-square w-full mb-3.5 brut-border overflow-hidden bg-muted/30 flex items-center justify-center">
+                        <div className="relative aspect-square w-full mb-2 sm:mb-3.5 brut-border overflow-hidden bg-muted/30 flex items-center justify-center">
                           {hasPhoto ? (
                             <img
                               src={(p as any).image}
@@ -1265,25 +1265,25 @@ function Index() {
                           ) : null}
 
                           <div
-                            className="fallback-avatar flex flex-col items-center justify-center p-3 text-center w-full h-full"
+                            className="fallback-avatar flex flex-col items-center justify-center p-2 sm:p-3 text-center w-full h-full"
                             style={{
                               display: hasPhoto ? 'none' : 'flex',
                               background: BRUT_COLORS[i % BRUT_COLORS.length]
                             }}
                           >
-                            <div className="w-16 h-16 brut-border bg-foreground text-background flex items-center justify-center font-display font-black text-2xl mb-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                            <div className="w-10 h-10 sm:w-16 sm:h-16 brut-border bg-foreground text-background flex items-center justify-center font-display font-black text-sm sm:text-2xl mb-1 sm:mb-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                               {p.name.split(" ").filter(Boolean).slice(0, 2).map((s) => s[0]).join("")}
                             </div>
-                            <span className="text-[9px] font-black uppercase tracking-wider text-black bg-background/90 px-2 py-0.5 brut-border mt-1">
+                            <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black bg-background/90 px-1.5 py-0.5 brut-border mt-0.5 sm:mt-1">
                               Photo TBD
                             </span>
                           </div>
                         </div>
 
-                        <div className="font-display font-black uppercase text-base leading-snug text-foreground">
+                        <div className="font-display font-black uppercase text-xs sm:text-base leading-tight sm:leading-snug text-foreground">
                           {p.name}
                         </div>
-                        <div className="text-xs font-semibold mt-1 text-muted-foreground leading-relaxed">
+                        <div className="text-[10px] sm:text-xs font-semibold mt-0.5 sm:mt-1 text-muted-foreground leading-tight sm:leading-relaxed">
                           {p.role}
                         </div>
                       </div>
