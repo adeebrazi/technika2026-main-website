@@ -1342,68 +1342,72 @@ function Index() {
       <FaqSection />
 
       {/* CREATORS CREDITS */}
-      <section id="creators" className="max-w-7xl mx-auto px-6 py-8">
-        <div className="flex flex-col md:flex-row items-center md:items-center justify-center gap-12 md:gap-24">
+      <section id="creators" className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="flex flex-col md:flex-row items-center md:items-center justify-center gap-6 sm:gap-12 md:gap-24">
           {/* Left Text */}
           <div className="text-center md:text-left md:max-w-xs">
-            <h2 className="text-4xl md:text-5xl font-display font-black uppercase leading-none text-foreground">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black uppercase leading-none text-foreground">
               Meet the <br />
               <span className="bg-[var(--brut-yellow)] text-black brut-border px-2 inline-block -rotate-1 mt-1">Developers</span>
             </h2>
-            <p className="text-xs font-semibold text-muted-foreground mt-3 leading-relaxed">
+            <p className="text-xs font-semibold text-muted-foreground mt-2 sm:mt-3 leading-relaxed">
               The developers who designed and built the Technika 6.0 portal.
             </p>
           </div>
 
-          {/* Right Cards */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center w-full md:w-auto">
+          {/* Right Cards: Side-by-side on mobile and desktop */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 justify-center w-full max-w-sm sm:max-w-none mx-auto md:mx-0 md:w-auto">
             {/* Creator 1: Adeeb Razi */}
-            <div className="brut-border p-5 bg-background shadow-[5px_5px_0px_0px_var(--foreground)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all duration-200 w-full sm:w-[210px] flex flex-col items-center text-center">
-              <div className="relative aspect-square w-24 mb-3.5 border-2 border-foreground overflow-hidden bg-[var(--brut-pink)] shadow-[3.5px_3.5px_0px_0px_var(--foreground)]">
-                <img
-                  src="/team/adeeb.png"
-                  alt="Adeeb Razi"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <h3 className="font-display text-base font-black uppercase text-foreground">
-                Adeeb Razi
-              </h3>
-              <div className="text-[9px] font-black uppercase tracking-wider text-black bg-[var(--brut-pink)] px-2 py-0.5 border border-foreground mt-1.5 shadow-[1.5px_1.5px_0px_0px_var(--foreground)]">
-                Frontend & UI Dev
+            <div className="brut-border p-3 sm:p-5 bg-background shadow-[3px_3px_0px_0px_var(--foreground)] sm:shadow-[5px_5px_0px_0px_var(--foreground)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all duration-200 w-full sm:w-[210px] flex flex-col items-center text-center justify-between">
+              <div className="w-full flex flex-col items-center">
+                <div className="relative aspect-square w-16 sm:w-24 mb-2.5 sm:mb-3.5 border-2 border-foreground overflow-hidden bg-[var(--brut-pink)] shadow-[2.5px_2.5px_0px_0px_var(--foreground)] sm:shadow-[3.5px_3.5px_0px_0px_var(--foreground)]">
+                  <img
+                    src="/team/adeeb.png"
+                    alt="Adeeb Razi"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 className="font-display text-xs sm:text-base font-black uppercase text-foreground leading-tight">
+                  Adeeb Razi
+                </h3>
+                <div className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black bg-[var(--brut-pink)] px-1.5 sm:px-2 py-0.5 border border-foreground mt-1 shadow-[1px_1px_0px_0px_var(--foreground)] sm:shadow-[1.5px_1.5px_0px_0px_var(--foreground)] whitespace-nowrap">
+                  Frontend & UI Dev
+                </div>
               </div>
               <a
                 href="https://adeebrazi.online"
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 border border-foreground px-4 py-1 text-[10px] font-black bg-[var(--brut-yellow)] text-black shadow-[2px_2px_0px_0px_var(--foreground)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition uppercase tracking-wider"
+                className="mt-3 sm:mt-5 border border-foreground px-2 sm:px-4 py-1 text-[9px] sm:text-[10px] font-black bg-[var(--brut-yellow)] text-black shadow-[1.5px_1.5px_0px_0px_var(--foreground)] sm:shadow-[2px_2px_0px_0px_var(--foreground)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition uppercase tracking-wider w-full sm:w-auto text-center"
               >
                 Portfolio ↗
               </a>
             </div>
 
             {/* Creator 2: Sanchit Agarwal */}
-            <div className="brut-border p-5 bg-background shadow-[5px_5px_0px_0px_var(--foreground)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all duration-200 w-full sm:w-[210px] flex flex-col items-center text-center">
-              <div className="relative aspect-square w-24 mb-3.5 border-2 border-foreground overflow-hidden bg-[var(--brut-lime)] shadow-[3.5px_3.5px_0px_0px_var(--foreground)]">
-                <img
-                  src="/team/sanchit.png"
-                  alt="Sanchit Agarwal"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <h3 className="font-display text-base font-black uppercase text-foreground">
-                Sanchit Agarwal
-              </h3>
-              <div className="text-[9px] font-black uppercase tracking-wider text-black bg-[var(--brut-pink)] px-2 py-0.5 border border-foreground mt-1.5 shadow-[1.5px_1.5px_0px_0px_var(--foreground)]">
-                Backend Developer
+            <div className="brut-border p-3 sm:p-5 bg-background shadow-[3px_3px_0px_0px_var(--foreground)] sm:shadow-[5px_5px_0px_0px_var(--foreground)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all duration-200 w-full sm:w-[210px] flex flex-col items-center text-center justify-between">
+              <div className="w-full flex flex-col items-center">
+                <div className="relative aspect-square w-16 sm:w-24 mb-2.5 sm:mb-3.5 border-2 border-foreground overflow-hidden bg-[var(--brut-lime)] shadow-[2.5px_2.5px_0px_0px_var(--foreground)] sm:shadow-[3.5px_3.5px_0px_0px_var(--foreground)]">
+                  <img
+                    src="/team/sanchit.png"
+                    alt="Sanchit Agarwal"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 className="font-display text-xs sm:text-base font-black uppercase text-foreground leading-tight">
+                  Sanchit Agarwal
+                </h3>
+                <div className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black bg-[var(--brut-pink)] px-1.5 sm:px-2 py-0.5 border border-foreground mt-1 shadow-[1px_1px_0px_0px_var(--foreground)] sm:shadow-[1.5px_1.5px_0px_0px_var(--foreground)] whitespace-nowrap">
+                  Backend Developer
+                </div>
               </div>
               <a
                 href="https://www.linkedin.com/in/sanchit-agarwal-dev/"
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 border border-foreground px-4 py-1 text-[10px] font-black bg-[var(--brut-yellow)] text-black shadow-[2px_2px_0px_0px_var(--foreground)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition uppercase tracking-wider"
+                className="mt-3 sm:mt-5 border border-foreground px-2 sm:px-4 py-1 text-[9px] sm:text-[10px] font-black bg-[var(--brut-yellow)] text-black shadow-[1.5px_1.5px_0px_0px_var(--foreground)] sm:shadow-[2px_2px_0px_0px_var(--foreground)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition uppercase tracking-wider w-full sm:w-auto text-center"
               >
                 Portfolio ↗
               </a>
