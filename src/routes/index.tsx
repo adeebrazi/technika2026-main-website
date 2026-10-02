@@ -549,7 +549,7 @@ function NeoBrutalistCountdown() {
   }, []);
 
   return (
-    <div className="relative brut-border brut-shadow-sm sm:brut-shadow-lg bg-background p-3 sm:p-6 lg:p-7 mt-4 sm:mt-5 w-full max-w-full lg:-ml-20 xl:-ml-32 lg:-mr-6 xl:-mr-10 lg:w-[calc(100%+6.5rem)] xl:w-[calc(100%+10.5rem)] group hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+    <div className="relative brut-border brut-shadow-sm sm:brut-shadow-lg bg-background p-3 sm:p-5 lg:p-5 xl:p-6 mt-4 sm:mt-5 w-full max-w-full lg:-ml-20 xl:-ml-32 lg:-mr-6 xl:-mr-10 lg:w-[calc(100%+6.5rem)] xl:w-[calc(100%+10.5rem)] group hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
       {/* Top sticker badge */}
       <div className="absolute -top-3.5 left-3 sm:left-6 bg-[var(--brut-lime)] text-black px-2.5 sm:px-3.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-1.5 sm:gap-2 -rotate-1">
         <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
@@ -572,14 +572,14 @@ function NeoBrutalistCountdown() {
       </div>
 
       {/* 4 Neo-Brutalist Digit Boxes */}
-      <div className="grid grid-cols-4 gap-1.5 sm:gap-4 lg:gap-5">
+      <div className="grid grid-cols-4 gap-1.5 sm:gap-3 lg:gap-3 xl:gap-4">
         {/* DAYS */}
         <div
           className="brut-border shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
           style={{ background: "var(--brut-yellow)" }}
         >
-          <div className="py-1.5 sm:py-5 px-1 text-center">
-            <span className="font-display font-black text-2xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+          <div className="py-2 sm:py-3.5 lg:py-4 px-0.5 text-center flex items-center justify-center">
+            <span className="font-display font-black text-2xl sm:text-3xl lg:text-4xl xl:text-[2.6rem] text-black leading-none block tabular-nums tracking-tighter">
               {timeLeft.days}
             </span>
           </div>
@@ -593,8 +593,8 @@ function NeoBrutalistCountdown() {
           className="brut-border shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
           style={{ background: "var(--brut-lime)" }}
         >
-          <div className="py-1.5 sm:py-5 px-1 text-center">
-            <span className="font-display font-black text-2xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+          <div className="py-2 sm:py-3.5 lg:py-4 px-0.5 text-center flex items-center justify-center">
+            <span className="font-display font-black text-2xl sm:text-3xl lg:text-4xl xl:text-[2.6rem] text-black leading-none block tabular-nums tracking-tighter">
               {timeLeft.hours}
             </span>
           </div>
@@ -608,8 +608,8 @@ function NeoBrutalistCountdown() {
           className="brut-border shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
           style={{ background: "var(--brut-pink)" }}
         >
-          <div className="py-1.5 sm:py-5 px-1 text-center">
-            <span className="font-display font-black text-2xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+          <div className="py-2 sm:py-3.5 lg:py-4 px-0.5 text-center flex items-center justify-center">
+            <span className="font-display font-black text-2xl sm:text-3xl lg:text-4xl xl:text-[2.6rem] text-black leading-none block tabular-nums tracking-tighter">
               {timeLeft.minutes}
             </span>
           </div>
@@ -623,8 +623,8 @@ function NeoBrutalistCountdown() {
           className="brut-border shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between overflow-hidden transition-transform hover:-translate-y-0.5"
           style={{ background: "var(--brut-orange)" }}
         >
-          <div className="py-1.5 sm:py-5 px-1 text-center">
-            <span className="font-display font-black text-2xl sm:text-5xl lg:text-6xl text-black leading-none block tabular-nums">
+          <div className="py-2 sm:py-3.5 lg:py-4 px-0.5 text-center flex items-center justify-center">
+            <span className="font-display font-black text-2xl sm:text-3xl lg:text-4xl xl:text-[2.6rem] text-black leading-none block tabular-nums tracking-tighter">
               {timeLeft.seconds}
             </span>
           </div>
