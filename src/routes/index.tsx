@@ -600,10 +600,11 @@ function Index() {
   const [theme, setTheme] = useState<"main" | "light">(() => {
     if (typeof window !== "undefined" && window.localStorage) {
       const saved = localStorage.getItem("technika_theme");
+      if (saved === "main") return "main";
       if (saved === "light") return "light";
-      return "main";
+      return "light";
     }
-    return "main";
+    return "light";
   });
 
   const toggleTheme = () => {
@@ -1546,7 +1547,7 @@ function Index() {
                 <div className="text-[10px] font-black uppercase tracking-widest bg-foreground text-background inline-block px-2 py-0.5">
                   {openEvent.category}
                 </div>
-                <h3 className="mt-1 font-display text-2xl sm:text-3xl font-black uppercase leading-tight">
+                <h3 className="mt-1 font-display text-2xl sm:text-3xl font-black uppercase leading-tight text-black">
                   {openEvent.title}
                 </h3>
               </div>
@@ -1564,17 +1565,17 @@ function Index() {
             <div className="p-6 space-y-5 overflow-y-auto">
               <p className="font-medium text-base leading-relaxed">{openEvent.description}</p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-black uppercase">
-                <div className="brut-border p-3 bg-[var(--brut-lime)]">
-                  <div className="opacity-70">When</div>
-                  <div className="mt-1">{openEvent.date} · {openEvent.time}</div>
+                <div className="brut-border p-3 bg-[var(--brut-lime)] text-black">
+                  <div className="opacity-80 font-black">When</div>
+                  <div className="mt-1 font-bold">{openEvent.date} · {openEvent.time}</div>
                 </div>
-                <div className="brut-border p-3 bg-[var(--brut-blue)] text-foreground">
-                  <div className="opacity-70">Venue</div>
-                  <div className="mt-1">{openEvent.venue}</div>
+                <div className="brut-border p-3 bg-[var(--brut-blue)] text-white">
+                  <div className="opacity-80 font-black">Venue</div>
+                  <div className="mt-1 font-bold">{openEvent.venue}</div>
                 </div>
-                <div className="brut-border p-3 bg-[var(--brut-orange)]">
-                  <div className="opacity-70">Team</div>
-                  <div className="mt-1">
+                <div className="brut-border p-3 bg-[var(--brut-orange)] text-black">
+                  <div className="opacity-80 font-black">Team</div>
+                  <div className="mt-1 font-bold">
                     {openEvent.isTeamEvent
                       ? `${openEvent.minMembers}–${openEvent.maxMembers} members`
                       : "Solo"}
@@ -1621,7 +1622,7 @@ function Index() {
                   href={configData.brochureLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="bg-[var(--brut-yellow)] text-foreground px-5 py-3 font-black uppercase text-xs brut-border brut-shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition inline-flex items-center gap-2"
+                  className="bg-[var(--brut-yellow)] text-black px-5 py-3 font-black uppercase text-xs brut-border brut-shadow-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition inline-flex items-center gap-2"
                 >
                   <span>View in Brochure</span>
                   <span>📄</span>
