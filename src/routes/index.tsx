@@ -1356,21 +1356,37 @@ function Index() {
       </section>
 
       {/* REGISTER CTA */}
-      <section id="register" className="max-w-7xl mx-auto px-6 py-24">
-        <div className="relative brut-border p-10 md:p-16 bg-[var(--brut-pink)]" style={{ boxShadow: "16px 16px 0 0 var(--foreground)" }}>
+      <section id="register" className="max-w-7xl mx-auto px-3 sm:px-6 py-6 sm:py-20">
+        <div className="relative brut-border p-4 sm:p-10 md:p-16 bg-[var(--brut-pink)] shadow-[4px_4px_0_0_var(--foreground)] sm:shadow-[12px_12px_0_0_var(--foreground)] md:shadow-[16px_16px_0_0_var(--foreground)]">
           <div className="max-w-3xl">
-            <div className="inline-block bg-foreground text-background px-3 py-1 text-xs uppercase font-black tracking-widest">Registration open</div>
-            <h2 className="mt-4 font-display text-5xl md:text-7xl font-black uppercase leading-none">
-              Ready to <br />enter the <span className="bg-[var(--brut-yellow)] brut-border px-2 inline-block -rotate-1">arena?</span>
+            <div className="inline-block bg-foreground text-background px-2.5 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs uppercase font-black tracking-wider sm:tracking-widest brut-border">
+              Registration open
+            </div>
+            <h2 className="mt-2.5 sm:mt-4 font-display text-2xl sm:text-5xl md:text-7xl font-black uppercase leading-tight sm:leading-none text-foreground">
+              Ready to <br className="hidden sm:inline" />enter the{" "}
+              <span className="bg-[var(--brut-yellow)] brut-border px-1.5 py-0.5 sm:px-2 inline-block -rotate-1 text-black">
+                arena?
+              </span>
             </h2>
-            <p className="mt-6 text-lg font-medium">
+            <p className="mt-2 sm:mt-6 text-xs sm:text-lg font-semibold sm:font-medium leading-relaxed text-foreground/90 max-w-xl">
               Bring your college ID. Bring your squad. Register once, compete across events.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a href={configData.registrationLink} target="_blank" rel="noreferrer" className="bg-foreground text-background px-8 py-4 font-black uppercase brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition">
-                Register your team →
+            <div className="mt-4 sm:mt-8 flex flex-row flex-wrap sm:flex-nowrap gap-2 sm:gap-4 items-center">
+              <a
+                href={configData.registrationLink}
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 sm:flex-initial text-center bg-foreground text-background px-3 sm:px-8 py-2.5 sm:py-4 font-black text-xs sm:text-base uppercase brut-border shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition whitespace-nowrap"
+              >
+                <span className="sm:hidden">Register team →</span>
+                <span className="hidden sm:inline">Register your team →</span>
               </a>
-              <a href={configData.brochureLink} target="_blank" rel="noreferrer" className="bg-background text-foreground px-8 py-4 font-black uppercase brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition">
+              <a
+                href={configData.brochureLink}
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 sm:flex-initial text-center bg-background text-foreground px-3 sm:px-8 py-2.5 sm:py-4 font-black text-xs sm:text-base uppercase brut-border shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition whitespace-nowrap"
+              >
                 View Brochure
               </a>
             </div>
