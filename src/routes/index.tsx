@@ -1199,7 +1199,7 @@ function Index() {
             return (
               <div
                 key={p.name}
-                className={`brut-border ${isCompact ? "p-2 sm:p-3" : "p-2 sm:p-4"} bg-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition flex flex-col items-center text-center justify-between w-full`}
+                className={`brut-border ${isCompact ? "p-2 sm:p-3" : "p-2 sm:p-4"} bg-background shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition flex flex-col items-center text-center justify-between w-full h-full`}
               >
                 <div className="w-full flex flex-col items-center">
                   {/* Member Photo Frame */}
@@ -1254,12 +1254,17 @@ function Index() {
                   {group}
                 </div>
 
-                {/* Admins at the top */}
+                {/* Admins at the top - same size as other leads */}
                 {admins.length > 0 && (
-                  <div className="mb-6 sm:mb-8">
-                    <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-md sm:max-w-xl mx-auto justify-center">
-                      {admins.map((p, i) => renderMemberCard(p, i, false))}
-                    </div>
+                  <div className="flex justify-center gap-2.5 sm:gap-4 max-w-7xl mx-auto mb-4 sm:mb-6">
+                    {admins.map((p, i) => (
+                      <div
+                        key={p.name}
+                        className="w-[calc(50%-0.35rem)] sm:w-[calc((100%-2*1rem)/3)] md:w-[calc((100%-3*1rem)/4)] lg:w-[calc((100%-5*1rem)/6)] flex"
+                      >
+                        {renderMemberCard(p, i, true)}
+                      </div>
+                    ))}
                   </div>
                 )}
 
