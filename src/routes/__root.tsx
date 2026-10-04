@@ -116,11 +116,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" onContextMenu={(e) => e.preventDefault()}>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body onContextMenu={(e) => e.preventDefault()}>
         {children}
         <Scripts />
       </body>
@@ -130,6 +130,37 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    // Disable right-click context menu across the entire website
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+      return false;
+    };
+
+    // Block common inspection developer keyboard shortcuts (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U)
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["I", "i", "J", "j", "C", "c"].includes(e.key)) ||
+        (e.ctrlKey && (e.key === "u" || e.key === "U")) ||
+        (e.ctrlKey && (e.key === "s" || e.key === "S"))
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu, { capture: true });
+    window.addEventListener("contextmenu", handleContextMenu, { capture: true });
+    document.addEventListener("keydown", handleKeyDown, { capture: true });
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu, { capture: true });
+      window.removeEventListener("contextmenu", handleContextMenu, { capture: true });
+      document.removeEventListener("keydown", handleKeyDown, { capture: true });
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
