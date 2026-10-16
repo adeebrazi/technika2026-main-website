@@ -48,9 +48,7 @@
       "Working demo preferred but not mandatory."
     ],
     "rounds_list": [],
-    "criteria_list": [
-      "Judged on innovation, design and practical utility."
-    ]
+    "criteria_list": ["Judged on innovation, design and practical utility."]
   },
   {
     "id": "robo-wars",
@@ -96,9 +94,7 @@
       "The robot that successfully pushes the opponent out of the arena, flips the opponent's robot, or secures the highest score will be declared the winner.",
       "Judges' decision shall be final."
     ],
-    "criteria_list": [
-      "The team scoring maximum points will be the winner."
-    ]
+    "criteria_list": ["The team scoring maximum points will be the winner."]
   },
   {
     "id": "robo-race",
@@ -693,10 +689,7 @@
       "Participants must come with approximate 150-200 Ice stick and glue gum (Fevicol) with them.",
       "Participants are required to bring their own scale and cutter."
     ],
-    "rounds_list": [
-      "Building the bridge- Day 1",
-      "Testing by applying loads- Day 2"
-    ],
+    "rounds_list": ["Building the bridge- Day 1", "Testing by applying loads- Day 2"],
     "criteria_list": [
       "The lightest bridge having maximum capacity of carrying load will wins the Event.",
       "Creative Events"

@@ -44,9 +44,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 py-12">
       <div className="max-w-2xl text-center">
-        <h1 className="text-2xl font-black uppercase text-foreground">
-          This page didn't load
-        </h1>
+        <h1 className="text-2xl font-black uppercase text-foreground">This page didn't load</h1>
         <p className="mt-2 text-sm text-muted-foreground font-medium">
           {error?.message || "Something went wrong on our end."}
         </p>
@@ -85,10 +83,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "TECHNIKA 6.0 — ARKA JAIN University's Techno-Cultural Fest" },
-      { name: "description", content: "TECHNIKA 6.0 — the flagship techno-cultural extravaganza of ARKA JAIN University. Robotics, coding wars, hackathons, AI, cultural nights & more." },
+      {
+        name: "description",
+        content:
+          "TECHNIKA 6.0 — the flagship techno-cultural extravaganza of ARKA JAIN University. Robotics, coding wars, hackathons, AI, cultural nights & more.",
+      },
       { name: "author", content: "ARKA JAIN University" },
       { property: "og:title", content: "TECHNIKA 6.0 — ARKA JAIN University" },
-      { property: "og:description", content: "Where creativity meets technology. Compete, innovate, celebrate." },
+      {
+        property: "og:description",
+        content: "Where creativity meets technology. Compete, innovate, celebrate.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@technika_aju" },

@@ -20,16 +20,36 @@
   "phone": "+91 82102 57269",
   "socialLinks": {
     "technika": [
-      { "platform": "Instagram", "url": "https://instagram.com/technika_aju", "handle": "@technika_aju" },
-      { "platform": "LinkedIn", "url": "https://linkedin.com/company/technika-aju", "handle": "Technika AJU" }
+      {
+        "platform": "Instagram",
+        "url": "https://instagram.com/technika_aju",
+        "handle": "@technika_aju"
+      },
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/company/technika-aju",
+        "handle": "Technika AJU"
+      }
     ],
     "soeit": [
       { "platform": "Instagram", "url": "https://instagram.com/soeit_aju", "handle": "@soeit_aju" },
-      { "platform": "LinkedIn", "url": "https://linkedin.com/school/arka-jain-university", "handle": "SOEIT AJU" }
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/school/arka-jain-university",
+        "handle": "SOEIT AJU"
+      }
     ],
     "aju": [
-      { "platform": "Website", "url": "https://arkajainuniversity.ac.in", "handle": "arkajainuniversity.ac.in" },
-      { "platform": "Instagram", "url": "https://instagram.com/arkajainuniversity", "handle": "@arkajainuniversity" }
+      {
+        "platform": "Website",
+        "url": "https://arkajainuniversity.ac.in",
+        "handle": "arkajainuniversity.ac.in"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://instagram.com/arkajainuniversity",
+        "handle": "@arkajainuniversity"
+      }
     ]
   }
 }

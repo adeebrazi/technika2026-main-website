@@ -37,7 +37,7 @@ const PROVIDED_PHOTOS = [
 
 function getEventPhoto(id: string, index: number) {
   const eventId = id.toLowerCase();
-  
+
   const normalizedMap: Record<string, string> = {
     "code-busters": "/code-buster.jpg",
     "code-buster": "/code-buster.jpg",
@@ -45,7 +45,7 @@ function getEventPhoto(id: string, index: number) {
     "robo-wars": "/robo-wars.jpg",
     "robo-race": "/robo-race.jpg",
     "robo-pick-n-place": "/robo-pick-n-place.jpg",
-    "intelliquest": "/intelliquest.jpg",
+    intelliquest: "/intelliquest.jpg",
     "brainstorm-battle": "/brainstorm-battle.jpg",
     "circuit-crafter": "/circuit-crafter.jpg",
     "electrofix-challenge": "/electrofix-challenge.jpg",
@@ -63,28 +63,28 @@ function getEventPhoto(id: string, index: number) {
     "poster-presentation": "/poster-presentation.png",
     "face-painting": "/face-painting.png",
     "pot-painting": "/pot-painting.png",
-    "photography": "/photography.png",
+    photography: "/photography.png",
     "greenearth-challenge": "/greenearth-challenge.png",
-    "cricket": "/cricket.png",
+    cricket: "/cricket.png",
     "need-for-speed": "/need-for-speed.png",
-    "bgmi": "/bgmi.png",
+    bgmi: "/bgmi.png",
     "free-fire": "/free-fire.png",
     "technical-debate": "/technical-debate.png",
     "group-ramp-walk": "/group-ramp-walk.png",
     "solo-ramp-walk": "/solo-ramp-walk.png",
     "treasure-hunt": "/treasure-hunt.png",
     "tug-of-war": "/tug-of-war.png",
-    "sudoku": "/sudoku.png",
+    sudoku: "/sudoku.png",
     "fire-free-cooking": "/fire-free-cooking.png",
     "solo-singing": "/solo-singing.jpg",
     "solo-dance": "/solo-dance.jpg",
     "group-singing": "/group-singing.png",
     "group-dance": "/group-dance.png",
-    "rap": "/rap.png",
+    rap: "/rap.png",
     "beat-boxing": "/beat-boxing.png",
-    "poetry": "/poetry.png",
+    poetry: "/poetry.png",
     "story-telling": "/story-telling.png",
-    "art-attack": "/art-attack.png"
+    "art-attack": "/art-attack.png",
   };
 
   if (normalizedMap[eventId]) {
@@ -193,138 +193,145 @@ function FaqSection() {
   const faqs = [
     {
       q: "1. Who can participate in Technika 6.0?",
-      a: "Students from schools, colleges, and universities can participate. Many events also allow inter-college teams."
+      a: "Students from schools, colleges, and universities can participate. Many events also allow inter-college teams.",
     },
     {
       q: "2. Can students from different colleges form a team?",
-      a: "Yes. Several events such as Robo Race and Robo Pick N Place explicitly allow participants from different institutes to form a team."
+      a: "Yes. Several events such as Robo Race and Robo Pick N Place explicitly allow participants from different institutes to form a team.",
     },
     {
       q: "3. Is spot registration available?",
-      a: "Yes. Spot registration will also be available for participants during the event."
+      a: "Yes. Spot registration will also be available for participants during the event.",
     },
     {
       q: "4. What documents should I bring?",
-      a: "Please carry: Valid College/School ID Card, Copy of your payment receipt (if applicable)"
+      a: "Please carry: Valid College/School ID Card, Copy of your payment receipt (if applicable)",
     },
     {
       q: "5. Can I participate in more than one event?",
-      a: "Yes, provided the event timings do not clash and you complete registration for each event."
+      a: "Yes, provided the event timings do not clash and you complete registration for each event.",
     },
     {
       q: "6. Is there any dress code?",
-      a: "Participants should carry their institute ID cards. Some events, like the Project Model Exhibition, require participants to wear their college/university uniform."
+      a: "Participants should carry their institute ID cards. Some events, like the Project Model Exhibition, require participants to wear their college/university uniform.",
     },
     {
       q: "7. Will accommodation and food be provided?",
-      a: "Details regarding accommodation and food arrangements will be shared with participants during accommodation allotment."
+      a: "Details regarding accommodation and food arrangements will be shared with participants during accommodation allotment.",
     },
     {
       q: "8. Can first-year students participate?",
-      a: "Absolutely! Students from all eligible academic years are welcome to participate unless an event specifically mentions otherwise."
+      a: "Absolutely! Students from all eligible academic years are welcome to participate unless an event specifically mentions otherwise.",
     },
     {
       q: "9. Will participation certificates be provided?",
-      a: "Yes. Registered participants will receive participation certificates, while winners and runners-up will receive certificates and prizes (subject to event policy)."
+      a: "Yes. Registered participants will receive participation certificates, while winners and runners-up will receive certificates and prizes (subject to event policy).",
     },
     {
       q: "10. Can I use my mobile phone during competitions?",
-      a: "It depends on the event. For example, mobile phones and internet access are prohibited during the first two rounds of Code Busters and electronic gadgets are prohibited in quiz events like Brainstorm Battle."
+      a: "It depends on the event. For example, mobile phones and internet access are prohibited during the first two rounds of Code Busters and electronic gadgets are prohibited in quiz events like Brainstorm Battle.",
     },
     {
       q: "11. What happens if two teams score the same marks?",
-      a: "Tie-breaking rules depend on the event. In coding competitions, submission time may be considered, while other events follow their respective judging criteria."
+      a: "Tie-breaking rules depend on the event. In coding competitions, submission time may be considered, while other events follow their respective judging criteria.",
     },
     {
       q: "12. Can I change my team members after registration?",
-      a: "Team changes may be allowed only before the registration deadline and subject to approval by the event coordinators."
+      a: "Team changes may be allowed only before the registration deadline and subject to approval by the event coordinators.",
     },
     {
       q: "13. Are laptops required for technical events?",
-      a: "Yes, participants should bring their own laptops for coding, web development, AI, data analytics, and similar software-based competitions unless otherwise informed."
+      a: "Yes, participants should bring their own laptops for coding, web development, AI, data analytics, and similar software-based competitions unless otherwise informed.",
     },
     {
       q: "14. Can I use AI tools like ChatGPT during competitions?",
-      a: "No. In events like Coding Ladder, AI tools such as ChatGPT, GitHub Copilot, and external internet browsing are strictly prohibited."
+      a: "No. In events like Coding Ladder, AI tools such as ChatGPT, GitHub Copilot, and external internet browsing are strictly prohibited.",
     },
     {
       q: "15. What programming languages are allowed in coding events?",
-      a: "Depending on the event, languages such as C, C++, Java, and Python are permitted. Some events also allow frameworks like React or Flutter."
+      a: "Depending on the event, languages such as C, C++, Java, and Python are permitted. Some events also allow frameworks like React or Flutter.",
     },
     {
       q: "16. Will internet access be provided?",
-      a: "Internet availability depends on the event. Some competitions prohibit internet usage, while others, such as EcoAI Challenge, allow internet access only for reference purposes."
+      a: "Internet availability depends on the event. Some competitions prohibit internet usage, while others, such as EcoAI Challenge, allow internet access only for reference purposes.",
     },
     {
       q: "17. What should I bring for robotics events?",
-      a: "Teams should bring their own robot, batteries/adapters, controllers, and any required accessories. Standard AC power will be available where specified."
+      a: "Teams should bring their own robot, batteries/adapters, controllers, and any required accessories. Standard AC power will be available where specified.",
     },
     {
       q: "18. Are ready-made kits allowed in robotics events?",
-      a: "No. Several robotics events prohibit Lego kits and ready-made robotic kits, and using them may result in disqualification."
+      a: "No. Several robotics events prohibit Lego kits and ready-made robotic kits, and using them may result in disqualification.",
     },
     {
       q: "19. Can I submit a project that I have already built?",
-      a: "It depends on the event. Some events allow existing projects, while others, such as IntelliQuest and EcoAI Challenge, require solutions to be developed during the competition itself."
+      a: "It depends on the event. Some events allow existing projects, while others, such as IntelliQuest and EcoAI Challenge, require solutions to be developed during the competition itself.",
     },
     {
       q: "20. Are judges' decisions final?",
-      a: "Yes. The decision of the judges and organizers is final and binding in all events."
+      a: "Yes. The decision of the judges and organizers is final and binding in all events.",
     },
     {
       q: "21. Can I participate individually?",
-      a: "Yes. Some events are individual competitions, while others require teams. Please check the team size mentioned for your chosen event."
+      a: "Yes. Some events are individual competitions, while others require teams. Please check the team size mentioned for your chosen event.",
     },
     {
       q: "22. What can lead to disqualification?",
-      a: "Common reasons include: Cheating or plagiarism, Using prohibited devices, Bringing pre-built solutions where not allowed, Damaging the arena or equipment, Misconduct or indiscipline, Violating event-specific rules"
+      a: "Common reasons include: Cheating or plagiarism, Using prohibited devices, Bringing pre-built solutions where not allowed, Damaging the arena or equipment, Misconduct or indiscipline, Violating event-specific rules",
     },
     {
       q: "23. Can spectators attend the events?",
-      a: "Yes. Spectators are welcome for most events unless restricted due to safety, space, or judging requirements."
+      a: "Yes. Spectators are welcome for most events unless restricted due to safety, space, or judging requirements.",
     },
     {
       q: "24. Whom should I contact if I have questions during the event?",
-      a: "You can approach the event volunteers, student coordinators, or technical coordinators present at the venue for assistance."
+      a: "You can approach the event volunteers, student coordinators, or technical coordinators present at the venue for assistance.",
     },
     {
       q: "25. Where can I find the latest announcements and schedule updates?",
-      a: "All important announcements, schedule updates, and rule modifications will be communicated through the official Technika website and event coordinators. Participants are advised to check them regularly."
+      a: "All important announcements, schedule updates, and rule modifications will be communicated through the official Technika website and event coordinators. Participants are advised to check them regularly.",
     },
     {
       q: "26. Are ARKA JAIN University (AJU) students allowed to participate in the Treasure Hunt event?",
-      a: "No. The Treasure Hunt event is exclusively for participants from outside ARKA JAIN University (AJU). Current AJU students are not eligible to participate in this event."
+      a: "No. The Treasure Hunt event is exclusively for participants from outside ARKA JAIN University (AJU). Current AJU students are not eligible to participate in this event.",
     },
     {
       q: "Bonus: Is prior experience required to participate?",
-      a: "No. Beginners and experienced participants are equally encouraged to join."
+      a: "No. Beginners and experienced participants are equally encouraged to join.",
     },
     {
       q: "Bonus: Can I register for events on the same day?",
-      a: "Yes, subject to seat availability."
+      a: "Yes, subject to seat availability.",
     },
     {
       q: "Bonus: Will power supply be available for hardware projects?",
-      a: "Yes, standard AC supply will be available for applicable events, but teams should carry their own adapters and batteries where required."
+      a: "Yes, standard AC supply will be available for applicable events, but teams should carry their own adapters and batteries where required.",
     },
     {
       q: "Bonus: What if my robot or project stops working during the event?",
-      a: "Time-outs or troubleshooting allowances depend on the event rules. For example, Robo Wars allows up to two 2-minute time-outs per team."
+      a: "Time-outs or troubleshooting allowances depend on the event rules. For example, Robo Wars allows up to two 2-minute time-outs per team.",
     },
     {
       q: "Bonus: Can I use my own keyboard, controller, or tools?",
-      a: "Yes, where permitted. For example, in Need for Speed, participants may bring their own keyboard or controller, while some creative and engineering events require participants to bring their own materials and tools."
-    }
+      a: "Yes, where permitted. For example, in Need for Speed, participants may bring their own keyboard or controller, while some creative and engineering events require participants to bring their own materials and tools.",
+    },
   ];
 
   return (
-    <section id="faq" className="max-w-6xl mx-auto px-3 sm:px-6 py-10 sm:py-16 border-t-[3px] border-foreground">
+    <section
+      id="faq"
+      className="max-w-6xl mx-auto px-3 sm:px-6 py-10 sm:py-16 border-t-[3px] border-foreground"
+    >
       <div className="mb-5 sm:mb-8 text-center sm:text-left">
         <div className="inline-block bg-[var(--brut-lime)] text-black brut-border px-2.5 py-0.5 text-[10px] sm:text-xs uppercase font-black">
           Got Questions?
         </div>
         <h2 className="mt-2 text-2xl sm:text-4xl md:text-5xl font-display font-black uppercase leading-tight sm:leading-none">
-          Frequently Asked <span className="bg-[var(--brut-pink)] text-black brut-border px-1.5 sm:px-2 inline-block -rotate-1">Questions</span>.
+          Frequently Asked{" "}
+          <span className="bg-[var(--brut-pink)] text-black brut-border px-1.5 sm:px-2 inline-block -rotate-1">
+            Questions
+          </span>
+          .
         </h2>
       </div>
 
@@ -382,7 +389,9 @@ function FaqSection() {
             </div>
             <div className="mt-6 pt-3 border-t border-border flex items-center justify-between text-xs font-bold text-muted-foreground">
               <span>ARKA JAIN University · Technika 6.0</span>
-              <span className="text-[10px] uppercase font-black bg-foreground text-background px-2 py-0.5">Verified FAQ</span>
+              <span className="text-[10px] uppercase font-black bg-foreground text-background px-2 py-0.5">
+                Verified FAQ
+              </span>
             </div>
           </div>
         </div>
@@ -391,7 +400,10 @@ function FaqSection() {
         <div className="md:hidden flex flex-col gap-3">
           {/* Quick Jump Dropdown */}
           <div>
-            <label htmlFor="faq-mobile-select" className="block text-[10px] font-black uppercase tracking-wider text-muted-foreground mb-1">
+            <label
+              htmlFor="faq-mobile-select"
+              className="block text-[10px] font-black uppercase tracking-wider text-muted-foreground mb-1"
+            >
               Jump Directly to a Question:
             </label>
             <select
@@ -401,7 +413,11 @@ function FaqSection() {
               className="w-full brut-border p-2.5 bg-background text-foreground text-xs font-black uppercase tracking-wide cursor-pointer focus:outline-none"
             >
               {faqs.map((item, idx) => (
-                <option key={idx} value={idx} className="bg-background text-foreground py-1 font-bold">
+                <option
+                  key={idx}
+                  value={idx}
+                  className="bg-background text-foreground py-1 font-bold"
+                >
                   Q{idx + 1}. {item.q.replace(/^(Bonus:\s*|\d+\.\s*)/i, "")}
                 </option>
               ))}
@@ -673,7 +689,7 @@ function Index() {
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
         window.scrollTo({
           top: offsetPosition,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
     }
@@ -683,7 +699,7 @@ function Index() {
     () => (cat === "All" ? events : events.filter((e) => e.category === cat)),
     [cat, events],
   );
-  const openEvent = openId ? events.find((e) => e.id === openId) ?? null : null;
+  const openEvent = openId ? (events.find((e) => e.id === openId) ?? null) : null;
   const currentHeroEvt = events[heroEvtIdx] || events[0];
 
   const galleryPages = useMemo(() => {
@@ -698,14 +714,28 @@ function Index() {
   return (
     <div className="min-h-screen text-foreground">
       {/* NAV */}
-      <header id="header" className="sticky top-0 inset-x-0 z-50 bg-[var(--brut-yellow)] border-b-[3px] border-foreground">
+      <header
+        id="header"
+        className="sticky top-0 inset-x-0 z-50 bg-[var(--brut-yellow)] border-b-[3px] border-foreground"
+      >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-3.5">
-          <div className="nav-logo flex items-center gap-2.5 mr-4 md:mr-6 cursor-pointer shrink-0" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <img src={ajuLogo} alt="ARKA JAIN University Logo" className="h-8 md:h-9.5 w-auto object-contain" />
+          <div
+            className="nav-logo flex items-center gap-2.5 mr-4 md:mr-6 cursor-pointer shrink-0"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <img
+              src={ajuLogo}
+              alt="ARKA JAIN University Logo"
+              className="h-8 md:h-9.5 w-auto object-contain"
+            />
             <div className="w-[2px] h-6 bg-foreground/30 hidden sm:block" />
-            <img src={technikaLogo} alt="Technika Logo" className="h-8 md:h-9.5 w-auto object-contain border-2 border-foreground shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] hidden sm:block" />
+            <img
+              src={technikaLogo}
+              alt="Technika Logo"
+              className="h-8 md:h-9.5 w-auto object-contain border-2 border-foreground shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] hidden sm:block"
+            />
           </div>
-          
+
           <nav className="hidden lg:flex items-center gap-1 text-xs font-black uppercase">
             {[
               { label: "About", href: "#about" },
@@ -727,7 +757,7 @@ function Index() {
               </a>
             ))}
           </nav>
-          
+
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {/* Rotary Theme Switcher (Theme 1 / Theme 2) - Pure Circular Neo-Brutalism */}
             <button
@@ -791,15 +821,19 @@ function Index() {
             <h1 className="mt-4 sm:mt-6 font-display font-black text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] leading-[0.9] tracking-tighter uppercase">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <span>Tech</span>
-                <span className="bg-[var(--brut-pink)] brut-border px-2.5 sm:px-4 -rotate-1 inline-block">nika</span>
+                <span className="bg-[var(--brut-pink)] brut-border px-2.5 sm:px-4 -rotate-1 inline-block">
+                  nika
+                </span>
               </div>
               <div className="mt-1.5 sm:mt-3">
                 <span className="bg-foreground text-background px-3 sm:px-4 inline-block">6.0</span>
               </div>
             </h1>
             <p className="mt-4 sm:mt-8 max-w-xl text-sm sm:text-base md:text-lg font-medium leading-relaxed">
-              Where creativity <span className="bg-[var(--brut-yellow)] px-1 brut-border border-2">collides</span> with technology.{" "}
-              45+ battles across code, robotics, AI, hardware, design & culture. Come build. Come break things. Come win.
+              Where creativity{" "}
+              <span className="bg-[var(--brut-yellow)] px-1 brut-border border-2">collides</span>{" "}
+              with technology. 45+ battles across code, robotics, AI, hardware, design & culture.
+              Come build. Come break things. Come win.
             </p>
             <div className="mt-5 sm:mt-6 flex flex-wrap gap-2.5 sm:gap-3 text-[11px] sm:text-xs font-black uppercase">
               <span className="bg-background brut-border px-3 sm:px-4 py-1.5 sm:py-2 flex items-center gap-1.5 sm:gap-2">
@@ -812,11 +846,18 @@ function Index() {
                 className="bg-background brut-border brut-shadow-sm px-3 sm:px-4 py-1.5 sm:py-2 flex items-center gap-1.5 sm:gap-2 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition group text-foreground cursor-pointer"
               >
                 <span>📍 ARKA JAIN UNIVERSITY</span>
-                <span className="ml-1 inline-block group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗️</span>
+                <span className="ml-1 inline-block group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                  ↗️
+                </span>
               </a>
             </div>
             <div className="mt-6 sm:mt-10 flex flex-wrap gap-3 sm:gap-4">
-              <a href={configData.registrationLink} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-5 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm text-center justify-center font-black uppercase bg-[var(--brut-pink)] text-foreground brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition">
+              <a
+                href={configData.registrationLink}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto px-5 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm text-center justify-center font-black uppercase bg-[var(--brut-pink)] text-foreground brut-border brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition"
+              >
                 Register Now →
               </a>
               <a
@@ -838,15 +879,28 @@ function Index() {
             </div>
 
             <div className="mt-8 sm:mt-14 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl">
-              <div className="brut-border brut-shadow-sm p-3 sm:p-4 flex flex-col justify-between" style={{ background: "var(--brut-blue)" }}>
+              <div
+                className="brut-border brut-shadow-sm p-3 sm:p-4 flex flex-col justify-between"
+                style={{ background: "var(--brut-blue)" }}
+              >
                 <div className="text-2xl sm:text-3xl font-display font-black">45+</div>
                 <div className="text-[11px] sm:text-xs uppercase font-bold mt-1">Events</div>
               </div>
-              <div className="brut-border brut-shadow-sm p-3 sm:p-4 flex flex-col justify-between" style={{ background: "var(--brut-yellow)" }}>
-                <div className="text-xs sm:text-sm font-display font-black leading-tight uppercase">Mementos, Medals & Certificates</div>
-                <div className="text-[9px] sm:text-[10px] uppercase font-bold mt-1 opacity-90">Awards & Recognition</div>
+              <div
+                className="brut-border brut-shadow-sm p-3 sm:p-4 flex flex-col justify-between"
+                style={{ background: "var(--brut-yellow)" }}
+              >
+                <div className="text-xs sm:text-sm font-display font-black leading-tight uppercase">
+                  Mementos, Medals & Certificates
+                </div>
+                <div className="text-[9px] sm:text-[10px] uppercase font-bold mt-1 opacity-90">
+                  Awards & Recognition
+                </div>
               </div>
-              <div className="col-span-2 sm:col-span-1 brut-border brut-shadow-sm p-3 sm:p-4 flex flex-col justify-between" style={{ background: "var(--brut-orange)" }}>
+              <div
+                className="col-span-2 sm:col-span-1 brut-border brut-shadow-sm p-3 sm:p-4 flex flex-col justify-between"
+                style={{ background: "var(--brut-orange)" }}
+              >
                 <div className="text-3xl font-display font-black">2 DAYS</div>
                 <div className="text-xs uppercase font-bold mt-1">Fest Event</div>
               </div>
@@ -899,8 +953,21 @@ function Index() {
         <div className="flex gap-8 whitespace-nowrap animate-[marquee_30s_linear_infinite] font-display text-3xl md:text-5xl font-black uppercase">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex gap-8 shrink-0 items-center">
-              {["Innovate", "◆", "Compete", "◆", "Create", "◆", "Disrupt", "◆", "Celebrate", "◆"].map((w, j) => (
-                <span key={j} className={j % 2 ? "text-[var(--brut-yellow)]" : "text-background"}>{w}</span>
+              {[
+                "Innovate",
+                "◆",
+                "Compete",
+                "◆",
+                "Create",
+                "◆",
+                "Disrupt",
+                "◆",
+                "Celebrate",
+                "◆",
+              ].map((w, j) => (
+                <span key={j} className={j % 2 ? "text-[var(--brut-yellow)]" : "text-background"}>
+                  {w}
+                </span>
               ))}
             </div>
           ))}
@@ -911,14 +978,20 @@ function Index() {
       <section id="about" className="relative max-w-7xl mx-auto px-6 py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="inline-block bg-[var(--brut-blue)] brut-border px-3 py-1 text-xs uppercase font-black">About the fest</div>
+            <div className="inline-block bg-[var(--brut-blue)] brut-border px-3 py-1 text-xs uppercase font-black">
+              About the fest
+            </div>
             <h2 className="mt-4 text-4xl md:text-6xl font-display font-black uppercase leading-none">
-              A playground for <span className="bg-[var(--brut-pink)] brut-border px-2 inline-block -rotate-1">innovators</span>.
+              A playground for{" "}
+              <span className="bg-[var(--brut-pink)] brut-border px-2 inline-block -rotate-1">
+                innovators
+              </span>
+              .
             </h2>
             <p className="mt-6 text-lg font-medium">
-              Technika 6.0 is the flagship technical extravaganza of ARKA JAIN University's
-              School of Engineering & IT. Six editions in and we're still building it around one
-              belief: creativity meets technology when students get room to run.
+              Technika 6.0 is the flagship technical extravaganza of ARKA JAIN University's School
+              of Engineering & IT. Six editions in and we're still building it around one belief:
+              creativity meets technology when students get room to run.
             </p>
             <p className="mt-4 text-muted-foreground font-medium">
               Expect coding battles, robotics arenas, hardware hackfests, AI quizzathons, cultural
@@ -942,14 +1015,17 @@ function Index() {
       <section id="events" className="relative max-w-7xl mx-auto px-6 py-20">
         <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-block bg-[var(--brut-orange)] brut-border px-3 py-1 text-xs uppercase font-black">Every Event</div>
+            <div className="inline-block bg-[var(--brut-orange)] brut-border px-3 py-1 text-xs uppercase font-black">
+              Every Event
+            </div>
             <h2 className="mt-4 text-4xl md:text-6xl font-display font-black uppercase leading-none">
-              Pick your <span className="bg-foreground text-background px-2 inline-block">arena</span>.
+              Pick your{" "}
+              <span className="bg-foreground text-background px-2 inline-block">arena</span>.
             </h2>
           </div>
           <p className="max-w-md font-medium">
-            {events.length} events across technical, creative and cultural categories.
-            Tap any card for rules, venue and event details.
+            {events.length} events across technical, creative and cultural categories. Tap any card
+            for rules, venue and event details.
           </p>
         </div>
 
@@ -1036,14 +1112,21 @@ function Index() {
       </section>
 
       {/* SCHEDULE / TIMELINE */}
-      <section id="schedule" className="relative py-24 bg-card text-foreground border-y-[3px] border-foreground">
+      <section
+        id="schedule"
+        className="relative py-24 bg-card text-foreground border-y-[3px] border-foreground"
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-14">
             <div className="inline-block bg-[var(--brut-lime)] text-black brut-border px-3 py-1 text-xs uppercase font-black">
               Two Days · One Fest
             </div>
             <h2 className="mt-4 text-4xl md:text-6xl font-display font-black uppercase leading-none">
-              Full <span className="bg-[var(--brut-pink)] text-black brut-border px-2 inline-block -rotate-1">schedule</span>.
+              Full{" "}
+              <span className="bg-[var(--brut-pink)] text-black brut-border px-2 inline-block -rotate-1">
+                schedule
+              </span>
+              .
             </h2>
           </div>
 
@@ -1066,12 +1149,16 @@ function Index() {
                         }}
                       >
                         <div className="flex items-center justify-between gap-3">
-                          <span className="font-display font-black text-lg text-black">{t.time}</span>
+                          <span className="font-display font-black text-lg text-black">
+                            {t.time}
+                          </span>
                           <span className="text-[10px] font-black uppercase bg-black text-white px-2 py-1 brut-border border-black">
                             {t.type}
                           </span>
                         </div>
-                        <div className="font-display font-black text-xl uppercase mt-2 text-black">{t.title}</div>
+                        <div className="font-display font-black text-xl uppercase mt-2 text-black">
+                          {t.title}
+                        </div>
                         <p className="text-sm font-bold mt-1 text-black/90">{t.description}</p>
                       </li>
                     ))}
@@ -1086,9 +1173,15 @@ function Index() {
       <section id="gallery" className="max-w-7xl mx-auto px-6 py-24">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
           <div>
-            <div className="inline-block bg-[var(--brut-pink)] brut-border px-3 py-1 text-xs uppercase font-black">Flashbacks</div>
+            <div className="inline-block bg-[var(--brut-pink)] brut-border px-3 py-1 text-xs uppercase font-black">
+              Flashbacks
+            </div>
             <h2 className="mt-4 text-4xl md:text-6xl font-display font-black uppercase leading-none">
-              From past <span className="bg-[var(--brut-lime)] brut-border px-2 inline-block -rotate-1">editions</span>.
+              From past{" "}
+              <span className="bg-[var(--brut-lime)] brut-border px-2 inline-block -rotate-1">
+                editions
+              </span>
+              .
             </h2>
           </div>
           <div className="flex items-center gap-4">
@@ -1096,14 +1189,14 @@ function Index() {
               Moments from Technika's arenas, stages and workshops.
             </p>
             <button
-              onClick={() => scrollGallery('left')}
+              onClick={() => scrollGallery("left")}
               className="brut-border p-3 bg-background hover:bg-[var(--brut-lime)] transition shadow-[3px_3px_0px_0px_var(--foreground)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none cursor-pointer"
               aria-label="Previous images"
             >
               <ArrowLeft className="w-5 h-5 text-foreground" />
             </button>
             <button
-              onClick={() => scrollGallery('right')}
+              onClick={() => scrollGallery("right")}
               className="brut-border p-3 bg-background hover:bg-[var(--brut-lime)] transition shadow-[3px_3px_0px_0px_var(--foreground)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none cursor-pointer"
               aria-label="Next images"
             >
@@ -1111,13 +1204,13 @@ function Index() {
             </button>
           </div>
         </div>
-        <div 
+        <div
           ref={galleryRef}
           className="flex overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth pb-4"
         >
           {galleryPages.map((pageImages, pageIdx) => (
-            <div 
-              key={pageIdx} 
+            <div
+              key={pageIdx}
               className="snap-start shrink-0 w-full grid grid-cols-2 sm:grid-cols-4 gap-5"
             >
               {pageImages.map((g, i) => (
@@ -1142,10 +1235,15 @@ function Index() {
       </section>
 
       {/* SPONSORS */}
-      <section id="sponsors" className="border-y-[3px] border-foreground bg-[var(--brut-yellow)] py-20">
+      <section
+        id="sponsors"
+        className="border-y-[3px] border-foreground bg-[var(--brut-yellow)] py-20"
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-10">
-            <div className="inline-block bg-background brut-border px-3 py-1 text-xs uppercase font-black">Powered by</div>
+            <div className="inline-block bg-background brut-border px-3 py-1 text-xs uppercase font-black">
+              Powered by
+            </div>
             <h2 className="mt-4 text-4xl md:text-6xl font-display font-black uppercase leading-none">
               Our Sponsors
             </h2>
@@ -1181,7 +1279,9 @@ function Index() {
 
       {/* TEAM */}
       <section id="team" className="max-w-7xl mx-auto px-3 sm:px-6 py-16 sm:py-24 text-center">
-        <div className="inline-block bg-[var(--brut-blue)] brut-border px-3 py-1 text-xs uppercase font-black">Behind the fest</div>
+        <div className="inline-block bg-[var(--brut-blue)] brut-border px-3 py-1 text-xs uppercase font-black">
+          Behind the fest
+        </div>
         <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-6xl font-display font-black uppercase leading-none">
           The Team
         </h2>
@@ -1190,11 +1290,16 @@ function Index() {
           const people = organisersData.filter(
             (o) =>
               o.category === group ||
-              (group === "Student Coordinator" && (o.category === "Student Coordinators" || o.category === "Core Team"))
+              (group === "Student Coordinator" &&
+                (o.category === "Student Coordinators" || o.category === "Core Team")),
           );
           if (people.length === 0) return null;
 
-          const renderMemberCard = (p: (typeof organisersData)[0], i: number, isCompact = false) => {
+          const renderMemberCard = (
+            p: (typeof organisersData)[0],
+            i: number,
+            isCompact = false,
+          ) => {
             const hasPhoto = "image" in p && Boolean(p.image);
             return (
               <div
@@ -1203,16 +1308,19 @@ function Index() {
               >
                 <div className="w-full flex flex-col items-center">
                   {/* Member Photo Frame */}
-                  <div className={`relative aspect-square w-full ${isCompact ? "mb-2 sm:mb-2.5" : "mb-2 sm:mb-3.5"} brut-border overflow-hidden bg-muted/30 flex items-center justify-center`}>
+                  <div
+                    className={`relative aspect-square w-full ${isCompact ? "mb-2 sm:mb-2.5" : "mb-2 sm:mb-3.5"} brut-border overflow-hidden bg-muted/30 flex items-center justify-center`}
+                  >
                     {hasPhoto ? (
                       <img
-                        src={(p as any).image}
+                        src={(p as { image?: string }).image}
                         alt={p.name}
                         className="w-full h-full object-cover"
                         onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).style.display = 'none';
-                          const fallback = e.currentTarget.parentElement?.querySelector('.fallback-avatar');
-                          if (fallback) (fallback as HTMLElement).style.display = 'flex';
+                          (e.currentTarget as HTMLImageElement).style.display = "none";
+                          const fallback =
+                            e.currentTarget.parentElement?.querySelector(".fallback-avatar");
+                          if (fallback) (fallback as HTMLElement).style.display = "flex";
                         }}
                       />
                     ) : null}
@@ -1220,12 +1328,19 @@ function Index() {
                     <div
                       className="fallback-avatar flex flex-col items-center justify-center p-2 sm:p-3 text-center w-full h-full"
                       style={{
-                        display: hasPhoto ? 'none' : 'flex',
-                        background: BRUT_COLORS[i % BRUT_COLORS.length]
+                        display: hasPhoto ? "none" : "flex",
+                        background: BRUT_COLORS[i % BRUT_COLORS.length],
                       }}
                     >
-                      <div className={`w-10 h-10 ${isCompact ? "sm:w-12 sm:h-12 text-sm sm:text-lg" : "sm:w-16 sm:h-16 text-sm sm:text-2xl"} brut-border bg-foreground text-background flex items-center justify-center font-display font-black mb-1 sm:mb-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}>
-                        {p.name.split(" ").filter(Boolean).slice(0, 2).map((s) => s[0]).join("")}
+                      <div
+                        className={`w-10 h-10 ${isCompact ? "sm:w-12 sm:h-12 text-sm sm:text-lg" : "sm:w-16 sm:h-16 text-sm sm:text-2xl"} brut-border bg-foreground text-background flex items-center justify-center font-display font-black mb-1 sm:mb-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}
+                      >
+                        {p.name
+                          .split(" ")
+                          .filter(Boolean)
+                          .slice(0, 2)
+                          .map((s) => s[0])
+                          .join("")}
                       </div>
                       <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black bg-background/90 px-1.5 py-0.5 brut-border mt-0.5 sm:mt-1">
                         Photo TBD
@@ -1233,7 +1348,9 @@ function Index() {
                     </div>
                   </div>
 
-                  <div className={`font-display font-black uppercase ${isCompact ? "text-xs sm:text-sm" : "text-xs sm:text-base"} leading-tight sm:leading-snug text-foreground`}>
+                  <div
+                    className={`font-display font-black uppercase ${isCompact ? "text-xs sm:text-sm" : "text-xs sm:text-base"} leading-tight sm:leading-snug text-foreground`}
+                  >
                     {p.name}
                   </div>
                   <div className="text-[10px] sm:text-xs font-semibold mt-0.5 sm:mt-1 text-muted-foreground leading-tight sm:leading-relaxed">
@@ -1246,7 +1363,9 @@ function Index() {
 
           if (group === "Student Coordinator") {
             const admins = people.filter((p) => p.role.toLowerCase().includes("administration"));
-            const otherMembers = people.filter((p) => !p.role.toLowerCase().includes("administration"));
+            const otherMembers = people.filter(
+              (p) => !p.role.toLowerCase().includes("administration"),
+            );
 
             return (
               <div key={group} className="mt-8 sm:mt-12">
@@ -1310,16 +1429,23 @@ function Index() {
       <section id="contact" className="max-w-7xl mx-auto px-6 py-24">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <div className="inline-block bg-[var(--brut-orange)] brut-border px-3 py-1 text-xs uppercase font-black">Get in touch</div>
+            <div className="inline-block bg-[var(--brut-orange)] brut-border px-3 py-1 text-xs uppercase font-black">
+              Get in touch
+            </div>
             <h2 className="mt-4 text-4xl md:text-6xl font-display font-black uppercase leading-none">
-              Questions? <br /><span className="bg-[var(--brut-yellow)] brut-border px-2 inline-block -rotate-1">Reach out</span>.
+              Questions? <br />
+              <span className="bg-[var(--brut-yellow)] brut-border px-2 inline-block -rotate-1">
+                Reach out
+              </span>
+              .
             </h2>
             <p className="mt-6 text-lg font-medium">
-              Have a query about registration, rules, sponsorship, or campus arrival? Our core team is here to help.
+              Have a query about registration, rules, sponsorship, or campus arrival? Our core team
+              is here to help.
             </p>
 
             <div className="mt-8 space-y-4">
-              {contactData.queryDesk.map((q: any) => (
+              {contactData.queryDesk.map((q: { category: string; name: string; phone: string }) => (
                 <div key={q.category || q.name} className="space-y-1.5">
                   <div className="text-xs font-black uppercase tracking-wider text-muted-foreground flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-foreground inline-block"></span>
@@ -1327,7 +1453,12 @@ function Index() {
                   </div>
                   <div className="brut-border p-4 bg-background flex justify-between items-center">
                     <span className="font-bold">{q.name}</span>
-                    <a href={`tel:${q.phone}`} className="font-mono text-sm font-black underline hover:text-[var(--brut-pink)] transition-colors">{q.phone}</a>
+                    <a
+                      href={`tel:${q.phone}`}
+                      className="font-mono text-sm font-black underline hover:text-[var(--brut-pink)] transition-colors"
+                    >
+                      {q.phone}
+                    </a>
                   </div>
                 </div>
               ))}
@@ -1336,8 +1467,12 @@ function Index() {
           <div className="self-center">
             <div className="brut-border brut-shadow bg-background p-8 flex flex-col justify-between">
               <div>
-                <div className="text-xs font-black uppercase tracking-wider text-muted-foreground">Have a direct question?</div>
-                <h3 className="font-display text-2xl font-black uppercase mt-2">Send us an Email</h3>
+                <div className="text-xs font-black uppercase tracking-wider text-muted-foreground">
+                  Have a direct question?
+                </div>
+                <h3 className="font-display text-2xl font-black uppercase mt-2">
+                  Send us an Email
+                </h3>
                 <p className="text-sm font-semibold text-muted-foreground mt-2">
                   Drop us a line directly at our official email address.
                 </p>
@@ -1364,7 +1499,8 @@ function Index() {
               Registration open
             </div>
             <h2 className="mt-2.5 sm:mt-4 font-display text-2xl sm:text-5xl md:text-7xl font-black uppercase leading-tight sm:leading-none text-foreground">
-              Ready to <br className="hidden sm:inline" />enter the{" "}
+              Ready to <br className="hidden sm:inline" />
+              enter the{" "}
               <span className="bg-[var(--brut-yellow)] brut-border px-1.5 py-0.5 sm:px-2 inline-block -rotate-1 text-black">
                 arena?
               </span>
@@ -1405,7 +1541,9 @@ function Index() {
           <div className="text-center md:text-left md:max-w-xs">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black uppercase leading-none text-foreground">
               Meet the <br />
-              <span className="bg-[var(--brut-yellow)] text-black brut-border px-2 inline-block -rotate-1 mt-1">Developers</span>
+              <span className="bg-[var(--brut-yellow)] text-black brut-border px-2 inline-block -rotate-1 mt-1">
+                Developers
+              </span>
             </h2>
             <p className="text-xs font-semibold text-muted-foreground mt-2 sm:mt-3 leading-relaxed">
               The developers who designed and built the Technika 6.0 portal.
@@ -1483,7 +1621,9 @@ function Index() {
                 TECHNIKA <span className="bg-black text-white px-2">6.0</span>
               </div>
               <p className="text-xs font-semibold mt-3 leading-relaxed text-black">
-                Technika 6.0 is the flagship techno-cultural extravaganza of ARKA JAIN University's School of Engineering & IT. A 2-day playground where 40+ events, robotics arenas, coding battles, and live concerts ignite creativity and technology.
+                Technika 6.0 is the flagship techno-cultural extravaganza of ARKA JAIN University's
+                School of Engineering & IT. A 2-day playground where 40+ events, robotics arenas,
+                coding battles, and live concerts ignite creativity and technology.
               </p>
             </div>
             <div>
@@ -1493,16 +1633,25 @@ function Index() {
               <ExpandableFooterText
                 shortContent={
                   <p className="text-black">
-                    The School of Engineering & IT at ARKA JAIN University stands as a center of technological innovation, academic excellence, and future-ready education.
+                    The School of Engineering & IT at ARKA JAIN University stands as a center of
+                    technological innovation, academic excellence, and future-ready education.
                   </p>
                 }
                 fullContent={
                   <div className="text-black">
                     <p>
-                      The School of Engineering & IT at ARKA JAIN University stands as a center of technological innovation, academic excellence, and future-ready education. With a strong emphasis on research, practical learning, and emerging technologies, the school provides students with a dynamic platform to explore, innovate, and lead.
+                      The School of Engineering & IT at ARKA JAIN University stands as a center of
+                      technological innovation, academic excellence, and future-ready education.
+                      With a strong emphasis on research, practical learning, and emerging
+                      technologies, the school provides students with a dynamic platform to explore,
+                      innovate, and lead.
                     </p>
                     <p className="mt-2">
-                      Our programmes, ranging from Diploma, B.Tech, BCA, MCA, and M.Tech; cover cutting-edge domains such as Computer Science, Artificial Intelligence & Machine Learning, Data Science, Mechanical Engineering, Electrical & Electronics Engineering, and more. Each curriculum is thoughtfully designed to balance academic rigor with industry relevance.
+                      Our programmes, ranging from Diploma, B.Tech, BCA, MCA, and M.Tech; cover
+                      cutting-edge domains such as Computer Science, Artificial Intelligence &
+                      Machine Learning, Data Science, Mechanical Engineering, Electrical &
+                      Electronics Engineering, and more. Each curriculum is thoughtfully designed to
+                      balance academic rigor with industry relevance.
                     </p>
                   </div>
                 }
@@ -1515,16 +1664,26 @@ function Index() {
               <ExpandableFooterText
                 shortContent={
                   <p className="text-black">
-                    ARKA JAIN University was established in 2017 by the Jharkhand State Legislature under "The ARKA JAIN University Act" and is UGC recognized.
+                    ARKA JAIN University was established in 2017 by the Jharkhand State Legislature
+                    under "The ARKA JAIN University Act" and is UGC recognized.
                   </p>
                 }
                 fullContent={
                   <div className="text-black">
                     <p>
-                      ARKA JAIN University was established in the year 2017 by the Jharkhand State Legislature under “The ARKA JAIN University Act” and is recognized by the UGC. It is the first state private university in the Kolhan region, comprising three districts of Jharkhand.
+                      ARKA JAIN University was established in the year 2017 by the Jharkhand State
+                      Legislature under “The ARKA JAIN University Act” and is recognized by the UGC.
+                      It is the first state private university in the Kolhan region, comprising
+                      three districts of Jharkhand.
                     </p>
                     <p className="mt-2">
-                      The University is accredited with NAAC ‘A’ Grade in its first cycle and is the first state private university in Bihar, Jharkhand, and West Bengal to achieve this distinction. ARKA JAIN University is part of the prestigious JAIN Group, Bengaluru, which has more than 77 educational institutions under its umbrella. The University is mentored by JAIN (Deemed-to-be University), Bengaluru, a NAAC A++ accredited institution and a NIRF Top-100 Higher Educational Institution.
+                      The University is accredited with NAAC ‘A’ Grade in its first cycle and is the
+                      first state private university in Bihar, Jharkhand, and West Bengal to achieve
+                      this distinction. ARKA JAIN University is part of the prestigious JAIN Group,
+                      Bengaluru, which has more than 77 educational institutions under its umbrella.
+                      The University is mentored by JAIN (Deemed-to-be University), Bengaluru, a
+                      NAAC A++ accredited institution and a NIRF Top-100 Higher Educational
+                      Institution.
                     </p>
                   </div>
                 }
@@ -1623,7 +1782,9 @@ function Index() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-black uppercase">
                 <div className="brut-border p-3 bg-[var(--brut-lime)] text-black">
                   <div className="opacity-80 font-black">When</div>
-                  <div className="mt-1 font-bold">{openEvent.date} · {openEvent.time}</div>
+                  <div className="mt-1 font-bold">
+                    {openEvent.date} · {openEvent.time}
+                  </div>
                 </div>
                 <div className="brut-border p-3 bg-[var(--brut-blue)] text-white">
                   <div className="opacity-80 font-black">Venue</div>
@@ -1649,7 +1810,9 @@ function Index() {
                   <div className="text-xs font-black uppercase mb-2">Rules</div>
                   <ul className="space-y-2 text-sm font-medium">
                     {openEvent.rules_list.map((r, i) => (
-                      <li key={i} className="pl-4 border-l-[3px] border-foreground">{r}</li>
+                      <li key={i} className="pl-4 border-l-[3px] border-foreground">
+                        {r}
+                      </li>
                     ))}
                   </ul>
                 </div>

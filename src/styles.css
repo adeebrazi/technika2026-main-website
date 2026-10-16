@@ -111,12 +111,13 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
-  --bg-primary: #F4EAE6;
-  --accent-neon-yellow: #D6FD52;
-  --accent-neon-cyan: #3CE6FC;
+  --bg-primary: #f4eae6;
+  --accent-neon-yellow: #d6fd52;
+  --accent-neon-cyan: #3ce6fc;
 }
 
-.dark, html.dark {
+.dark,
+html.dark {
   --background: #0f172a;
   --foreground: #ffffff;
   --card: #1e293b;
@@ -136,15 +137,15 @@
   --ring: #ffffff;
   --grid-color: rgba(255, 255, 255, 0.12);
   --bg-primary: #0f172a;
-  --accent-neon-yellow: #D6FD52;
-  --accent-neon-cyan: #3CE6FC;
+  --accent-neon-yellow: #d6fd52;
+  --accent-neon-cyan: #3ce6fc;
 }
 
 .theme-main {
   --background: #004d6d;
-  --foreground: #FFFFFF;
+  --foreground: #ffffff;
   --card: #00364d;
-  --card-foreground: #FFFFFF;
+  --card-foreground: #ffffff;
   --border: #8aebee;
   --muted: #003a53;
   --muted-foreground: #8aebee;
@@ -157,8 +158,8 @@
   --brut-orange: #f5a201;
   --grid-color: rgba(28, 171, 176, 0.4);
   --bg-primary: #00364d;
-  --accent-neon-yellow: #D6FD52;
-  --accent-neon-cyan: #3CE6FC;
+  --accent-neon-yellow: #d6fd52;
+  --accent-neon-cyan: #3ce6fc;
 }
 
 @layer base {
@@ -169,7 +170,9 @@
     width: 100% !important;
   }
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
     border-color: var(--color-border);
   }
@@ -195,12 +198,22 @@
     width: 100% !important;
   }
 
-  section, header, footer, main {
+  section,
+  header,
+  footer,
+  main {
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
 
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; font-weight: 800; }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+    font-weight: 800;
+  }
 }
 
 @utility brut-border {
@@ -219,7 +232,9 @@
   background: var(--card);
   border: 3px solid var(--foreground);
   box-shadow: 8px 8px 0 0 var(--foreground);
-  transition: transform .15s ease, box-shadow .15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 @utility brut-card-hover {
   &:hover {
@@ -229,16 +244,30 @@
 }
 
 @keyframes float-slow {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
 }
 @keyframes pulse-glow {
-  0%,100% { opacity: .8; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes pixel-rotate {
@@ -308,7 +337,7 @@
 /* Scrollbar customization - Neobrutalist Style (matching Registration page) */
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--accent-neon-yellow, #D6FD52) var(--bg-primary, #00364d);
+  scrollbar-color: var(--accent-neon-yellow, #d6fd52) var(--bg-primary, #00364d);
 }
 
 ::-webkit-scrollbar {
@@ -322,16 +351,15 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-neon-yellow, #D6FD52);
+  background: var(--accent-neon-yellow, #d6fd52);
   border: 3px solid #000000;
   border-radius: 0px !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-neon-cyan, #3CE6FC);
+  background: var(--accent-neon-cyan, #3ce6fc);
 }
 
 ::-webkit-scrollbar-corner {
   background: #000000;
 }
-
