@@ -103,8 +103,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/technika_logo.jpg", type: "image/jpeg" },
-      { rel: "shortcut icon", href: "/technika_logo.jpg", type: "image/jpeg" },
+      { rel: "icon", href: "/technika_logo.webp", type: "image/jpeg" },
+      { rel: "shortcut icon", href: "/technika_logo.webp", type: "image/jpeg" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

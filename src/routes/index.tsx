@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import ajuLogo from "@/assets/logo.png";
-import technikaLogo from "@/assets/technika_logo.jpg";
+import ajuLogo from "@/assets/logo.webp";
+import technikaLogo from "@/assets/technika_logo.webp";
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, Sparkles, Sun } from "lucide-react";
 import eventsData from "@/data/events.json";
@@ -24,67 +24,67 @@ const BRUT_COLORS = [
 ];
 
 const PROVIDED_PHOTOS = [
-  "/021A0244.JPG",
-  "/021A0059.JPG",
-  "/021A0104.JPG",
-  "/021A0129.JPG",
-  "/021A0140.JPG",
-  "/021A0164.JPG",
-  "/021A0239.JPG",
-  "/021A0262.JPG",
-  "/021A9976.JPG",
+  "/021A0244.webp",
+  "/021A0059.webp",
+  "/021A0104.webp",
+  "/021A0129.webp",
+  "/021A0140.webp",
+  "/021A0164.webp",
+  "/021A0239.webp",
+  "/021A0262.webp",
+  "/021A9976.webp",
 ];
 
 function getEventPhoto(id: string, index: number) {
   const eventId = id.toLowerCase();
 
   const normalizedMap: Record<string, string> = {
-    "code-busters": "/code-buster.jpg",
-    "code-buster": "/code-buster.jpg",
-    "red-tech": "/red-tech.jpg",
-    "robo-wars": "/robo-wars.jpg",
-    "robo-race": "/robo-race.jpg",
-    "robo-pick-n-place": "/robo-pick-n-place.jpg",
-    intelliquest: "/intelliquest.jpg",
-    "brainstorm-battle": "/brainstorm-battle.jpg",
-    "circuit-crafter": "/circuit-crafter.jpg",
-    "electrofix-challenge": "/electrofix-challenge.jpg",
-    "junkyard-wars": "/junkyard-wars.jpg",
-    "ai-quizathon": "/ai-quizathon.jpg",
-    "ecoai-challenge": "/ecoai-challenge.jpg",
-    "project-model-exhibition": "/project-model-exhibition.jpg",
-    "coding-ladder": "/coding-ladder.jpg",
-    "web-wizard": "/web-wizard.jpg",
-    "cyber-shield": "/cyber-shield.jpg",
-    "app-attack": "/app-attack.jpg",
-    "data-dash": "/data-dash.jpg",
-    "design-dash": "/design-dash.jpg",
-    "load-bridging": "/load-bridging.png",
-    "poster-presentation": "/poster-presentation.png",
-    "face-painting": "/face-painting.png",
-    "pot-painting": "/pot-painting.png",
-    photography: "/photography.png",
-    "greenearth-challenge": "/greenearth-challenge.png",
-    cricket: "/cricket.png",
-    "need-for-speed": "/need-for-speed.png",
-    bgmi: "/bgmi.png",
-    "free-fire": "/free-fire.png",
-    "technical-debate": "/technical-debate.png",
-    "group-ramp-walk": "/group-ramp-walk.png",
-    "solo-ramp-walk": "/solo-ramp-walk.png",
-    "treasure-hunt": "/treasure-hunt.png",
-    "tug-of-war": "/tug-of-war.png",
-    sudoku: "/sudoku.png",
-    "fire-free-cooking": "/fire-free-cooking.png",
-    "solo-singing": "/solo-singing.jpg",
-    "solo-dance": "/solo-dance.jpg",
-    "group-singing": "/group-singing.png",
-    "group-dance": "/group-dance.png",
-    rap: "/rap.png",
-    "beat-boxing": "/beat-boxing.png",
-    poetry: "/poetry.png",
-    "story-telling": "/story-telling.png",
-    "art-attack": "/art-attack.png",
+    "code-busters": "/code-buster.webp",
+    "code-buster": "/code-buster.webp",
+    "red-tech": "/red-tech.webp",
+    "robo-wars": "/robo-wars.webp",
+    "robo-race": "/robo-race.webp",
+    "robo-pick-n-place": "/robo-pick-n-place.webp",
+    intelliquest: "/intelliquest.webp",
+    "brainstorm-battle": "/brainstorm-battle.webp",
+    "circuit-crafter": "/circuit-crafter.webp",
+    "electrofix-challenge": "/electrofix-challenge.webp",
+    "junkyard-wars": "/junkyard-wars.webp",
+    "ai-quizathon": "/ai-quizathon.webp",
+    "ecoai-challenge": "/ecoai-challenge.webp",
+    "project-model-exhibition": "/project-model-exhibition.webp",
+    "coding-ladder": "/coding-ladder.webp",
+    "web-wizard": "/web-wizard.webp",
+    "cyber-shield": "/cyber-shield.webp",
+    "app-attack": "/app-attack.webp",
+    "data-dash": "/data-dash.webp",
+    "design-dash": "/design-dash.webp",
+    "load-bridging": "/load-bridging.webp",
+    "poster-presentation": "/poster-presentation.webp",
+    "face-painting": "/face-painting.webp",
+    "pot-painting": "/pot-painting.webp",
+    photography: "/photography.webp",
+    "greenearth-challenge": "/greenearth-challenge.webp",
+    cricket: "/cricket.webp",
+    "need-for-speed": "/need-for-speed.webp",
+    bgmi: "/bgmi.webp",
+    "free-fire": "/free-fire.webp",
+    "technical-debate": "/technical-debate.webp",
+    "group-ramp-walk": "/group-ramp-walk.webp",
+    "solo-ramp-walk": "/solo-ramp-walk.webp",
+    "treasure-hunt": "/treasure-hunt.webp",
+    "tug-of-war": "/tug-of-war.webp",
+    sudoku: "/sudoku.webp",
+    "fire-free-cooking": "/fire-free-cooking.webp",
+    "solo-singing": "/solo-singing.webp",
+    "solo-dance": "/solo-dance.webp",
+    "group-singing": "/group-singing.webp",
+    "group-dance": "/group-dance.webp",
+    rap: "/rap.webp",
+    "beat-boxing": "/beat-boxing.webp",
+    poetry: "/poetry.webp",
+    "story-telling": "/story-telling.webp",
+    "art-attack": "/art-attack.webp",
   };
 
   if (normalizedMap[eventId]) {
@@ -1557,7 +1557,7 @@ function Index() {
               <div className="w-full flex flex-col items-center">
                 <div className="relative aspect-square w-16 sm:w-24 mb-2.5 sm:mb-3.5 border-2 border-foreground overflow-hidden bg-[var(--brut-pink)] shadow-[2.5px_2.5px_0px_0px_var(--foreground)] sm:shadow-[3.5px_3.5px_0px_0px_var(--foreground)]">
                   <img
-                    src="/team/adeeb.png"
+                    src="/team/adeeb.webp"
                     alt="Adeeb Razi"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -1585,7 +1585,7 @@ function Index() {
               <div className="w-full flex flex-col items-center">
                 <div className="relative aspect-square w-16 sm:w-24 mb-2.5 sm:mb-3.5 border-2 border-foreground overflow-hidden bg-[var(--brut-lime)] shadow-[2.5px_2.5px_0px_0px_var(--foreground)] sm:shadow-[3.5px_3.5px_0px_0px_var(--foreground)]">
                   <img
-                    src="/team/sanchit.png"
+                    src="/team/sanchit.webp"
                     alt="Sanchit Agarwal"
                     className="w-full h-full object-cover"
                     loading="lazy"
