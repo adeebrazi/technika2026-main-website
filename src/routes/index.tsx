@@ -1264,7 +1264,7 @@ function Index() {
                 Become a Sponsor →
               </a>
               <a
-                href={configData.sponsorBrochureLink || "/sponsor-brochure.pdf"}
+                href={configData.sponsorBrochureLink || "https://drive.google.com/file/d/159OOZgEdKC6szIKRx87ln50-iiIFzerf/view?usp=sharing"}
                 target="_blank"
                 rel="noreferrer"
                 className="brut-border px-6 py-3 text-xs font-black uppercase bg-[var(--brut-yellow)] text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition inline-flex items-center gap-2 cursor-pointer"
