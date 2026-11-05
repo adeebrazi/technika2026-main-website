@@ -1367,6 +1367,15 @@ function Index() {
               (p) => !p.role.toLowerCase().includes("administration"),
             );
 
+            // Responsive card width: 2 cols on mobile, 3 on sm, 4 on md, 5 on lg
+            const cardWidthClass =
+              "w-[calc(50%-0.35rem)] sm:w-[calc((100%-2*1rem)/3)] md:w-[calc((100%-3*1rem)/4)] lg:w-[calc((100%-4*1rem)/5)] flex";
+
+            // 13-Member Team Layout: Row 1 (5 cards), Row 2 (4 cards centred), Row 3 (4 cards centred)
+            const row1 = otherMembers.slice(0, 5);
+            const row2 = otherMembers.slice(5, 9);
+            const row3 = otherMembers.slice(9);
+
             return (
               <div key={group} className="mt-8 sm:mt-12">
                 <div className="text-xs sm:text-sm uppercase font-black mb-4 sm:mb-6 inline-block bg-foreground text-background px-3 sm:px-4 py-1 sm:py-1.5 brut-border">
@@ -1375,22 +1384,45 @@ function Index() {
 
                 {/* Admins at the top - same size as other leads */}
                 {admins.length > 0 && (
-                  <div className="flex justify-center gap-2.5 sm:gap-4 max-w-7xl mx-auto mb-4 sm:mb-6">
+                  <div className="flex justify-center gap-2.5 sm:gap-4 max-w-7xl mx-auto mb-4 sm:mb-6 flex-wrap">
                     {admins.map((p, i) => (
-                      <div
-                        key={p.name}
-                        className="w-[calc(50%-0.35rem)] sm:w-[calc((100%-2*1rem)/3)] md:w-[calc((100%-3*1rem)/4)] lg:w-[calc((100%-5*1rem)/6)] flex"
-                      >
+                      <div key={p.name} className={cardWidthClass}>
                         {renderMemberCard(p, i, true)}
                       </div>
                     ))}
                   </div>
                 )}
 
-                {/* Followed by the whole team as much accommodated in 1 line */}
-                {otherMembers.length > 0 && (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-4 max-w-7xl mx-auto">
-                    {otherMembers.map((p, i) => renderMemberCard(p, i + admins.length, true))}
+                {/* Row 1 — 5 cards */}
+                {row1.length > 0 && (
+                  <div className="flex justify-center gap-2.5 sm:gap-4 max-w-7xl mx-auto flex-wrap mb-2.5 sm:mb-4">
+                    {row1.map((p, i) => (
+                      <div key={p.name} className={cardWidthClass}>
+                        {renderMemberCard(p, i + admins.length, true)}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Row 2 — 4 cards (centred) */}
+                {row2.length > 0 && (
+                  <div className="flex justify-center gap-2.5 sm:gap-4 max-w-7xl mx-auto flex-wrap mb-2.5 sm:mb-4">
+                    {row2.map((p, i) => (
+                      <div key={p.name} className={cardWidthClass}>
+                        {renderMemberCard(p, i + admins.length + row1.length, true)}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Row 3 — 4 cards (centred) */}
+                {row3.length > 0 && (
+                  <div className="flex justify-center gap-2.5 sm:gap-4 max-w-7xl mx-auto flex-wrap">
+                    {row3.map((p, i) => (
+                      <div key={p.name} className={cardWidthClass}>
+                        {renderMemberCard(p, i + admins.length + row1.length + row2.length, true)}
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>

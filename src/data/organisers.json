@@ -74,6 +74,12 @@
     "image": "/team/Anjali.webp"
   },
   {
+    "name": "Sanchit Agarwal",
+    "role": "Technical Lead",
+    "category": "Student Coordinator",
+    "image": "/team/sanchit.webp"
+  },
+  {
     "name": "Sonali Mahato",
     "role": "Social Media Lead",
     "category": "Student Coordinator",
@@ -98,10 +104,22 @@
     "image": "/team/sohail.webp"
   },
   {
-    "name": "Sanchit Agarwal",
-    "role": "Technical Lead",
+    "name": "Awesh Hussain",
+    "role": "Event Coordinator",
     "category": "Student Coordinator",
-    "image": "/team/sanchit.webp"
+    "image": "/team/awesh.webp"
+  },
+  {
+    "name": "Ankit Raj",
+    "role": "Sponsorship Lead",
+    "category": "Student Coordinator",
+    "image": "/team/ankit.webp"
+  },
+  {
+    "name": "Rishav Kr Singh",
+    "role": "Co Transport Lead",
+    "category": "Student Coordinator",
+    "image": "/team/rishav.webp"
   },
   {
     "name": "Harsh Pathak",
@@ -114,12 +132,6 @@
     "role": "Co Content Lead",
     "category": "Student Coordinator",
     "image": "/team/ishika.webp"
-  },
-  {
-    "name": "Ankit Raj",
-    "role": "Sponsorship Lead",
-    "category": "Student Coordinator",
-    "image": "/team/ankit.webp"
   },
   {
     "name": "S Suman Rao",
@@ -138,17 +150,5 @@
     "role": "Outreach Lead",
     "category": "Student Coordinator",
     "image": "/team/anish.webp"
-  },
-  {
-    "name": "Rishav Kr Singh",
-    "role": "Co Transport Lead",
-    "category": "Student Coordinator",
-    "image": "/team/rishav.webp"
-  },
-  {
-    "name": "Awesh Hussain",
-    "role": "Event Coordinator",
-    "category": "Student Coordinator",
-    "image": "/team/awesh.webp"
   }
 ]
