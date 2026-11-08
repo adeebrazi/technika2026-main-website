@@ -444,8 +444,8 @@ function WhatsAppAllocationPage() {
           </div>
         </div>
 
-        {/* 4 WHATSAPP GROUP CARDS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {/* WHATSAPP GROUP CARDS (DYNAMIC CENTERED LAYOUT) */}
+        <div className="flex flex-wrap justify-center items-stretch gap-6 mb-12">
           {appState.groups.map((group) => {
             const seatsAvailable = Math.max(0, appState.limit - group.count);
             const pct = Math.min(100, Math.round((group.count / appState.limit) * 100));
@@ -465,7 +465,7 @@ function WhatsAppAllocationPage() {
             return (
               <div
                 key={group.id}
-                className="relative flex flex-col justify-between transition-all duration-200 overflow-hidden hover:-translate-y-1"
+                className="relative flex flex-col justify-between transition-all duration-200 overflow-hidden hover:-translate-y-1 w-full sm:w-[calc(50%-16px)] lg:w-[calc(25%-18px)] min-w-[270px] max-w-[340px]"
                 style={{
                   backgroundColor: cardBg,
                   border: `3px solid ${cardBorder}`,
