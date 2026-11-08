@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technika 6.0 — Official WhatsApp Groups</title>
+  
+  <!-- Google Fonts: Space Grotesk & Inter (Exact match with Technika 6.0 Main Website) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('technika_theme') || (localStorage.getItem('theme') === 'dark' ? 'main' : 'main');
+      const root = document.documentElement;
+      root.setAttribute('data-theme', savedTheme);
+      if (savedTheme === 'light') {
+        root.classList.remove('dark', 'theme-main');
+        root.classList.add('theme-light');
+      } else {
+        root.classList.remove('theme-light');
+        root.classList.add('dark', 'theme-main');
+      }
+    })();
+  </script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="selection:bg-[#FFE600] selection:text-black" oncontextmenu="return false;">
+
+  <!-- MAIN NAVBAR -->
+  <header
+    id="header"
+    class="sticky top-0 inset-x-0 z-50 bg-[var(--brut-yellow)] border-b-[3px] border-black transition-colors"
+  >
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-3">
+      
+      <!-- Brand Logos: ARKA JAIN University + Technika -->
+      <div class="flex items-center gap-2.5 mr-4 md:mr-6 shrink-0 cursor-pointer" onclick="window.location.href='https://www.technika2026.online/'">
+        <a href="https://www.technika2026.online/" class="flex items-center gap-2.5">
+          <img
+            src="/logo.webp"
+            alt="ARKA JAIN University Logo"
+            class="h-8 md:h-9.5 w-auto object-contain"
+          />
+          <div class="w-[2px] h-6 bg-black/30 hidden sm:block"></div>
+          <img
+            src="/technika_logo.webp"
+            alt="Technika Logo"
+            class="h-8 md:h-9.5 w-auto object-contain border-2 border-black shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)] hidden sm:block bg-black"
+          />
+        </a>
+      </div>
+
+      <!-- Right Action Items: Brochure + Round Theme Button -->
+      <div class="flex items-center gap-2.5 sm:gap-3.5 shrink-0">
+        
+        <!-- Brochure Link Button -->
+        <a
+          href="https://drive.google.com/file/d/1-g7Yprsh08tiBgp-xHWKInLqNxO1YFs_/view?usp=sharing"
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 text-xs font-black uppercase bg-white text-black border-[2px] border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition shrink-0"
+        >
+          <span>Brochure</span>
+          <i data-lucide="external-link" class="w-3.5 h-3.5 text-black"></i>
+        </a>
+
+        <!-- WhatsApp Management Dashboard Link -->
+        <a
+          href="http://localhost:5176/admin/whatsapp"
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 text-xs font-black uppercase bg-white text-black border-[2px] border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition shrink-0"
+          title="Open WhatsApp Management Dashboard"
+        >
+          <span>Dashboard</span>
+          <i data-lucide="layout-dashboard" class="w-3.5 h-3.5 text-black"></i>
+        </a>
+
+        <!-- Round Theme Toggle Button -->
+        <button
+          id="toggleThemeBtn"
+          class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center bg-white text-black border-[2px] border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition shrink-0 cursor-pointer"
+          title="Toggle Theme"
+          aria-label="Toggle Theme"
+        >
+          <!-- Rotating Pointer Ring -->
+          <div
+            id="themeRotaryRing"
+            class="absolute inset-0 rounded-full flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none"
+          >
+            <span class="absolute -top-0.5 w-1.5 h-2 bg-black rounded-full"></span>
+            <span class="absolute -bottom-0.5 w-1 h-1 bg-black/40 rounded-full"></span>
+          </div>
+
+          <!-- Theme Icon (Sparkles / Sun) -->
+          <div id="themeIconContainer" class="relative z-10 transition-transform duration-300 pointer-events-none flex items-center justify-center">
+            <i data-lucide="sparkles" id="themeIcon" class="w-4 h-4 text-black"></i>
+          </div>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-10 sm:pt-6 sm:pb-12">
+    
+    <!-- HERO HEADER: COMPACT, PROPORTIONAL NEO-BRUTALIST BRANDING -->
+    <div class="mb-6 sm:mb-8 text-center select-none">
+      
+      <!-- 1. JOIN (Compact Neon Green Badge) -->
+      <div class="inline-block mb-1.5 sm:mb-2">
+        <span class="badge-join font-display font-black text-xs sm:text-sm uppercase tracking-wider bg-[var(--brut-lime)] text-black brut-border px-3.5 sm:px-5 py-0.5 sm:py-1 inline-block shadow-[2px_2px_0px_#000]">
+          JOIN
+        </span>
+      </div>
+
+      <!-- 2. TECH NIKA 6.0 (Compact Display Title with tilted pink badge) -->
+      <div class="hero-title font-display font-black text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight uppercase my-1.5 sm:my-2">
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+          <span class="hero-tech">TECH</span>
+          <span class="badge-nika bg-[var(--brut-pink)] text-white brut-border px-2.5 sm:px-3.5 py-0.5 -rotate-2 inline-block shadow-[2.5px_2.5px_0px_#000]">NIKA</span>
+          <span class="hero-six">6.0</span>
+        </div>
+      </div>
+
+      <!-- 3. OFFICIAL WHATSAPP GROUPS (Compact Neon Green Badge) -->
+      <div class="inline-block mt-1 sm:mt-1.5">
+        <span class="badge-groups font-display font-black text-xs sm:text-sm md:text-base uppercase tracking-wider bg-[var(--brut-lime)] text-black brut-border px-3.5 sm:px-5 py-0.5 sm:py-1 inline-block shadow-[2px_2px_0px_#000]">
+          OFFICIAL WHATSAPP GROUPS
+        </span>
+      </div>
+
+    </div>
+
+    <!-- THE 4 WHATSAPP GROUP CARDS GRID -->
+    <div id="groupsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <!-- Dynamic cards rendered by app.js -->
+    </div>
+
+  </main>
+
+  <!-- FOOTER (EXACT TECHNIKA 6.0 NEO-BRUTALIST FOOTER) -->
+  <footer class="border-t-[3px] border-black bg-[var(--brut-yellow)] text-black pt-10 pb-8 mt-16 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <!-- 3 Info Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Col 1: TECHNIKA 6.0 -->
+        <div>
+          <div class="font-display font-black text-2xl uppercase tracking-tight text-black flex items-center gap-2">
+            <span>TECHNIKA</span>
+            <span class="bg-black text-white px-2 py-0.5 text-lg shadow-[2px_2px_0px_#000]">6.0</span>
+          </div>
+          <p class="text-xs font-semibold mt-3 leading-relaxed text-black">
+            Technika 6.0 is the flagship techno-cultural extravaganza of ARKA JAIN University's School of Engineering & IT. A 2-day playground where 40+ events, robotics arenas, coding battles, and live concerts ignite creativity and technology.
+          </p>
+        </div>
+
+        <!-- Col 2: SCHOOL OF ENGINEERING & IT -->
+        <div>
+          <div class="font-display font-black text-base uppercase inline-block bg-[var(--brut-pink)] text-white brut-border px-2.5 py-0.5 shadow-[2px_2px_0px_#000] mb-3">
+            School of Engineering & IT
+          </div>
+          <div class="text-xs font-semibold text-black leading-relaxed space-y-2">
+            <p>
+              The School of Engineering & IT at ARKA JAIN University stands as a center of technological innovation, academic excellence, and future-ready education. With a strong emphasis on research, practical learning, and emerging technologies, the school provides students with a dynamic platform to explore, innovate, and lead.
+            </p>
+            <div id="soeitMoreText" class="hidden">
+              <p class="mt-2">
+                Our programmes, ranging from Diploma, B.Tech, BCA, MCA, and M.Tech; cover cutting-edge domains such as Computer Science, Artificial Intelligence & Machine Learning, Data Science, Mechanical Engineering, Electrical & Electronics Engineering, and more. Each curriculum is thoughtfully designed to balance academic rigor with industry relevance.
+              </p>
+            </div>
+            <button onclick="toggleFooterText('soeit')" id="soeitBtn" class="brut-btn-sm bg-white text-black px-2.5 py-1 text-[10px] font-black uppercase mt-2 inline-flex items-center gap-1 shadow-[2px_2px_0px_#000]">
+              <span id="soeitBtnText">READ MORE</span>
+              <span id="soeitBtnArrow">▼</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Col 3: ARKA JAIN UNIVERSITY -->
+        <div>
+          <div class="font-display font-black text-base uppercase inline-block bg-[var(--brut-blue)] text-black brut-border px-2.5 py-0.5 shadow-[2px_2px_0px_#000] mb-3">
+            ARKA JAIN University
+          </div>
+          <div class="text-xs font-semibold text-black leading-relaxed space-y-2">
+            <p>
+              ARKA JAIN University was established in the year 2017 by the Jharkhand State Legislature under “The ARKA JAIN University Act” and is recognized by the UGC. It is the first state private university in the Kolhan region, comprising three districts of Jharkhand.
+            </p>
+            <div id="ajuMoreText" class="hidden">
+              <p class="mt-2">
+                The University is accredited with NAAC ‘A’ Grade in its first cycle and is the first state private university in Bihar, Jharkhand, and West Bengal to achieve this distinction. ARKA JAIN University is part of the prestigious JAIN Group, Bengaluru, which has more than 77 educational institutions under its umbrella.
+              </p>
+            </div>
+            <button onclick="toggleFooterText('aju')" id="ajuBtn" class="brut-btn-sm bg-white text-black px-2.5 py-1 text-[10px] font-black uppercase mt-2 inline-flex items-center gap-1 shadow-[2px_2px_0px_#000]">
+              <span id="ajuBtnText">READ MORE</span>
+              <span id="ajuBtnArrow">▼</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Divider line -->
+      <div class="border-t-[2px] border-black mt-8 pt-6">
+        
+        <!-- Social Links Bar -->
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs mb-6">
+          
+          <!-- Technika Socials -->
+          <div class="flex items-center gap-2">
+            <span class="font-black uppercase text-[11px] text-black">Technika Socials</span>
+            <a href="https://instagram.com/technika_aju" target="_blank" rel="noreferrer" class="brut-border bg-white text-black px-2 py-0.5 text-[10px] font-black hover:bg-black hover:text-white transition shadow-[2px_2px_0px_#000]">
+              Instagram
+            </a>
+            <a href="https://linkedin.com/company/technika-aju" target="_blank" rel="noreferrer" class="brut-border bg-white text-black px-2 py-0.5 text-[10px] font-black hover:bg-black hover:text-white transition shadow-[2px_2px_0px_#000]">
+              LinkedIn
+            </a>
+          </div>
+
+          <div class="w-0.5 h-3 bg-black/40 hidden md:block"></div>
+
+          <!-- SOEIT Socials -->
+          <div class="flex items-center gap-2">
+            <span class="font-black uppercase text-[11px] text-black">SOEIT Socials</span>
+            <a href="https://instagram.com/soeit_aju" target="_blank" rel="noreferrer" class="brut-border bg-white text-black px-2 py-0.5 text-[10px] font-black hover:bg-black hover:text-white transition shadow-[2px_2px_0px_#000]">
+              Instagram
+            </a>
+            <a href="https://linkedin.com/school/arka-jain-university" target="_blank" rel="noreferrer" class="brut-border bg-white text-black px-2 py-0.5 text-[10px] font-black hover:bg-black hover:text-white transition shadow-[2px_2px_0px_#000]">
+              LinkedIn
+            </a>
+          </div>
+
+          <div class="w-0.5 h-3 bg-black/40 hidden md:block"></div>
+
+          <!-- AJU Socials -->
+          <div class="flex items-center gap-2">
+            <span class="font-black uppercase text-[11px] text-black">AJU Socials</span>
+            <a href="https://arkajainuniversity.ac.in" target="_blank" rel="noreferrer" class="brut-border bg-white text-black px-2 py-0.5 text-[10px] font-black hover:bg-black hover:text-white transition shadow-[2px_2px_0px_#000]">
+              Website
+            </a>
+            <a href="https://instagram.com/arkajainuniversity" target="_blank" rel="noreferrer" class="brut-border bg-white text-black px-2 py-0.5 text-[10px] font-black hover:bg-black hover:text-white transition shadow-[2px_2px_0px_#000]">
+              Instagram
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Copyright banner -->
+        <div class="text-center font-display font-black text-[11px] uppercase tracking-wider text-black">
+          © 2026 ARKA JAIN UNIVERSITY · SCHOOL OF ENGINEERING & IT · TECHNIKA 6.0
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- QR CODE MODAL FOR MOBILE SCAN -->
+  <div id="qrModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-white text-black brut-border p-6 max-w-sm w-full shadow-[10px_10px_0px_#000] relative text-center">
+      <button onclick="closeQrModal()" class="absolute top-3 right-3 w-8 h-8 bg-black text-white flex items-center justify-center font-black hover:bg-red-600 transition">
+        ✕
+      </button>
+
+      <div class="inline-block bg-[var(--brut-lime)] text-black brut-border px-2 py-0.5 text-xs font-black uppercase mb-3 -rotate-1 shadow-[2px_2px_0px_#000]">
+        📱 Scan on Mobile
+      </div>
+
+      <h3 id="qrModalTitle" class="font-display font-black text-xl uppercase mb-1">
+        Group #01 WhatsApp
+      </h3>
+      <p class="text-xs text-gray-600 font-semibold mb-4">
+        Scan this QR code with your phone camera to join directly.
+      </p>
+
+      <div class="p-3 bg-white brut-border inline-block shadow-[4px_4px_0px_#000] mb-4">
+        <img id="qrImage" src="" alt="WhatsApp QR Code" class="w-48 h-48 mx-auto rendering-pixelated">
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="copyCurrentLink()" class="flex-1 brut-btn bg-[var(--brut-yellow)] text-black text-xs font-black uppercase py-2 flex items-center justify-center gap-1.5 shadow-[3px_3px_0px_#000]">
+          <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+          <span>Copy Link</span>
+        </button>
+        <button onclick="closeQrModal()" class="flex-1 brut-btn bg-black text-white text-xs font-black uppercase py-2 shadow-[3px_3px_0px_#000]">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
