@@ -60,24 +60,24 @@ const whatsappServerState = {
       name: "Group Alpha",
       tag: "Alpha",
       link: "https://chat.whatsapp.com/JGuwj0BeaqXHtaOT8azHtc",
-      count: 0,
-      status: "OPEN" as const,
+      count: 1000,
+      status: "FROZEN" as const,
       accent: "#00FF66",
     },
     {
       id: 2,
       name: "Group Beta",
       tag: "Beta",
-      link: "https://chat.whatsapp.com/CjfVMQB3G8oA9IlKH3RTXm",
-      count: 0,
-      status: "LOCKED" as const,
+      link: "https://chat.whatsapp.com/Byt0h7SkQzX7kLuNLgDPeW",
+      count: 36,
+      status: "OPEN" as const,
       accent: "#FFE600",
     },
   ],
-  activeGroupId: 1 as number | null,
-  totalJoined: 0,
+  activeGroupId: 2 as number | null,
+  totalJoined: 1036,
   totalCapacity: 2000,
-  totalRemaining: 2000,
+  totalRemaining: 964,
   allFull: false,
 };
 
@@ -127,7 +127,7 @@ function handleJoin() {
   if (!activeGroup) {
     return {
       success: false,
-      message: "All 4 WhatsApp groups are at maximum capacity (1000/1000).",
+      message: `All ${whatsappServerState.groups.length} WhatsApp groups are at maximum capacity (${whatsappServerState.totalCapacity}/${whatsappServerState.totalCapacity}).`,
       state: whatsappServerState,
     };
   }
@@ -215,30 +215,6 @@ export default {
           url.pathname === "/api/whatsapp/") &&
         request.method === "GET"
       ) {
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 3500);
-          const upstream = await fetch("https://reg.technika2026.online/api/whatsapp/status", {
-            headers: { Accept: "application/json" },
-            signal: controller.signal,
-          });
-          clearTimeout(timeoutId);
-          if (upstream.ok) {
-            const data = (await upstream.json()) as any;
-            if (data && Array.isArray(data.groups) && data.groups.length > 0) {
-              whatsappServerState.groups = data.groups;
-              whatsappServerState.limit = data.limit || whatsappServerState.limit;
-              whatsappServerState.activeGroupId = data.activeGroupId;
-              whatsappServerState.totalJoined = data.totalJoined;
-              whatsappServerState.totalCapacity = data.totalCapacity;
-              whatsappServerState.totalRemaining = data.totalRemaining;
-              whatsappServerState.allFull = data.allFull;
-              return jsonResponse(data);
-            }
-          }
-        } catch {
-          // Fall back to local memory state
-        }
         return jsonResponse(recalculateState());
       }
 
@@ -247,29 +223,6 @@ export default {
         (url.pathname === "/api/whatsapp/join" || url.pathname === "/api/join") &&
         request.method === "POST"
       ) {
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 3500);
-          const upstream = await fetch("https://reg.technika2026.online/api/whatsapp/join", {
-            method: "POST",
-            headers: { "Content-Type": "application/json", Accept: "application/json" },
-            signal: controller.signal,
-          });
-          clearTimeout(timeoutId);
-          if (upstream.ok) {
-            const data = (await upstream.json()) as any;
-            if (data && data.state && Array.isArray(data.state.groups)) {
-              whatsappServerState.groups = data.state.groups;
-              whatsappServerState.limit = data.state.limit || whatsappServerState.limit;
-              whatsappServerState.activeGroupId = data.state.activeGroupId;
-              whatsappServerState.totalJoined = data.state.totalJoined;
-              whatsappServerState.totalCapacity = data.state.totalCapacity;
-              whatsappServerState.totalRemaining = data.state.totalRemaining;
-              whatsappServerState.allFull = data.state.allFull;
-            }
-            return jsonResponse(data);
-          }
-        } catch {}
         const result = handleJoin();
         return jsonResponse(result);
       }
@@ -281,14 +234,6 @@ export default {
       ) {
         try {
           const body = (await request.json()) as any;
-          try {
-            await fetch("https://reg.technika2026.online/api/whatsapp/config", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(body),
-            });
-          } catch {}
-
           if (body.limit && Number(body.limit) > 0) {
             whatsappServerState.limit = Number(body.limit);
           }
@@ -323,14 +268,6 @@ export default {
       ) {
         try {
           const body = (await request.json()) as any;
-          try {
-            await fetch("https://reg.technika2026.online/api/whatsapp/simulate", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(body),
-            });
-          } catch {}
-
           const { groupId, action, value } = body;
           const group = whatsappServerState.groups.find((g) => g.id === Number(groupId));
 
@@ -370,14 +307,6 @@ export default {
       ) {
         try {
           const body = (await request.json()) as any;
-          try {
-            await fetch("https://reg.technika2026.online/api/whatsapp/add-group", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(body),
-            });
-          } catch {}
-
           const { name, tag, link, accent } = body;
           const newId =
             whatsappServerState.groups.length > 0
@@ -418,14 +347,6 @@ export default {
       ) {
         try {
           const body = (await request.json()) as any;
-          try {
-            await fetch("https://reg.technika2026.online/api/whatsapp/remove-group", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(body),
-            });
-          } catch {}
-
           const idToRemove = Number(body.groupId);
 
           if (whatsappServerState.groups.length <= 1) {

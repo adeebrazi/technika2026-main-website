@@ -57,42 +57,24 @@ const DEFAULT_STATE: WhatsAppState = {
       name: "Group Alpha",
       tag: "Alpha",
       link: "https://chat.whatsapp.com/JGuwj0BeaqXHtaOT8azHtc",
-      count: 0,
-      status: "OPEN",
+      count: 1000,
+      status: "FROZEN",
       accent: "#00FF66",
     },
     {
       id: 2,
       name: "Group Beta",
       tag: "Beta",
-      link: "https://chat.whatsapp.com/CjfVMQB3G8oA9IlKH3RTXm",
-      count: 0,
-      status: "LOCKED",
+      link: "https://chat.whatsapp.com/Byt0h7SkQzX7kLuNLgDPeW",
+      count: 36,
+      status: "OPEN",
       accent: "#FFE600",
     },
-    {
-      id: 3,
-      name: "Group Gamma",
-      tag: "Gamma",
-      link: "https://chat.whatsapp.com/invite-gamma-03",
-      count: 0,
-      status: "LOCKED",
-      accent: "#00D8F6",
-    },
-    {
-      id: 4,
-      name: "Group Delta",
-      tag: "Delta",
-      link: "https://chat.whatsapp.com/invite-delta-04",
-      count: 0,
-      status: "LOCKED",
-      accent: "#FF007F",
-    },
   ],
-  activeGroupId: 1,
-  totalJoined: 0,
-  totalCapacity: 4000,
-  totalRemaining: 4000,
+  activeGroupId: 2,
+  totalJoined: 1036,
+  totalCapacity: 2000,
+  totalRemaining: 964,
   allFull: false,
 };
 
@@ -188,8 +170,8 @@ function WhatsAppAllocationPage() {
         );
       } else if (newState.allFull) {
         addToast(
-          "🏆 ALL 4 GROUPS ARE FULL!",
-          "All 4,000 seats across all squads have reached maximum capacity!",
+          `🏆 ALL GROUPS ARE FULL!`,
+          `All ${newState.totalCapacity?.toLocaleString() || "seats"} across all squads have reached maximum capacity!`,
           "#FF007F",
           "#FFFFFF",
         );
@@ -200,23 +182,29 @@ function WhatsAppAllocationPage() {
     setAppState(newState);
   };
 
-  // Fetch state from API with fallback
+  // Fetch state from API with multi-tier fallback
   const fetchStatus = async () => {
-    try {
-      let res = await fetch("/api/whatsapp/status").catch(() => null);
-      if (!res || !res.ok) {
-        res = await fetch("https://reg.technika2026.online/api/whatsapp/status").catch(() => null);
-      }
-      if (res && res.ok) {
-        const contentType = res.headers.get("content-type") || "";
-        if (contentType.includes("application/json")) {
-          const data = await res.json();
-          if (data && Array.isArray(data.groups)) {
-            handleStateUpdate(data);
+    const endpoints = [
+      "/api/whatsapp/status",
+      "https://technika2026.online/api/whatsapp/status",
+      "https://dashboard.technika2026.online/api/whatsapp/status"
+    ];
+
+    for (const ep of endpoints) {
+      try {
+        const res = await fetch(ep).catch(() => null);
+        if (res && res.ok) {
+          const contentType = res.headers.get("content-type") || "";
+          if (contentType.includes("application/json")) {
+            const data = await res.json();
+            if (data && Array.isArray(data.groups) && data.groups.length > 0) {
+              handleStateUpdate(data);
+              return;
+            }
           }
         }
-      }
-    } catch (err) {}
+      } catch {}
+    }
   };
 
   // Setup periodic polling
@@ -455,9 +443,8 @@ function WhatsAppAllocationPage() {
             const textOnAccent = "#000000";
 
             let queueNote = "";
-            if (group.id === 2) queueNote = "UNLOCKS AFTER ALPHA";
-            else if (group.id === 3) queueNote = "UNLOCKS AFTER BETA";
-            else if (group.id === 4) queueNote = "UNLOCKS AFTER GAMMA";
+            const prevGroup = appState.groups.find((g) => g.id === group.id - 1);
+            if (prevGroup) queueNote = `UNLOCKS AFTER ${prevGroup.tag.toUpperCase()}`;
 
             // Calibrated watermark opacity
             const watermarkOpacity = group.id === 4 ? 0.32 : group.id === 1 ? 0.22 : 0.18;
