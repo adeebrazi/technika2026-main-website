@@ -6,11 +6,5 @@
     "env": {
       "DANGEROUSLY_DEPLOY_VULNERABLE_TANSTACK_START_XSS": "1"
     }
-  },
-  "rewrites": [
-    {
-      "source": "/api/whatsapp/:path*",
-      "destination": "https://reg.technika2026.online/api/whatsapp/:path*"
-    }
-  ]
+  }
 }
