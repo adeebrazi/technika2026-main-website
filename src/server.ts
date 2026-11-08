@@ -59,7 +59,7 @@ const whatsappServerState = {
       id: 1,
       name: "Group Alpha",
       tag: "Alpha",
-      link: "https://chat.whatsapp.com/JGuwj0BeaqXHtaOT8azHtc",
+      link: "https://chat.whatsapp.com/Eqqx6LcVA472hc0trTMkcC",
       count: 1000,
       status: "FROZEN" as const,
       accent: "#00FF66",
