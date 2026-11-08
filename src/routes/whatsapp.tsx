@@ -12,7 +12,6 @@ import {
   Copy,
   X,
   ArrowUpRight,
-  LayoutDashboard,
 } from "lucide-react";
 
 import ajuLogo from "@/assets/logo.webp";
@@ -162,8 +161,8 @@ function WhatsAppAllocationPage() {
   const addToast = (
     title: string,
     message: string,
-    bg = "bg-[var(--brut-lime)]",
-    text = "text-black",
+    bg = "#00FF66",
+    text = "#000000",
   ) => {
     const id = Date.now() + Math.random();
     setToasts((prev) => [...prev, { id, title, message, bg, text }]);
@@ -184,15 +183,15 @@ function WhatsAppAllocationPage() {
         addToast(
           "⚡ AUTO-ROLLOVER TRIGGERED!",
           `Group #${prevId} reached 1,000 members and is FROZEN! Group #${nextId} is now OPEN!`,
-          "bg-[var(--brut-yellow)]",
-          "text-black",
+          "#FFE600",
+          "#000000",
         );
       } else if (newState.allFull) {
         addToast(
           "🏆 ALL 4 GROUPS ARE FULL!",
           "All 4,000 seats across all squads have reached maximum capacity!",
-          "bg-[var(--brut-pink)]",
-          "text-white",
+          "#FF007F",
+          "#FFFFFF",
         );
       }
     }
@@ -204,10 +203,8 @@ function WhatsAppAllocationPage() {
   // Fetch state from API with fallback
   const fetchStatus = async () => {
     try {
-      // Primary: try relative rewrite endpoint
       let res = await fetch("/api/whatsapp/status").catch(() => null);
       if (!res || !res.ok) {
-        // Fallback: try direct backend URL
         res = await fetch("https://reg.technika2026.online/api/whatsapp/status").catch(() => null);
       }
       if (res && res.ok) {
@@ -219,44 +216,21 @@ function WhatsAppAllocationPage() {
           }
         }
       }
-    } catch (err) {
-      // Keep running with last known state
-    }
+    } catch (err) {}
   };
 
-  // Setup SSE connection and fallback polling
+  // Setup periodic polling
   useEffect(() => {
     fetchStatus();
-
-    let sse: EventSource | null = null;
-    try {
-      if (typeof window !== "undefined" && window.EventSource) {
-        sse = new EventSource("/api/whatsapp/events");
-        sse.onmessage = (event) => {
-          try {
-            const data = JSON.parse(event.data);
-            if (data && Array.isArray(data.groups)) {
-              handleStateUpdate(data);
-            }
-          } catch (e) {}
-        };
-      }
-    } catch (e) {}
-
-    // Fallback polling every 3 seconds for guaranteed real-time updates
     const interval = setInterval(fetchStatus, 3000);
-
-    return () => {
-      if (sse) sse.close();
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   // Join WhatsApp Group handler
   const handleJoinGroup = async (groupId: number) => {
     const targetGroup = appState.groups.find((g) => g.id === groupId);
     if (!targetGroup || targetGroup.status !== "OPEN") {
-      addToast("Group Unavailable", "This squad is not currently accepting joins.", "bg-rose-200");
+      addToast("Group Unavailable", "This squad is not currently accepting joins.", "#FFCCCC", "#000000");
       return;
     }
 
@@ -265,7 +239,8 @@ function WhatsAppAllocationPage() {
       addToast(
         "Already Registered",
         "Seat already secured! Opening your WhatsApp group directly ↗",
-        "bg-[var(--brut-yellow)]",
+        "#FFE600",
+        "#000000",
       );
       window.open(targetGroup.link, "_blank");
       return;
@@ -298,10 +273,9 @@ function WhatsAppAllocationPage() {
             handleStateUpdate(data.state);
           }
         } else {
-          addToast("Cannot Join", data.message || "Group is full.", "bg-rose-200");
+          addToast("Cannot Join", data.message || "Group is full.", "#FFCCCC", "#000000");
         }
       } else {
-        // Fallback: open link directly
         window.open(targetGroup.link, "_blank");
       }
     } catch (err) {
@@ -312,19 +286,44 @@ function WhatsAppAllocationPage() {
   const copyGroupLink = (link: string, name: string) => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
       navigator.clipboard.writeText(link).then(() => {
-        addToast("Link Copied!", `WhatsApp link for ${name} copied to clipboard.`, "bg-[var(--brut-lime)]");
+        addToast("Link Copied!", `WhatsApp link for ${name} copied to clipboard.`, "#00FF66", "#000000");
       }).catch(() => {
-        addToast("Notice", `Invite Link: ${link}`, "bg-[var(--brut-yellow)]");
+        addToast("Notice", `Invite Link: ${link}`, "#FFE600", "#000000");
       });
     }
   };
 
+  const isMain = theme === "main";
+
+  // Dynamic Theme Colors & Styles
+  const pageBg = isMain ? "#004d6d" : "#FAF8F5";
+  const gridLineColor = isMain ? "rgba(28, 171, 176, 0.35)" : "rgba(0, 0, 0, 0.06)";
+  const cardBg = isMain ? "#00364d" : "#FFFFFF";
+  const cardBorder = isMain ? "#8aebee" : "#000000";
+  const cardShadow = "#000000";
+  const metricBoxBg = isMain ? "rgba(0, 30, 45, 0.75)" : "#F4F4F5";
+  const metricBoxBorder = isMain ? "#004d6d" : "#E4E4E7";
+  const heroTextColor = isMain ? "#FFFFFF" : "#000000";
+
   return (
-    <div className="min-h-screen text-foreground select-none">
+    <div
+      className="min-h-screen text-foreground select-none"
+      style={{
+        backgroundColor: pageBg,
+        backgroundImage: `linear-gradient(to right, ${gridLineColor} 1px, transparent 1px), linear-gradient(to bottom, ${gridLineColor} 1px, transparent 1px)`,
+        backgroundSize: "36px 36px",
+        backgroundAttachment: "fixed",
+        transition: "background-color 0.25s ease",
+      }}
+    >
       {/* NAVBAR */}
       <header
         id="header"
-        className="sticky top-0 inset-x-0 z-50 bg-[var(--brut-yellow)] border-b-[3px] border-black transition-colors"
+        className="sticky top-0 inset-x-0 z-50 transition-colors"
+        style={{
+          backgroundColor: "#FFE600",
+          borderBottom: "3px solid #000000",
+        }}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-3">
           {/* Brand Logos */}
@@ -369,7 +368,6 @@ function WhatsAppAllocationPage() {
               title="Toggle Theme"
               aria-label="Toggle Theme"
             >
-              {/* Rotating Pointer Ring */}
               <div
                 className="absolute inset-0 rounded-full flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none"
                 style={{
@@ -380,7 +378,6 @@ function WhatsAppAllocationPage() {
                 <span className="absolute -bottom-0.5 w-1 h-1 bg-black/40 rounded-full" />
               </div>
 
-              {/* Theme Icon */}
               <div className="relative z-10 transition-transform duration-300 pointer-events-none flex items-center justify-center">
                 {theme === "main" ? (
                   <Sparkles className="w-4 h-4 text-black" />
@@ -394,12 +391,20 @@ function WhatsAppAllocationPage() {
       </header>
 
       {/* HERO SECTION */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-10 sm:pt-6 sm:pb-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-12 sm:pt-8 sm:pb-16">
         {/* COMPACT NEO-BRUTALIST BRANDING HEADER */}
         <div className="mb-6 sm:mb-8 text-center select-none">
           {/* 1. JOIN BADGE */}
           <div className="inline-block mb-1.5 sm:mb-2">
-            <span className="font-display font-black text-xs sm:text-sm uppercase tracking-wider bg-[var(--brut-lime)] text-black border-[3px] border-black px-3.5 sm:px-5 py-0.5 sm:py-1 inline-block shadow-[2px_2px_0px_#000]">
+            <span
+              className="font-display font-black text-xs sm:text-sm uppercase tracking-wider px-3.5 sm:px-5 py-0.5 sm:py-1 inline-block"
+              style={{
+                backgroundColor: "#00FF66",
+                color: "#000000",
+                border: "3px solid #000000",
+                boxShadow: "2.5px 2.5px 0px #000000",
+              }}
+            >
               JOIN
             </span>
           </div>
@@ -407,17 +412,33 @@ function WhatsAppAllocationPage() {
           {/* 2. TECH NIKA 6.0 */}
           <div className="font-display font-black text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight uppercase my-1.5 sm:my-2">
             <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-              <span>TECH</span>
-              <span className="bg-[var(--brut-pink)] text-white border-[3px] border-black px-2.5 sm:px-3.5 py-0.5 -rotate-2 inline-block shadow-[2.5px_2.5px_0px_#000]">
+              <span style={{ color: heroTextColor }}>TECH</span>
+              <span
+                className="px-2.5 sm:px-3.5 py-0.5 -rotate-2 inline-block font-black"
+                style={{
+                  backgroundColor: "#FF007F",
+                  color: "#FFFFFF",
+                  border: "3px solid #000000",
+                  boxShadow: "2.5px 2.5px 0px #000000",
+                }}
+              >
                 NIKA
               </span>
-              <span>6.0</span>
+              <span style={{ color: heroTextColor }}>6.0</span>
             </div>
           </div>
 
           {/* 3. OFFICIAL WHATSAPP GROUPS BADGE */}
           <div className="inline-block mt-1 sm:mt-1.5">
-            <span className="font-display font-black text-xs sm:text-sm md:text-base uppercase tracking-wider bg-[var(--brut-lime)] text-black border-[3px] border-black px-3.5 sm:px-5 py-0.5 sm:py-1 inline-block shadow-[2px_2px_0px_#000]">
+            <span
+              className="font-display font-black text-xs sm:text-sm md:text-base uppercase tracking-wider px-3.5 sm:px-5 py-0.5 sm:py-1 inline-block"
+              style={{
+                backgroundColor: "#00FF66",
+                color: "#000000",
+                border: "3px solid #000000",
+                boxShadow: "2.5px 2.5px 0px #000000",
+              }}
+            >
               OFFICIAL WHATSAPP GROUPS
             </span>
           </div>
@@ -438,38 +459,43 @@ function WhatsAppAllocationPage() {
             else if (group.id === 3) queueNote = "UNLOCKS AFTER BETA";
             else if (group.id === 4) queueNote = "UNLOCKS AFTER GAMMA";
 
-            // Watermark opacity calibration
-            const watermarkOpacity =
-              group.id === 4
-                ? "opacity-[0.22] dark:opacity-[0.28]"
-                : group.id === 1
-                  ? "opacity-[0.14] dark:opacity-[0.18]"
-                  : "opacity-[0.12] dark:opacity-[0.15]";
+            // Calibrated watermark opacity
+            const watermarkOpacity = group.id === 4 ? 0.32 : group.id === 1 ? 0.22 : 0.18;
 
             return (
               <div
                 key={group.id}
-                className={`relative border-[3px] border-black bg-card text-card-foreground flex flex-col justify-between transition-all duration-200 overflow-hidden ${
-                  isOpen
-                    ? "shadow-[6px_6px_0px_#000]"
-                    : "opacity-90 hover:opacity-100 hover:shadow-[6px_6px_0px_#000]"
-                } hover:-translate-y-1`}
+                className="relative flex flex-col justify-between transition-all duration-200 overflow-hidden hover:-translate-y-1"
+                style={{
+                  backgroundColor: cardBg,
+                  border: `3px solid ${cardBorder}`,
+                  boxShadow: isOpen ? `6px 6px 0px ${cardShadow}` : `4px 4px 0px ${cardShadow}`,
+                  color: isMain ? "#FFFFFF" : "#000000",
+                }}
               >
-                {/* Signature Accent Top Color Band */}
-                <div className="h-1.5 w-full" style={{ backgroundColor: accent }} />
+                {/* Signature Top Accent Stripe */}
+                <div className="h-2 w-full" style={{ backgroundColor: accent }} />
 
                 <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
                   <div>
                     {/* Header: Number Badge + Group Name + Status */}
-                    <div className="flex items-center justify-between pb-3 mb-3.5 border-b-2 border-border/40">
+                    <div
+                      className="flex items-center justify-between pb-3 mb-3.5"
+                      style={{ borderBottom: `2px solid ${isMain ? "rgba(138, 235, 238, 0.25)" : "#E4E4E7"}` }}
+                    >
                       <div className="flex items-center gap-2">
                         <span
-                          className="w-7 h-7 flex items-center justify-center font-display font-black text-xs border border-black shadow-[1.5px_1.5px_0px_#000]"
-                          style={{ backgroundColor: accent, color: textOnAccent }}
+                          className="w-7 h-7 flex items-center justify-center font-display font-black text-xs"
+                          style={{
+                            backgroundColor: accent,
+                            color: textOnAccent,
+                            border: "1.5px solid #000000",
+                            boxShadow: "1.5px 1.5px 0px #000000",
+                          }}
                         >
                           0{group.id}
                         </span>
-                        <h3 className="font-display font-black text-base uppercase tracking-tight m-0 text-foreground">
+                        <h3 className="font-display font-black text-base uppercase tracking-tight m-0">
                           {group.name}
                         </h3>
                       </div>
@@ -477,19 +503,33 @@ function WhatsAppAllocationPage() {
                       <div>
                         {isOpen ? (
                           <span
-                            className="inline-flex items-center gap-1.5 font-display font-black text-[11px] uppercase px-2.5 py-1 border-2 border-black shadow-[2px_2px_0px_#000]"
-                            style={{ backgroundColor: accent, color: textOnAccent }}
+                            className="inline-flex items-center gap-1.5 font-display font-black text-[11px] uppercase px-2.5 py-1"
+                            style={{
+                              backgroundColor: accent,
+                              color: textOnAccent,
+                              border: "2px solid #000000",
+                              boxShadow: "2px 2px 0px #000000",
+                            }}
                           >
                             <span className="w-2 h-2 rounded-full bg-black animate-ping" />
                             <span>ACTIVE NOW</span>
                           </span>
                         ) : isFrozen ? (
-                          <span className="inline-flex items-center gap-1 bg-red-600 text-white font-display font-black text-[11px] uppercase px-2.5 py-1 border-2 border-black shadow-[2px_2px_0px_#000]">
+                          <span
+                            className="inline-flex items-center gap-1 bg-red-600 text-white font-display font-black text-[11px] uppercase px-2.5 py-1 border-2 border-black shadow-[2px_2px_0px_#000]"
+                          >
                             <CheckCheck className="w-3.5 h-3.5 text-white" />
                             <span>1,000 / 1,000 FILLED</span>
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 font-display font-bold text-[11px] uppercase px-2 py-0.5 border-2 border-border/40 bg-black/10 dark:bg-white/10 text-muted-foreground">
+                          <span
+                            className="inline-flex items-center gap-1 font-display font-bold text-[11px] uppercase px-2 py-0.5 border-2"
+                            style={{
+                              borderColor: isMain ? "rgba(138, 235, 238, 0.4)" : "#D4D4D8",
+                              backgroundColor: isMain ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.05)",
+                              color: isMain ? "#8aebee" : "#71717A",
+                            }}
+                          >
                             <Lock className="w-3 h-3" />
                             <span>STANDBY</span>
                           </span>
@@ -498,35 +538,50 @@ function WhatsAppAllocationPage() {
                     </div>
 
                     {/* Metric Box with Watermark */}
-                    <div className="relative p-3.5 border-2 border-border/60 bg-black/5 dark:bg-black/30 mb-3.5 overflow-hidden">
-                      {/* Watermark Numeral */}
+                    <div
+                      className="relative p-3.5 mb-3.5 overflow-hidden"
+                      style={{
+                        backgroundColor: metricBoxBg,
+                        border: `2px solid ${metricBoxBorder}`,
+                      }}
+                    >
+                      {/* Giant Number Watermark */}
                       <div
-                        className={`absolute right-1 -bottom-3 font-display font-black text-7xl select-none pointer-events-none ${watermarkOpacity}`}
-                        style={{ color: accent }}
+                        className="absolute right-1 -bottom-3 font-display font-black text-7xl select-none pointer-events-none"
+                        style={{
+                          color: accent,
+                          opacity: watermarkOpacity,
+                        }}
                       >
                         0{group.id}
                       </div>
 
                       {/* Header label */}
-                      <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider opacity-70 mb-1">
+                      <div
+                        className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider mb-1"
+                        style={{ opacity: 0.7 }}
+                      >
                         <span>QUOTA STATUS</span>
                         <span>CAP: {appState.limit}</span>
                       </div>
 
-                      {/* Seat Counter */}
+                      {/* Big Counter */}
                       <div
-                        className={`font-display font-black text-4xl sm:text-5xl tabular-nums leading-none tracking-tight my-1 ${
-                          isOpen ? "" : "opacity-85"
-                        }`}
+                        className="font-display font-black text-4xl sm:text-5xl tabular-nums leading-none tracking-tight my-1"
                         style={{ color: accent }}
                       >
                         {seatsAvailable.toLocaleString()}
                       </div>
 
                       {/* Footer micro-label */}
-                      <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/15 dark:border-white/10 text-[11px] font-bold uppercase tracking-wider">
-                        <span className="opacity-80">SEATS AVAILABLE</span>
-                        <span className="font-mono text-[10px] opacity-75">
+                      <div
+                        className="flex items-center justify-between mt-2 pt-2 text-[11px] font-bold uppercase tracking-wider"
+                        style={{
+                          borderTop: `1px solid ${isMain ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.1)"}`,
+                        }}
+                      >
+                        <span style={{ opacity: 0.8 }}>SEATS AVAILABLE</span>
+                        <span className="font-mono text-[10px]" style={{ opacity: 0.75 }}>
                           {group.count} JOINED
                         </span>
                       </div>
@@ -535,7 +590,7 @@ function WhatsAppAllocationPage() {
                     {/* Progress Bar & Capacity */}
                     <div className="mb-2">
                       <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider mb-1">
-                        <span className="opacity-70">CAPACITY</span>
+                        <span style={{ opacity: 0.7 }}>CAPACITY</span>
                         <span
                           className="font-mono font-bold"
                           style={{ color: isOpen ? accent : "inherit" }}
@@ -543,7 +598,13 @@ function WhatsAppAllocationPage() {
                           {pct}%
                         </span>
                       </div>
-                      <div className="w-full h-2.5 border-2 border-black overflow-hidden bg-black/30">
+                      <div
+                        className="w-full h-2.5 overflow-hidden"
+                        style={{
+                          backgroundColor: isMain ? "rgba(0, 0, 0, 0.4)" : "#E4E4E7",
+                          border: "2px solid #000000",
+                        }}
+                      >
                         <div
                           className="h-full transition-all duration-300"
                           style={{
@@ -556,20 +617,35 @@ function WhatsAppAllocationPage() {
                   </div>
 
                   {/* Action / Standby Footer */}
-                  <div className="mt-3.5 pt-3 border-t-2 border-border/40">
+                  <div
+                    className="mt-3.5 pt-3"
+                    style={{
+                      borderTop: `2px solid ${isMain ? "rgba(138, 235, 238, 0.25)" : "#E4E4E7"}`,
+                    }}
+                  >
                     {isOpen ? (
                       <>
                         <button
                           onClick={() => handleJoinGroup(group.id)}
-                          className="w-full py-3 px-3 font-display font-black text-xs sm:text-sm uppercase tracking-wide flex items-center justify-center gap-1.5 border-[3px] border-black shadow-[4px_4px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] transition cursor-pointer"
-                          style={{ backgroundColor: accent, color: textOnAccent }}
+                          className="w-full py-3 px-3 font-display font-black text-xs sm:text-sm uppercase tracking-wide flex items-center justify-center gap-1.5 transition cursor-pointer hover:translate-x-[1px] hover:translate-y-[1px]"
+                          style={{
+                            backgroundColor: accent,
+                            color: textOnAccent,
+                            border: "3px solid #000000",
+                            boxShadow: "4px 4px 0px #000000",
+                          }}
                         >
                           <span>JOIN WHATSAPP GROUP</span>
                           <ArrowUpRight className="w-4 h-4" style={{ color: textOnAccent }} />
                         </button>
                         <button
                           onClick={() => setQrModalGroup(group)}
-                          className="w-full mt-2 py-1.5 px-3 bg-black/10 hover:bg-black/20 dark:bg-white/10 dark:hover:bg-white/20 font-display font-bold text-[11px] uppercase border border-black/30 dark:border-white/20 flex items-center justify-center gap-1.5 transition text-foreground cursor-pointer"
+                          className="w-full mt-2 py-1.5 px-3 font-display font-bold text-[11px] uppercase flex items-center justify-center gap-1.5 transition cursor-pointer"
+                          style={{
+                            backgroundColor: isMain ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.08)",
+                            border: `1px solid ${isMain ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)"}`,
+                            color: isMain ? "#FFFFFF" : "#000000",
+                          }}
                         >
                           <QrCode className="w-3.5 h-3.5" />
                           <span>SCAN ON MOBILE</span>
@@ -582,11 +658,21 @@ function WhatsAppAllocationPage() {
                       </div>
                     ) : (
                       <>
-                        <div className="w-full py-2.5 px-3 bg-black/10 dark:bg-white/10 text-muted-foreground font-display font-bold text-xs uppercase border-2 border-border/40 flex items-center justify-center gap-1.5 select-none">
+                        <div
+                          className="w-full py-2.5 px-3 font-display font-bold text-xs uppercase border-2 flex items-center justify-center gap-1.5 select-none"
+                          style={{
+                            backgroundColor: isMain ? "rgba(0, 0, 0, 0.25)" : "rgba(0, 0, 0, 0.05)",
+                            borderColor: isMain ? "rgba(138, 235, 238, 0.3)" : "#D4D4D8",
+                            color: isMain ? "#8aebee" : "#71717A",
+                          }}
+                        >
                           <Clock className="w-3.5 h-3.5 opacity-70" />
                           <span>{queueNote}</span>
                         </div>
-                        <div className="text-[10px] text-center font-semibold uppercase tracking-wider opacity-60 mt-2 select-none">
+                        <div
+                          className="text-[10px] text-center font-semibold uppercase tracking-wider mt-2 select-none"
+                          style={{ opacity: 0.6 }}
+                        >
                           Auto-opens at 1,000 members
                         </div>
                       </>
@@ -600,11 +686,17 @@ function WhatsAppAllocationPage() {
       </main>
 
       {/* FOOTER */}
-      <footer className="border-t-[3px] border-black bg-[var(--brut-yellow)] text-black pt-10 pb-8 mt-16 transition-colors">
+      <footer
+        className="pt-10 pb-8 mt-16 transition-colors"
+        style={{
+          backgroundColor: "#FFE600",
+          borderTop: "3px solid #000000",
+          color: "#000000",
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          {/* 3 Columns */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Col 1: TECHNIKA 6.0 */}
+            {/* Col 1 */}
             <div>
               <div className="font-display font-black text-2xl uppercase tracking-tight text-black flex items-center gap-2">
                 <span>TECHNIKA</span>
@@ -619,9 +711,17 @@ function WhatsAppAllocationPage() {
               </p>
             </div>
 
-            {/* Col 2: SCHOOL OF ENGINEERING & IT */}
+            {/* Col 2 */}
             <div>
-              <div className="font-display font-black text-base uppercase inline-block bg-[var(--brut-pink)] text-white border-[2px] border-black px-2.5 py-0.5 shadow-[2px_2px_0px_#000] mb-3">
+              <div
+                className="font-display font-black text-base uppercase inline-block px-2.5 py-0.5 mb-3"
+                style={{
+                  backgroundColor: "#FF007F",
+                  color: "#FFFFFF",
+                  border: "2px solid #000000",
+                  boxShadow: "2px 2px 0px #000000",
+                }}
+              >
                 School of Engineering & IT
               </div>
               <div className="text-xs font-semibold text-black leading-relaxed space-y-2">
@@ -649,9 +749,17 @@ function WhatsAppAllocationPage() {
               </div>
             </div>
 
-            {/* Col 3: ARKA JAIN UNIVERSITY */}
+            {/* Col 3 */}
             <div>
-              <div className="font-display font-black text-base uppercase inline-block bg-[var(--brut-blue)] text-black border-[2px] border-black px-2.5 py-0.5 shadow-[2px_2px_0px_#000] mb-3">
+              <div
+                className="font-display font-black text-base uppercase inline-block px-2.5 py-0.5 mb-3"
+                style={{
+                  backgroundColor: "#00D8F6",
+                  color: "#000000",
+                  border: "2px solid #000000",
+                  boxShadow: "2px 2px 0px #000000",
+                }}
+              >
                 ARKA JAIN University
               </div>
               <div className="text-xs font-semibold text-black leading-relaxed space-y-2">
@@ -682,7 +790,6 @@ function WhatsAppAllocationPage() {
           {/* Social Links & Copyright */}
           <div className="border-t-[2px] border-black mt-8 pt-6">
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs mb-6">
-              {/* Technika Socials */}
               <div className="flex items-center gap-2">
                 <span className="font-black uppercase text-[11px] text-black">Technika Socials</span>
                 <a
@@ -705,7 +812,6 @@ function WhatsAppAllocationPage() {
 
               <div className="w-0.5 h-3 bg-black/40 hidden md:block" />
 
-              {/* SOEIT Socials */}
               <div className="flex items-center gap-2">
                 <span className="font-black uppercase text-[11px] text-black">SOEIT Socials</span>
                 <a
@@ -728,7 +834,6 @@ function WhatsAppAllocationPage() {
 
               <div className="w-0.5 h-3 bg-black/40 hidden md:block" />
 
-              {/* AJU Socials */}
               <div className="flex items-center gap-2">
                 <span className="font-black uppercase text-[11px] text-black">AJU Socials</span>
                 <a
@@ -768,7 +873,10 @@ function WhatsAppAllocationPage() {
               <X className="w-4 h-4" />
             </button>
 
-            <div className="inline-block bg-[var(--brut-lime)] text-black border-[2px] border-black px-2 py-0.5 text-xs font-black uppercase mb-3 -rotate-1 shadow-[2px_2px_0px_#000]">
+            <div
+              className="inline-block border-[2px] border-black px-2 py-0.5 text-xs font-black uppercase mb-3 -rotate-1 shadow-[2px_2px_0px_#000]"
+              style={{ backgroundColor: "#00FF66", color: "#000000" }}
+            >
               📱 Scan on Mobile
             </div>
 
@@ -792,7 +900,8 @@ function WhatsAppAllocationPage() {
             <div className="flex gap-2">
               <button
                 onClick={() => copyGroupLink(qrModalGroup.link, qrModalGroup.name)}
-                className="flex-1 border-[2px] border-black bg-[var(--brut-yellow)] text-black text-xs font-black uppercase py-2 flex items-center justify-center gap-1.5 shadow-[3px_3px_0px_#000] cursor-pointer"
+                className="flex-1 border-[2px] border-black text-black text-xs font-black uppercase py-2 flex items-center justify-center gap-1.5 shadow-[3px_3px_0px_#000] cursor-pointer"
+                style={{ backgroundColor: "#FFE600" }}
               >
                 <Copy className="w-3.5 h-3.5" />
                 <span>Copy Link</span>
@@ -813,9 +922,11 @@ function WhatsAppAllocationPage() {
         {toasts.map((t) => (
           <div
             key={t.id}
-            className={`${t.bg || "bg-[var(--brut-lime)]"} ${
-              t.text || "text-black"
-            } border-[3px] border-black p-4 pointer-events-auto max-w-sm flex items-start gap-3 shadow-[5px_5px_0px_#000] transition-all`}
+            className="border-[3px] border-black p-4 pointer-events-auto max-w-sm flex items-start gap-3 shadow-[5px_5px_0px_#000] transition-all"
+            style={{
+              backgroundColor: t.bg || "#00FF66",
+              color: t.text || "#000000",
+            }}
           >
             <div className="mt-0.5 font-black text-lg">⚡</div>
             <div className="flex-1">
