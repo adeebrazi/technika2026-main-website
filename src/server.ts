@@ -500,6 +500,34 @@ export default {
         });
       }
 
+      // 9. GET drive-proxy for Google Drive screenshots
+      if (
+        (url.pathname === "/api/admin/drive-proxy" || url.pathname === "/api/drive-proxy") &&
+        request.method === "GET"
+      ) {
+        const fileId = url.searchParams.get("id");
+        if (!fileId) return new Response("Missing file ID", { status: 400 });
+
+        try {
+          const upstream = await fetch(`https://dashboard.technika2026.online/api/admin/drive-proxy?id=${fileId}`);
+          if (upstream.ok) {
+            const ct = upstream.headers.get("content-type") || "image/jpeg";
+            const buffer = await upstream.arrayBuffer();
+            return new Response(buffer, {
+              status: 200,
+              headers: {
+                "content-type": ct,
+                "cache-control": "public, max-age=86400",
+                ...CORS_HEADERS,
+              },
+            });
+          }
+        } catch {}
+
+        // Fallback directly to Google edge CDN
+        return Response.redirect(`https://lh3.googleusercontent.com/d/${fileId}`, 302);
+      }
+
       // Delegate all other routes to TanStack Start SSR
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
