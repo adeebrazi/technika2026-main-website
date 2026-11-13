@@ -65,16 +65,16 @@ const DEFAULT_STATE: WhatsAppState = {
       id: 2,
       name: "Group Beta",
       tag: "Beta",
-      link: "https://chat.whatsapp.com/Byt0h7SkQzX7kLuNLgDPeW",
-      count: 36,
+      link: "https://chat.whatsapp.com/L9YVg7LL45zATGI0T13C0b?s=cl&p=a&iam=2",
+      count: 38,
       status: "OPEN",
       accent: "#FFE600",
     },
   ],
   activeGroupId: 2,
-  totalJoined: 1036,
+  totalJoined: 1038,
   totalCapacity: 2000,
-  totalRemaining: 964,
+  totalRemaining: 962,
   allFull: false,
 };
 
@@ -184,10 +184,11 @@ function WhatsAppAllocationPage() {
 
   // Fetch state from API with multi-tier fallback
   const fetchStatus = async () => {
+    const ts = Date.now();
     const endpoints = [
-      "/api/whatsapp/status",
-      "https://technika2026.online/api/whatsapp/status",
-      "https://dashboard.technika2026.online/api/whatsapp/status"
+      `https://dashboard.technika2026.online/api/whatsapp/status?t=${ts}`,
+      `/api/whatsapp/status?t=${ts}`,
+      `https://technika2026.online/api/whatsapp/status?t=${ts}`
     ];
 
     for (const ep of endpoints) {
@@ -235,14 +236,14 @@ function WhatsAppAllocationPage() {
     }
 
     try {
-      let res = await fetch("/api/whatsapp/join", {
+      let res = await fetch("https://dashboard.technika2026.online/api/whatsapp/join", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ groupId }),
       }).catch(() => null);
 
       if (!res || !res.ok) {
-        res = await fetch("https://reg.technika2026.online/api/whatsapp/join", {
+        res = await fetch("/api/whatsapp/join", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ groupId }),
