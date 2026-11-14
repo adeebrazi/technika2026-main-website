@@ -208,10 +208,10 @@ function WhatsAppAllocationPage() {
     }
   };
 
-  // Setup periodic polling
+  // Fetch WhatsApp status on mount and gentle background refresh (every 60s)
   useEffect(() => {
     fetchStatus();
-    const interval = setInterval(fetchStatus, 3000);
+    const interval = setInterval(fetchStatus, 60000);
     return () => clearInterval(interval);
   }, []);
 
