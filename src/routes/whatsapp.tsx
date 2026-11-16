@@ -50,31 +50,22 @@ interface ToastItem {
 }
 
 const DEFAULT_STATE: WhatsAppState = {
-  limit: 1000,
+  limit: 100000,
   groups: [
     {
       id: 1,
-      name: "Group Alpha",
-      tag: "Alpha",
-      link: "https://chat.whatsapp.com/Eqqx6LcVA472hc0trTMkcC",
-      count: 1000,
-      status: "FROZEN",
+      name: "Official WhatsApp Channel",
+      tag: "Channel",
+      link: "https://whatsapp.com/channel/0029VbDvONz9RZAOObeJHv45",
+      count: 0,
+      status: "OPEN",
       accent: "#00FF66",
     },
-    {
-      id: 2,
-      name: "Group Beta",
-      tag: "Beta",
-      link: "https://chat.whatsapp.com/L9YVg7LL45zATGI0T13C0b?s=cl&p=a&iam=2",
-      count: 38,
-      status: "OPEN",
-      accent: "#FFE600",
-    },
   ],
-  activeGroupId: 2,
-  totalJoined: 1038,
-  totalCapacity: 2000,
-  totalRemaining: 962,
+  activeGroupId: 1,
+  totalJoined: 0,
+  totalCapacity: 100000,
+  totalRemaining: 100000,
   allFull: false,
 };
 
