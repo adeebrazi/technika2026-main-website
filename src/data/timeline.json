@@ -22,17 +22,10 @@
   },
   {
     "day": 1,
-    "time": "12:00 PM",
+    "time": "12:30 PM",
     "title": "Solo Ramp Walk",
     "description": "High-fashion solo runway showdown celebrating personality, style, and couture.",
     "type": "Event"
-  },
-  {
-    "day": 1,
-    "time": "12:00 PM",
-    "title": "Paintball",
-    "description": "High-intensity tactical combat arena with squad matches and target shootouts.",
-    "type": "Gaming"
   },
   {
     "day": 1,
@@ -57,29 +50,22 @@
   },
   {
     "day": 2,
-    "time": "10:00 AM",
-    "title": "Paintball",
-    "description": "Day 2 knockout stages and combat tournament playoffs.",
-    "type": "Gaming"
-  },
-  {
-    "day": 2,
-    "time": "02:45 PM",
+    "time": "01:00 PM",
     "title": "Events Wrap-Up",
     "description": "Culmination of all competitive events and final evaluation by judges.",
     "type": "Key"
   },
   {
     "day": 2,
-    "time": "03:15 PM",
-    "title": "Valedictory Ceremony",
+    "time": "01:10 PM",
+    "title": "Valedictory & Prize Distribution",
     "description": "Prize distribution, felicitation of champions, and honoring distinguished guests.",
     "type": "Key"
   },
   {
     "day": 2,
     "time": "06:00 PM",
-    "title": "Night Show",
+    "title": "Live Concert",
     "description": "Star night musical concert, dynamic DJ performance, and grand festival celebration.",
     "type": "Show"
   }
